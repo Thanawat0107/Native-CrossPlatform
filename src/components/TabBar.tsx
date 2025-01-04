@@ -1,6 +1,7 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Text, TouchableOpacity, StyleSheet, Platform } from "react-native";
 import React from "react";
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function TabBar({
   state,
@@ -8,13 +9,13 @@ export default function TabBar({
   navigation,
 }: BottomTabBarProps) {
   return (
-    <View style={styles.tabbar}>
+    <SafeAreaView edges={["bottom"]} style={styles.tabbar}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
-          options.tabBarLabel !== undefined
+          typeof options.tabBarLabel === "string"
             ? options.tabBarLabel
-            : options.title !== undefined
+            : typeof options.title === "string"
             ? options.title
             : route.name;
 
@@ -49,36 +50,51 @@ export default function TabBar({
             onLongPress={onLongPress}
             style={styles.tabbarItem}
           >
-            <Text style={{ color: isFocused ? "#0d6efd" : "#222" }}>
+            <Text style={[styles.tabText, isFocused && styles.tabTextFocused]}>
               {label}
             </Text>
           </TouchableOpacity>
         );
       })}
-    </View>
+    </SafeAreaView>
   );
 }
+
+const isIOS = Platform.OS === "ios";
 
 const styles = StyleSheet.create({
   tabbar: {
     position: "absolute",
-    bottom: 25,
+    bottom: isIOS ? 25 : 15, // ระยะห่างที่แตกต่างระหว่าง iOS และ Android
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around", // ให้แต่ละ Tab กระจายตำแหน่ง
     alignContent: "center",
     backgroundColor: "white",
     marginHorizontal: 20,
-    paddingVertical: 15,
+    paddingVertical: 20,
     borderRadius: 25,
-    borderCurve: 'continuous',
-    shadowColor: 'black',
-    shadowOffset: {width: 0, height: 10},
-    shadowRadius: 10,
-    shadowOpacity: 0.1
+    ...(isIOS
+      ? {
+          shadowColor: "black",
+          shadowOffset: { width: 0, height: 10 },
+          shadowRadius: 10,
+          shadowOpacity: 0.1,
+        }
+      : {
+          elevation: 5,
+        }),
   },
   tabbarItem: {
     flex: 1,
     justifyContent: "center",
     alignContent: "center",
+  },
+  tabText: {
+    textAlign: "center",
+    color: "#222",
+    fontSize: 18, // กำหนดขนาดฟอนต์ให้เหมาะสม
+  },
+  tabTextFocused: {
+    color: "green", // เปลี่ยนสีเมื่อโฟกัส
   },
 });
