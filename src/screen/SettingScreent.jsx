@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 
-export default function ProfileScreen() {
+export default function SettingScreen() {
   return (
     <View style={styles.container}>
-      <Text>ProfileScreen</Text>
+      <Text>SettingScreen</Text>
     </View>
   )
 }

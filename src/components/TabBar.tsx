@@ -2,12 +2,32 @@ import { Text, TouchableOpacity, StyleSheet, Platform } from "react-native";
 import React from "react";
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function TabBar({
   state,
   descriptors,
   navigation,
 }: BottomTabBarProps) {
+  const icons = {
+    Home: (props: any) => (
+      <AntDesign name="home" size={26} color={primaryColor} {...props} />
+    ),
+    Cart: (props: any) => (
+      <AntDesign
+        name="shoppingcart"
+        size={26}
+        color={primaryColor}
+        {...props}
+      />
+    ),
+    Profile: (props: any) => (
+      <AntDesign name="user" size={26} color={primaryColor} {...props} />
+    ),
+    Setting: (props: any) => (
+      <AntDesign name="setting" size={26} color={primaryColor} {...props} />
+    ),
+  };
   return (
     <SafeAreaView edges={["bottom"]} style={styles.tabbar}>
       {state.routes.map((route, index) => {
@@ -59,8 +79,9 @@ export default function TabBar({
     </SafeAreaView>
   );
 }
-
 const isIOS = Platform.OS === "ios";
+const primaryColor = '#0891b2';
+const greyColor = '#737373';
 
 const styles = StyleSheet.create({
   tabbar: {
@@ -71,7 +92,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
     backgroundColor: "white",
     marginHorizontal: 20,
-    paddingVertical: 20,
+    paddingVertical: 15,
     borderRadius: 25,
     ...(isIOS
       ? {
@@ -91,10 +112,10 @@ const styles = StyleSheet.create({
   },
   tabText: {
     textAlign: "center",
-    color: "#222",
+    color: greyColor,
     fontSize: 18, // กำหนดขนาดฟอนต์ให้เหมาะสม
   },
   tabTextFocused: {
-    color: "green", // เปลี่ยนสีเมื่อโฟกัส
+    color: primaryColor, // เปลี่ยนสีเมื่อโฟกัส
   },
 });

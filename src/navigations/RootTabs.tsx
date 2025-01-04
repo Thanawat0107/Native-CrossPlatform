@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screen/HomeScreen';
-import SetingScreent from '../screen/SetingScreent';
-import ProfileScreen from '../screen/ProfileScreen';
+import SettingScreent from '../screen/SettingScreent';
+import AccountScreen from '../screen/AccountScreen';
 import CartScreen from '../screen/CartScreen';
 import TabBar from '../components/TabBar';
 
@@ -9,14 +9,12 @@ const Tab = createBottomTabNavigator();
 
 const RootTabs = () => {
   return (
-    <Tab.Navigator
-      tabBar={props => <TabBar {...props} />}
-    >
+    <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Cart" component={CartScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
-      <Tab.Screen name="Seting" component={SetingScreent} />
-  </Tab.Navigator>
+      <Tab.Screen name="Account" component={AccountScreen} />
+      <Tab.Screen name="Setting" component={SettingScreent} />
+    </Tab.Navigator>
   );
 }
 

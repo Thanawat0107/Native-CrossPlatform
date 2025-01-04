@@ -1,10 +1,10 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function SetingScreen() {
+export default function AccountScreen() {
   return (
     <View style={styles.container}>
-      <Text>SetingScreen</Text>
+      <Text>AccountScreen</Text>
     </View>
   )
 }
