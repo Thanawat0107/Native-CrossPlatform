@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
-import RootTabs from './src/navigations/RootTabs';
+import RootTabs from './src/navigators/RootTabs';
 
 export default function App() {
   return (

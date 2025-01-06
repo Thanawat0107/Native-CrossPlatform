@@ -82,13 +82,12 @@ export default function TabBar({
 const isIOS = Platform.OS === "ios";
 const primaryColor = '#0891b2';
 const greyColor = '#737373';
-
 const styles = StyleSheet.create({
   tabbar: {
     position: "absolute",
     bottom: isIOS ? 25 : 15, // ระยะห่างที่แตกต่างระหว่าง iOS และ Android
     flexDirection: "row",
-    justifyContent: "space-around", // ให้แต่ละ Tab กระจายตำแหน่ง
+    justifyContent: "space-between", // ให้แต่ละ Tab กระจายตำแหน่ง
     alignContent: "center",
     backgroundColor: "white",
     marginHorizontal: 20,
