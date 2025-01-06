@@ -21,8 +21,7 @@ export default function ProductCard() {
         </View>
         <View style={styles.contentContainer}>
           <Text style={styles.productName} numberOfLines={1}>
-            {" "}
-            Herb view najaa{" "}
+            Herb view najaa
           </Text>
           <Text style={styles.categoty}> OK </Text>
           <Text style={styles.productPrice}> $550 </Text>
