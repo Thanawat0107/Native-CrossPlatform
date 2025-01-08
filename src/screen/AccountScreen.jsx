@@ -1,18 +1,22 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, } from 'react-native'
+import { StatusBar } from "expo-status-bar";
 import React from 'react'
 
-export default function AccountScreen() {
+const AccountScreen = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar style="auto" />
       <Text>AccountScreen</Text>
-    </View>
+    </SafeAreaView>
   )
 }
+
+export default AccountScreen
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    marginHorizontal: 12,
+    marginVertical: 12,
   },
-});
+})

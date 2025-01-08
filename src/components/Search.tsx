@@ -2,7 +2,7 @@ import { StyleSheet, TextInput, View } from "react-native";
 import React from "react";
 import { Image } from "react-native";
 
-export default function Search() {
+const Search = () => {
   return (
     <View style={styles.inputContainer}>
       <Image
@@ -13,6 +13,8 @@ export default function Search() {
     </View>
   );
 }
+
+export default Search
 
 const styles = StyleSheet.create({
   inputContainer: {

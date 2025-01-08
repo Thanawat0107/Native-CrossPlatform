@@ -4,27 +4,32 @@ import ProductCard from "../components/products/ProductCard";
 import Search from "../components/Search";
 import { View } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function HomeScreen() {
+const HomeScreen = () => {
   return (
     <>
       <ScrollView style={styles.container}>
-        <StatusBar style="light"/>
-        <Search />
-        <View style={styles.productGrid}>
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-        </View>
+        <SafeAreaView>
+          <StatusBar style="auto" />
+          <Search />
+          <View style={styles.productGrid}>
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+          </View>
+        </SafeAreaView>
       </ScrollView>
     </>
   );
 }
+
+export default HomeScreen
 
 const styles = StyleSheet.create({
   container: {
