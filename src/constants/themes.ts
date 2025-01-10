@@ -52,4 +52,4 @@ const SHADOWS = {
   }
 }
 
-export const themes = {THEME, SHADOWS}
+export const themes = { THEME, SHADOWS };

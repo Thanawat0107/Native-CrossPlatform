@@ -70,15 +70,17 @@ const styles = StyleSheet.create({
   productName: {
     color: "#444444",
     fontSize: 16,
-    fontFamily: "",
+    fontFamily: "regular",
   },
   categoty: {
     color: "#737373",
+    fontFamily: "regular",
   },
   productPrice: {
     //fontWeight: "bold",
     fontSize: 16,
     textAlign: "right",
     color: "#5B41FF",
+    fontFamily: "medium",
   },
 });

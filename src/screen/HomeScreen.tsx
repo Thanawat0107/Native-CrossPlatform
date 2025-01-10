@@ -8,24 +8,22 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const HomeScreen = () => {
   return (
-    <>
-      <ScrollView style={styles.container}>
-        <SafeAreaView>
-          <StatusBar style="auto" />
-          <Search />
-          <View style={styles.productGrid}>
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-          </View>
-        </SafeAreaView>
-      </ScrollView>
-    </>
+    <ScrollView style={styles.container}>
+      <SafeAreaView>
+        <StatusBar style="auto" />
+        <Search />
+        <View style={styles.productGrid}>
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+        </View>
+      </SafeAreaView>
+    </ScrollView>
   );
 }
 

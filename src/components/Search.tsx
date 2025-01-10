@@ -32,5 +32,6 @@ const styles = StyleSheet.create({
   },
   textInput: {
     fontSize: 18,
+    fontFamily: "regular",
   },
 });

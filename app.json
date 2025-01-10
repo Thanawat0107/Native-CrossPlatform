@@ -23,6 +23,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "fonts": {
+      "Roboto-Black": "./assets/fonts/Roboto-Black.ttf",
+      "Roboto-Bold": "./assets/fonts/Roboto-Bold.ttf"
     }
   }
 }
