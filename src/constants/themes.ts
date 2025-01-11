@@ -34,8 +34,6 @@ const THEME = {
     large: 20,
     xLarge: 24,
     xxLarge: 44,
-    height: any,
-    width: any,
   },
 };
 

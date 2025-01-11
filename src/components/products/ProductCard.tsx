@@ -14,24 +14,22 @@ const ProductCard = () => {
   const imageUrl =
     "https://cdn.shopify.com/s/files/1/1740/1449/files/Herb_Blog1-2.jpg?v=1676411773";
   return (
-    <>
-      <TouchableOpacity style={styles.container}>
-        <View style={styles.imageWepper}>
-          <Image source={{ uri: imageUrl }} style={styles.productImage} />
-        </View>
-        <View style={styles.contentContainer}>
-          <Text style={styles.productName} numberOfLines={1}>
-            Herb view najaa
-          </Text>
-          <Text style={styles.categoty}> OK </Text>
-          <Text style={styles.productPrice}> $550 </Text>
-        </View>
-      </TouchableOpacity>
-    </>
+    <TouchableOpacity style={styles.container}>
+      <View style={styles.imageWepper}>
+        <Image source={{ uri: imageUrl }} style={styles.productImage} />
+      </View>
+      <View style={styles.contentContainer}>
+        <Text style={styles.productName} numberOfLines={1}>
+          Herb view najaa
+        </Text>
+        <Text style={styles.categoty}> HerbGood! </Text>
+        <Text style={styles.productPrice}> $550 </Text>
+      </View>
+    </TouchableOpacity>
   );
-}
+};
 
-export default ProductCard
+export default ProductCard;
 
 const styles = StyleSheet.create({
   container: {
@@ -50,7 +48,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     marginVertical: 5,
   },
-  
+
   imageWepper: {
     borderRadius: 12,
     backgroundColor: "#6c757d",

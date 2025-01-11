@@ -2,28 +2,23 @@ import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from "@react-navigation/bottom-tabs";
-import { HomeScreen } from "../screen";
-import { SearchScreen } from "../screen";
-import { CartScreen } from "../screen";
-import { SettingScreen } from "../screen";
-import { AccountScreen } from "../screen";
 import { AntDesign } from "@expo/vector-icons";
 import Feather from '@expo/vector-icons/Feather';
 import { Platform } from "react-native";
 import { ParamListBase, RouteProp } from "@react-navigation/native";
+import { HomeStack } from "./StackTabs";
+import { AccountScreen, CartScreen, SearchScreen, SettingScreen } from "../screen";
 
 const Tab = createBottomTabNavigator();
 const isIOS = Platform.OS === "ios";
 
 const RootTabs = () => {
-  const screenOptions = ({
-    route,
-  }: {
+  const screenOptions = ({ route }: {
     route: RouteProp<ParamListBase, string>;
   }): BottomTabNavigationOptions => ({
     headerShown: false,
     tabBarShowLabel: true,
-    //tabBarHideOnKeyboard: false,
+    tabBarHideOnKeyboard: true,
     tabBarActiveTintColor: "#5B4",
     tabBarInactiveTintColor: "#6c757d",
     tabBarStyle: {
@@ -54,8 +49,8 @@ const RootTabs = () => {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen
-        name="Home"
-        component={HomeScreen}
+        name="HomeTab"
+        component={HomeStack}
         options={{
           tabBarIcon: ({ color, size, focused }) => (
             <AntDesign name="home" size={size || 26} color={color} />
@@ -64,7 +59,7 @@ const RootTabs = () => {
         }}
       />
       <Tab.Screen
-        name="SearchScreen"
+        name="Search"
         component={SearchScreen}
         options={{
           tabBarIcon: ({ color, size, focused }) => (
@@ -82,7 +77,7 @@ const RootTabs = () => {
           ),
           tabBarBadge: 99,
           tabBarBadgeStyle: { backgroundColor: "#dc3545", color: "#fff" },
-          tabBarLabel: "ตะกร้า",
+          tabBarLabel: "รถเข็น",
         }}
       />
       <Tab.Screen
