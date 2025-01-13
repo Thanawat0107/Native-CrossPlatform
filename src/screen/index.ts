@@ -1,7 +1,6 @@
 import AccountScreen from "./AccountScreen";
 import CartScreen from "./CartScreen";
 import HomeScreen from "./HomeScreen";
-import LoadingScreen from "./LoadingScreen";
 import ProductDetailsScreen from "./ProductDetailsScreen";
 import SearchScreen from "./SearchScreen";
 import SettingScreen from "./SettingScreen";
@@ -13,5 +12,4 @@ export {
   ProductDetailsScreen,
   SearchScreen,
   SettingScreen,
-  LoadingScreen  
 };

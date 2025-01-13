@@ -8,6 +8,7 @@ import { Platform } from "react-native";
 import { ParamListBase, RouteProp } from "@react-navigation/native";
 import { HomeStack } from "./StackTabs";
 import { AccountScreen, CartScreen, SearchScreen, SettingScreen } from "../screen";
+import { themes } from "../constants/themes";
 
 const Tab = createBottomTabNavigator();
 const isIOS = Platform.OS === "ios";
@@ -19,7 +20,7 @@ const RootTabs = () => {
     headerShown: false,
     tabBarShowLabel: true,
     tabBarHideOnKeyboard: true,
-    tabBarActiveTintColor: "#5B4",
+    tabBarActiveTintColor: themes.THEME.colors.green,
     tabBarInactiveTintColor: "#6c757d",
     tabBarStyle: {
       backgroundColor: "#f8f9fa",
@@ -28,7 +29,7 @@ const RootTabs = () => {
       bottom: isIOS ? 25 : 15,
       flexDirection: "row",
       justifyContent: "space-between",
-      alignContent: "center", // ใช้ค่า alignContent ที่รองรับ
+      alignContent: "center",
       marginHorizontal: 12,
       paddingVertical: 15,
       borderRadius: 25,
@@ -68,7 +69,7 @@ const RootTabs = () => {
           tabBarLabel: "ค้นหา",
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Cart"
         component={CartScreen}
         options={{
@@ -79,7 +80,7 @@ const RootTabs = () => {
           tabBarBadgeStyle: { backgroundColor: "#dc3545", color: "#fff" },
           tabBarLabel: "รถเข็น",
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Account"
         component={AccountScreen}

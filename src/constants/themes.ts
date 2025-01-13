@@ -14,7 +14,9 @@ const THEME = {
     white: "#FFFFFF",
     black: "#000000",
     red: "#e81e4d",
-    green: "#00C135",
+    green: "#5B4",
+    green2: "#00C135",
+    green3: "#0e8e16",
     lightWhite: "#FAFAFC",
 
     // neutral
@@ -29,7 +31,7 @@ const THEME = {
 
   sizes: { 
     xSmall: 10,
-    small: 12,
+    small: 14,
     medium: 16,
     large: 20,
     xLarge: 24,

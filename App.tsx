@@ -3,7 +3,7 @@ import RootTabs from "./src/navigators/RootTabs";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
 import useCustomFonts from "./src/hooks/useCustomFonts";
-import { LoadingScreen } from "./src/screen";
+import { Loading } from "./src/components";
 
 export default function App() {
   const [fontsLoaded, fontError] = useCustomFonts();
@@ -15,7 +15,7 @@ export default function App() {
   }, [fontsLoaded]);
 
   if (!fontsLoaded && !fontError) {
-    return <LoadingScreen />;
+    return <Loading />;
   }
 
   return (
