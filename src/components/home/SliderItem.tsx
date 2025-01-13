@@ -11,7 +11,7 @@ interface SliderItemProps {
 const SliderItem = ({ item, index }: SliderItemProps) => {
   return (
     <View style={styles.itemContainer}>
-      <Image source={item.image} style={{ width: 300, height: 500 }} />
+      <Image source={item.image} style={{ width: 300, height: 200, borderRadius: 16 }} />
     </View>
   );
 };
@@ -24,5 +24,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 20,
     width: wp,
+    borderRadius: 16,
   },
 });
