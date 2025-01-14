@@ -7,8 +7,10 @@ import CartItems from "./shopping-cart/CartItems";
 import Search from "./Search";
 import ProductDetails from "./products/ProductDetails";
 import Welcome from "./home/Welcome";
-import Navber from "./Navber";
 import Loading from "./Loading";
+import Headings from "./home/Headings";
+import ProductList from "./products/ProductList";
+import Navber from "./home/Navber";
 
 export {
   Account,
@@ -22,4 +24,6 @@ export {
   Welcome,
   Navber,
   Loading,
+  Headings,
+  ProductList
 };

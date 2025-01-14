@@ -1,14 +1,11 @@
 import React from "react";
-import { Platform, ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import ProductCard from "../components/products/ProductCard";
 import { View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { themes } from "../constants/themes";
-import Navber from "../components/Navber";
-import { Welcome } from "../components";
-
-const isIOS = Platform.OS === "ios";
+import { Navber, ProductList, Welcome } from "../components";
 
 const HomeScreen = () => {
   return (
@@ -17,7 +14,8 @@ const HomeScreen = () => {
       <Navber />
       <ScrollView>
         <Welcome />
-        <View style={styles.productGrid}>
+        <ProductList />
+        {/* <View style={styles.productGrid}>
           <ProductCard />
           <ProductCard />
           <ProductCard />
@@ -26,7 +24,7 @@ const HomeScreen = () => {
           <ProductCard />
           <ProductCard />
           <ProductCard />
-        </View>
+        </View> */}
       </ScrollView>
     </SafeAreaView>
   );
@@ -38,12 +36,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: themes.THEME.sizes.small,
-    marginTop: 12,
-    marginBottom: isIOS ? 45 : 70,
+    marginVertical: 12,
   },
-  productGrid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-  },
+  // productGrid: {
+  //   flexDirection: "row",
+  //   flexWrap: "wrap",
+  //   justifyContent: "space-between",
+  // },
 });

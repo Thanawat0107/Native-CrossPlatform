@@ -10,7 +10,12 @@ import React from "react";
 
 const isIOS = Platform.OS === "ios";
 
-const ProductCard = () => {
+interface Products {
+  item: any;
+  index: number;
+}
+
+const ProductCard = ({item, index}: Products) => {
   const imageUrl =
     "https://cdn.shopify.com/s/files/1/1740/1449/files/Herb_Blog1-2.jpg?v=1676411773";
   return (

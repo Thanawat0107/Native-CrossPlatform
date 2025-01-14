@@ -7,7 +7,7 @@ import Feather from '@expo/vector-icons/Feather';
 import { Platform } from "react-native";
 import { ParamListBase, RouteProp } from "@react-navigation/native";
 import { HomeStack } from "./StackTabs";
-import { AccountScreen, CartScreen, SearchScreen, SettingScreen } from "../screen";
+import { AccountScreen, SearchScreen, SettingScreen } from "../screen";
 import { themes } from "../constants/themes";
 
 const Tab = createBottomTabNavigator();
@@ -18,7 +18,7 @@ const RootTabs = () => {
     route: RouteProp<ParamListBase, string>;
   }): BottomTabNavigationOptions => ({
     headerShown: false,
-    tabBarShowLabel: true,
+    tabBarShowLabel: false,
     tabBarHideOnKeyboard: true,
     tabBarActiveTintColor: themes.THEME.colors.green,
     tabBarInactiveTintColor: "#6c757d",
@@ -29,10 +29,10 @@ const RootTabs = () => {
       bottom: isIOS ? 25 : 15,
       flexDirection: "row",
       justifyContent: "space-between",
-      alignContent: "center",
-      marginHorizontal: 12,
+      alignItems: "center",
+      marginHorizontal: 15,
       paddingVertical: 15,
-      borderRadius: 25,
+      borderRadius: 30,
       ...(isIOS
         ? {
             shadowColor: "black",

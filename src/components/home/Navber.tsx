@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Fontisto, Ionicons } from "@expo/vector-icons";
-import { themes } from "../constants/themes";
+import { themes } from "../../constants/themes";
 
 const Navber = () => {
   return (
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     height: 16,
     borderRadius: 8,
     alignItems: "center",
-    backgroundColor: themes.THEME.colors.red,
+    backgroundColor: themes.THEME.colors.green,
     justifyContent: "center",
     zIndex: 999
   },

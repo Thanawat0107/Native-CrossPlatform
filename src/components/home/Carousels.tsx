@@ -14,7 +14,7 @@ const Carousels = () => {
           { img: require("../../../assets/images/image4.jpg") },
           { img: require("../../../assets/images/image5.jpg") },
         ]}
-        localImg={true} // ระบุว่าเป็นรูป Local
+        localImg={true}
         caroselImageContainerStyle={{
           width: wp,
           height: 200,
@@ -47,6 +47,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: wp,
     height: hp,
-    marginBottom: 10,
+    marginBottom: 16,
+    overflow : "hidden",
+    borderRadius: 15
   },
 });

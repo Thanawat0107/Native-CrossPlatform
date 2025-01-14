@@ -2,8 +2,8 @@ import { Text, View, StyleSheet } from "react-native";
 import React from "react";
 import { themes } from "../../constants/themes";
 import Search from "../Search";
-import Slider from "../slider/Slider";
 import Carousels from "./Carousels";
+import Headings from "./Headings";
 
 const Welcome = () => {
   return (
@@ -21,7 +21,7 @@ const Welcome = () => {
       </Text>
       <Search />
       <Carousels />
-      {/* <Slider /> */}
+      <Headings />
     </View>
   );
 };
