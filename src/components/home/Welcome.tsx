@@ -2,8 +2,8 @@ import { Text, View, StyleSheet } from "react-native";
 import React from "react";
 import { themes } from "../../constants/themes";
 import Search from "../Search";
-import Carousel from "./Carousel";
-import Slider from "./Slider";
+import Slider from "../slider/Slider";
+import Carousels from "./Carousels";
 
 const Welcome = () => {
   return (
@@ -20,8 +20,8 @@ const Welcome = () => {
         Interesting Herbs
       </Text>
       <Search />
-      {/* <Carousel /> */}
-      <Slider />
+      <Carousels />
+      {/* <Slider /> */}
     </View>
   );
 };
@@ -33,7 +33,7 @@ const welcomeText = (color: string, top: number = 0) => ({
   fontSize: themes.THEME.sizes.xxLarge - 6,
   marginTop: top,
   color: color,
-  marginHorizontal: themes.THEME.sizes.small,
+  //marginHorizontal: themes.THEME.sizes.small,
 });
 
 const styles = StyleSheet.create({

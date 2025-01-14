@@ -14,6 +14,7 @@ const Slider = () => {
           <SliderItem item={item} index={index} />
         )}
         showsHorizontalScrollIndicator={false}
+        pagingEnabled
       />
     </View>
   );

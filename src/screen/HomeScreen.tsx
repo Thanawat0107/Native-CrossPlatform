@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: themes.THEME.sizes.small,
-    // marginVertical: 12,
     marginTop: 12,
     marginBottom: isIOS ? 45 : 70,
   },
