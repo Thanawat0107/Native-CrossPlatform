@@ -7,6 +7,10 @@ import {
   Text,
 } from "react-native";
 import React from "react";
+import { themes } from "../../constants/themes";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 const isIOS = Platform.OS === "ios";
 
@@ -15,21 +19,45 @@ interface Products {
   index: number;
 }
 
+type RootStackParamList = {
+  Home: undefined;
+  ProductDetails: undefined;
+};
+
+export type NavigationProp = NativeStackNavigationProp<RootStackParamList, "Home">;
+
 const ProductCard = ({item, index}: Products) => {
-  const imageUrl =
-    "https://cdn.shopify.com/s/files/1/1740/1449/files/Herb_Blog1-2.jpg?v=1676411773";
+  const navigation = useNavigation<NavigationProp>();
+  
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("ProductDetails")}
+      style={styles.container}
+    >
       <View style={styles.imageWepper}>
-        <Image source={{ uri: imageUrl }} style={styles.productImage} />
+        <Image source={item.image} style={styles.productImage} />
       </View>
       <View style={styles.contentContainer}>
         <Text style={styles.productName} numberOfLines={1}>
-          Herb view najaa
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          Exercitationem, libero?
         </Text>
-        <Text style={styles.categoty}> HerbGood! </Text>
-        <Text style={styles.productPrice}> $550 </Text>
+        <Text style={styles.categoty} numberOfLines={1}>
+          {" "}
+          HerbGood!{" "}
+        </Text>
+        <Text style={styles.productPrice} numberOfLines={1}>
+          {" "}
+          $550{" "}
+        </Text>
       </View>
+      <TouchableOpacity style={styles.addBtn}>
+        <Ionicons
+          name="add-circle"
+          size={35}
+          color={themes.THEME.colors.green}
+        />
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 };
@@ -38,7 +66,9 @@ export default ProductCard;
 
 const styles = StyleSheet.create({
   container: {
-    width: "48%",
+    width: isIOS ? 182 : 184,
+    height: 260,
+    marginEnd: 22,
     ...(isIOS
       ? {
           shadowColor: "black",
@@ -50,40 +80,45 @@ const styles = StyleSheet.create({
           elevation: 5,
         }),
     backgroundColor: "#FFFFFF",
-    borderRadius: 12,
-    marginVertical: 5,
+    borderRadius: themes.THEME.sizes.medium,
   },
 
   imageWepper: {
-    borderRadius: 12,
+    borderRadius: themes.THEME.sizes.medium,
     backgroundColor: "#6c757d",
-    margin: 10,
+    marginTop: 5,
+    marginHorizontal: 5,
+    overflow: "hidden",
   },
   productImage: {
-    height: 120,
+    height: 160,
     width: "100%",
-    borderRadius: 12,
+    borderRadius: themes.THEME.sizes.medium,
     resizeMode: "cover",
   },
   contentContainer: {
-    //padding: 10,
-    paddingHorizontal: 15,
-    paddingBottom: 10,
+     padding: themes.THEME.sizes.small,
   },
   productName: {
     color: "#444444",
-    fontSize: 16,
-    fontFamily: "regular",
+    fontSize: themes.THEME.sizes.large,
+    fontFamily: "bold",
+    marginBottom: 5,
   },
   categoty: {
     color: "#737373",
     fontFamily: "regular",
+    fontSize: themes.THEME.sizes.small,
+    marginBottom: 2,
   },
   productPrice: {
-    //fontWeight: "bold",
-    fontSize: 16,
-    textAlign: "right",
+    fontSize: themes.THEME.sizes.large,
     color: "#5B41FF",
     fontFamily: "medium",
   },
+  addBtn:{
+    position: "absolute",
+    bottom: themes.THEME.sizes.xSmall,
+    right: themes.THEME.sizes.xSmall
+  }
 });

@@ -29,9 +29,9 @@ const RootTabs = () => {
       bottom: isIOS ? 25 : 15,
       flexDirection: "row",
       justifyContent: "space-between",
-      alignItems: "center",
+      // alignItems: "center",
       marginHorizontal: 15,
-      paddingVertical: 15,
+      // paddingVertical: 15,
       borderRadius: 30,
       ...(isIOS
         ? {

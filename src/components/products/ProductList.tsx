@@ -5,25 +5,23 @@ import ProductCard from './ProductCard';
 import ProductCardTest from './ProductCardTest';
 import { imgSlider } from '../slider/SliderData';
 
-const ProductGrid = () => {
-const products = [1, 2, 3, 4];
+const ProductList = () => {
   return (
     <View style={styles.productGrid}>
       <FlatList
         data={imgSlider}
         keyExtractor={(_, index) => index.toString()}
         horizontal
-        renderItem={({ item, index }) => <ProductCardTest item={item} index={index} />}
+        renderItem={({ item, index }) => <ProductCard item={item} index={index} />}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ columnGap: themes.THEME.sizes.medium }}
+        contentContainerStyle={{ columnGap: themes.THEME.sizes.small }}
       />
     </View>
   );
 }
 
-export default ProductGrid
+export default ProductList
 
 const styles = StyleSheet.create({
-  productGrid: { marginTop: themes.THEME.sizes.medium },
-  
+  productGrid: { marginTop: themes.THEME.sizes.large },
 });

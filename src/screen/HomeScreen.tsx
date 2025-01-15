@@ -15,16 +15,6 @@ const HomeScreen = () => {
       <ScrollView>
         <Welcome />
         <ProductList />
-        {/* <View style={styles.productGrid}>
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-        </View> */}
       </ScrollView>
     </SafeAreaView>
   );
@@ -38,9 +28,4 @@ const styles = StyleSheet.create({
     marginHorizontal: themes.THEME.sizes.small,
     marginVertical: 12,
   },
-  // productGrid: {
-  //   flexDirection: "row",
-  //   flexWrap: "wrap",
-  //   justifyContent: "space-between",
-  // },
 });

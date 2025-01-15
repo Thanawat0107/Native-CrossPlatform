@@ -47,6 +47,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: wp,
     height: hp,
-    marginBottom: 10,
+    marginBottom: 16,
+    overflow : "hidden",
+    borderRadius: 15
   },
 });

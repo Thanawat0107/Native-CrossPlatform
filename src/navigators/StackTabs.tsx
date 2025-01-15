@@ -1,8 +1,8 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeScreen, ProductDetailsScreen } from '../screen';
-const Stack = createNativeStackNavigator();
 
+const Stack = createNativeStackNavigator();
 const screenOptions = {
   headerStyle: { backgroundColor: "#6200EE" },  // สีพื้นหลัง Header
   headerTintColor: "#FFFFFF",                  // สีตัวอักษร Header
@@ -12,29 +12,19 @@ const screenOptions = {
 
 const HomeStack = () => {
   return (
-    <Stack.Navigator screenOptions={screenOptions}>
+    <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
         name="Home"
         component={HomeScreen}
-        options={{
-          title: "หน้าหลัก", // ชื่อหน้า
-          headerShown: false, // ซ่อน Header
-          animation: "fade", // Animation
-        }}
+        options={{ headerShown: false, animation: "fade" }}
       />
       <Stack.Screen
         name="ProductDetails"
         component={ProductDetailsScreen}
-        options={{
-          title: "สินค้า", // ชื่อหน้า
-          headerShown: false, // ซ่อน Header
-          animation: "fade", // Animation
-        }}
+        options={{ headerShown: false, animation: "fade" }}
       />
     </Stack.Navigator>
   );
 }
-
-
 
 export { HomeStack }

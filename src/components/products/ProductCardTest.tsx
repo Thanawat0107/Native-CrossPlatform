@@ -23,7 +23,10 @@ const ProductCardTest = ({item, index}: Products) => {
     <TouchableOpacity onPress={() => {}}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image source={item.image} style={styles.image} />
+          <Image source={item.image} style={styles.productImage} />
+        </View>
+        <View style={styles.productDetails}>
+          <Text style={styles.title}>Lorem ipsum dolor sit amet.</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -36,24 +39,41 @@ const styles = StyleSheet.create({
   container: {
     width: 182,
     height: 240,
-    marginEnd: 22,
+    // marginEnd: 22,
     borderRadius: themes.THEME.sizes.medium,
     backgroundColor: themes.THEME.colors.white,
+    // ...(isIOS
+    //   ? {
+    //       shadowColor: "black",
+    //       shadowOffset: { width: 0, height: 10 },
+    //       shadowRadius: 10,
+    //       shadowOpacity: 0.1,
+    //     }
+    //   : {
+    //       elevation: 5,
+    //     }),
   },
   imageContainer: {
     flex: 1,
     width: 170,
-    marginLeft: themes.THEME.sizes.small/2,
-    marginTop: themes.THEME.sizes.small/2,
+    marginTop: themes.THEME.sizes.small/2.5,
+    marginLeft: themes.THEME.sizes.small/2.5,
     borderRadius: themes.THEME.sizes.small,
+    backgroundColor:  themes.THEME.colors.gray2,
     overflow: "hidden",
-    backgroundColor:  themes.THEME.colors.gray2
   },
-  image: {
+  productImage: {
     width: "100%",
     height: "100%",
     aspectRatio: 1,
     resizeMode: "cover",
     overflow: "hidden",
+  },
+  productDetails: {
+    padding: themes.THEME.sizes.small,
+    alignItems: "flex-start",
+  },
+  title: {
+    
   }
 });
