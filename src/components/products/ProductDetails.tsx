@@ -2,8 +2,17 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { themes } from '../../constants/themes'
 import { Ionicons } from '@expo/vector-icons'
+import { RouteProp, useRoute } from '@react-navigation/native';
+import { RootStackParamList } from '../../../@types/navigation'
+import { useAppNavigation } from '../../hooks/useAppNavigation'
 
-const ProductDetails = ({navigation}) => {
+type ProductDetailsRouteProp = RouteProp<RootStackParamList, "ProductDetails">;
+
+const ProductDetails = () => {
+  const navigation = useAppNavigation();
+  const route = useRoute<ProductDetailsRouteProp>();
+  const { productId } = route.params;
+
   return (
     <View style={styles.container}>
       <View style={styles.detailesGrid}>
@@ -32,7 +41,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     position: "absolute",
     top: themes.THEME.sizes.xxLarge,
-    // width: themes.THEME.sizes.width -44,
+    width: -44,
     zIndex: 999,
   }
 });

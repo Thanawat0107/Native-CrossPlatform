@@ -44,7 +44,6 @@ const RootTabs = () => {
             elevation: 5,
           }),
     },
-    //tabBarIconStyle: { marginBottom: 2 },
   });
 
   return (

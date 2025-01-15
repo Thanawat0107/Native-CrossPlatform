@@ -11,6 +11,8 @@ import { themes } from "../../constants/themes";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../../@types/navigation";
+import { useAppNavigation } from "../../hooks/useAppNavigation";
 
 const isIOS = Platform.OS === "ios";
 
@@ -19,19 +21,12 @@ interface Products {
   index: number;
 }
 
-type RootStackParamList = {
-  Home: undefined;
-  ProductDetails: undefined;
-};
-
-export type NavigationProp = NativeStackNavigationProp<RootStackParamList, "Home">;
-
 const ProductCard = ({item, index}: Products) => {
-  const navigation = useNavigation<NavigationProp>();
+  const navigation = useAppNavigation();
   
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate("ProductDetails")}
+      onPress={() => navigation.navigate("ProductDetails", { productId: "123" })}
       style={styles.container}
     >
       <View style={styles.imageWepper}>

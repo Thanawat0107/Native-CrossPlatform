@@ -2,7 +2,6 @@ import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { themes } from '../../constants/themes';
 import ProductCard from './ProductCard';
-import ProductCardTest from './ProductCardTest';
 import { imgSlider } from '../slider/SliderData';
 
 const ProductList = () => {
