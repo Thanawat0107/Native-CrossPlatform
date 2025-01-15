@@ -34,16 +34,13 @@ const ProductCard = ({item, index}: Products) => {
       </View>
       <View style={styles.contentContainer}>
         <Text style={styles.productName} numberOfLines={1}>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-          Exercitationem, libero?
+          ProductName
         </Text>
         <Text style={styles.categoty} numberOfLines={1}>
-          {" "}
-          HerbGood!{" "}
+          HerbGood!
         </Text>
         <Text style={styles.productPrice} numberOfLines={1}>
-          {" "}
-          $550{" "}
+          $550
         </Text>
       </View>
       <TouchableOpacity style={styles.addBtn}>
@@ -86,8 +83,8 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   productImage: {
-    height: 160,
     width: "100%",
+    height: 160,
     borderRadius: themes.THEME.sizes.medium,
     resizeMode: "cover",
   },
