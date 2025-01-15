@@ -3,13 +3,14 @@ import React from 'react'
 import { themes } from '../../constants/themes';
 import ProductCard from './ProductCard';
 import ProductCardTest from './ProductCardTest';
+import { imgSlider } from '../slider/SliderData';
 
 const ProductGrid = () => {
 const products = [1, 2, 3, 4];
   return (
     <View style={styles.productGrid}>
       <FlatList
-        data={products}
+        data={imgSlider}
         keyExtractor={(_, index) => index.toString()}
         horizontal
         renderItem={({ item, index }) => <ProductCardTest item={item} index={index} />}
