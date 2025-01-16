@@ -1,6 +1,7 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeScreen, ProductDetailsScreen } from '../screen';
+import { ProductDetails } from '../components';
 
 const Stack = createNativeStackNavigator();
 const screenOptions = {
@@ -20,7 +21,7 @@ const HomeStack = () => {
       />
       <Stack.Screen
         name="ProductDetails"
-        component={ProductDetailsScreen}
+        component={ProductDetails}
         options={{ headerShown: false, animation: "fade" }}
       />
     </Stack.Navigator>
