@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image, SafeAreaView } from "react-native";
 import React, {useState} from "react";
 import { COLORS, SIZES } from "../../constants/themes";
-import { Ionicons, MaterialCommunityIcons, SimpleLineIcons } from "@expo/vector-icons";
+import { Fontisto, Ionicons, MaterialCommunityIcons, SimpleLineIcons } from "@expo/vector-icons";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "../../../@types/navigation";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
@@ -34,7 +34,6 @@ const ProductDetails = () => {
             <Ionicons
               name="chevron-back-circle"
               size={30}
-              color={COLORS.primary}
             />
           </TouchableOpacity>
 
@@ -106,7 +105,13 @@ const ProductDetails = () => {
           </View>
           
           <View style={styles.cartRow}>
+            <TouchableOpacity onPress={() => {}} style={styles.cartBtn}>
+              <Text style={styles.cartTitle}>BUY NOW </Text>
+            </TouchableOpacity>
 
+            <TouchableOpacity onPress={() => {}} style={styles.addCart}>
+              <Fontisto name="shopping-bag" size={22} color={COLORS.lightWhite} />
+            </TouchableOpacity>
           </View>
 
         </View>
@@ -213,11 +218,37 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: COLORS.gray2,
-    marginHorizontal: 20,
+    marginHorizontal: 12,
     padding: 5,
     borderRadius: SIZES.large,
   },
   cartRow: {
-    
-  }
+    paddingBottom: SIZES.small,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: SIZES.width,
+  },
+  cartBtn: {
+    width: SIZES.width * 0.7,
+    backgroundColor: COLORS.black,
+    padding: SIZES.small/2,
+    borderRadius: SIZES.large,
+    marginLeft: 12,
+  },
+  cartTitle: {
+    marginLeft: SIZES.small,
+    fontFamily: "medium",
+    fontSize: SIZES.medium,
+    color: COLORS.lightWhite,
+  },
+  addCart: {
+    width: 37,
+    height: 37,
+    borderRadius: 50,
+    margin: SIZES.small,
+    backgroundColor: COLORS.black,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
