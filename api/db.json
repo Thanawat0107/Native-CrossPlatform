@@ -1,0 +1,184 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "ฟ้าทะลายโจร",
+      "type": "บำรุงร่างกาย",
+      "benefits": "ช่วยเสริมภูมิคุ้มกัน และบรรเทาอาการหวัด",
+      "price": 50,
+      "stock": 200,
+      "imageUrl": "https://example.com/images/herb1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "ขมิ้นชัน",
+      "type": "บำรุงร่างกาย",
+      "benefits": "ช่วยบำรุงตับ และระบบย่อยอาหาร",
+      "price": 35,
+      "stock": 150,
+      "imageUrl": "https://example.com/images/herb2.jpg"
+    },
+    {
+      "id": 3,
+      "name": "ใบเตย",
+      "type": "บำรุงหัวใจ",
+      "benefits": "ช่วยบำรุงหัวใจ และลดความดันโลหิต",
+      "price": 25,
+      "stock": 300,
+      "imageUrl": "https://example.com/images/herb3.jpg"
+    },
+    {
+      "id": 4,
+      "name": "กระชายดำ",
+      "type": "บำรุงกำลัง",
+      "benefits": "ช่วยบำรุงกำลัง และเสริมสมรรถภาพ",
+      "price": 60,
+      "stock": 100,
+      "imageUrl": "https://example.com/images/herb4.jpg"
+    },
+    {
+      "id": 5,
+      "name": "มะขามป้อม",
+      "type": "ต้านอนุมูลอิสระ",
+      "benefits": "เสริมภูมิคุ้มกัน และช่วยลดไข้",
+      "price": 40,
+      "stock": 250,
+      "imageUrl": "https://example.com/images/herb5.jpg"
+    },
+    {
+      "id": 6,
+      "name": "ใบบัวบก",
+      "type": "ลดอักเสบ",
+      "benefits": "ลดอาการอักเสบ และบรรเทาอาการร้อนใน",
+      "price": 30,
+      "stock": 200,
+      "imageUrl": "https://example.com/images/herb6.jpg"
+    },
+    {
+      "id": 7,
+      "name": "พริกไทยดำ",
+      "type": "เพิ่มการไหลเวียนเลือด",
+      "benefits": "ช่วยกระตุ้นการไหลเวียนเลือด และเพิ่มการเผาผลาญ",
+      "price": 45,
+      "stock": 180,
+      "imageUrl": "https://example.com/images/herb7.jpg"
+    },
+    {
+      "id": 8,
+      "name": "ลูกใต้ใบ",
+      "type": "บำรุงตับ",
+      "benefits": "ช่วยขับพิษ และบำรุงตับ",
+      "price": 35,
+      "stock": 220,
+      "imageUrl": "https://example.com/images/herb8.jpg"
+    },
+    {
+      "id": 9,
+      "name": "อัญชัน",
+      "type": "บำรุงสายตา",
+      "benefits": "ช่วยบำรุงสายตา และเพิ่มการไหลเวียนโลหิต",
+      "price": 30,
+      "stock": 190,
+      "imageUrl": "https://example.com/images/herb9.jpg"
+    },
+    {
+      "id": 10,
+      "name": "บอระเพ็ด",
+      "type": "ลดน้ำตาลในเลือด",
+      "benefits": "ช่วยลดระดับน้ำตาลในเลือด",
+      "price": 50,
+      "stock": 130,
+      "imageUrl": "https://example.com/images/herb10.jpg"
+    },
+    {
+      "id": 11,
+      "name": "รางจืด",
+      "type": "ล้างพิษ",
+      "benefits": "ช่วยล้างพิษ และลดอาการแพ้",
+      "price": 40,
+      "stock": 120,
+      "imageUrl": "https://example.com/images/herb11.jpg"
+    },
+    {
+      "id": 12,
+      "name": "เพกา",
+      "type": "บำรุงกระดูก",
+      "benefits": "ช่วยบำรุงกระดูก และลดอาการอักเสบ",
+      "price": 45,
+      "stock": 150,
+      "imageUrl": "https://example.com/images/herb12.jpg"
+    },
+    {
+      "id": 13,
+      "name": "มะระขี้นก",
+      "type": "ลดระดับน้ำตาลในเลือด",
+      "benefits": "ช่วยลดระดับน้ำตาล และบำรุงตับอ่อน",
+      "price": 50,
+      "stock": 110,
+      "imageUrl": "https://example.com/images/herb13.jpg"
+    },
+    {
+      "id": 14,
+      "name": "กระเจี๊ยบแดง",
+      "type": "บำรุงไต",
+      "benefits": "ช่วยขับปัสสาวะ และลดความดันโลหิต",
+      "price": 40,
+      "stock": 160,
+      "imageUrl": "https://example.com/images/herb14.jpg"
+    },
+    {
+      "id": 15,
+      "name": "สะเดา",
+      "type": "ลดไข้",
+      "benefits": "ช่วยลดไข้ และรักษาโรคผิวหนัง",
+      "price": 35,
+      "stock": 140,
+      "imageUrl": "https://example.com/images/herb15.jpg"
+    },
+    {
+      "id": 16,
+      "name": "เตยหอม",
+      "type": "บำรุงหัวใจ",
+      "benefits": "ช่วยบำรุงหัวใจ และลดกลิ่นปาก",
+      "price": 25,
+      "stock": 210,
+      "imageUrl": "https://example.com/images/herb16.jpg"
+    },
+    {
+      "id": 17,
+      "name": "ถั่งเช่า",
+      "type": "บำรุงร่างกาย",
+      "benefits": "ช่วยเพิ่มพลังงาน และบำรุงไต",
+      "price": 150,
+      "stock": 50,
+      "imageUrl": "https://example.com/images/herb17.jpg"
+    },
+    {
+      "id": 18,
+      "name": "ว่านหางจระเข้",
+      "type": "บำรุงผิว",
+      "benefits": "ช่วยบำรุงผิว และลดการอักเสบ",
+      "price": 30,
+      "stock": 170,
+      "imageUrl": "https://example.com/images/herb18.jpg"
+    },
+    {
+      "id": 19,
+      "name": "มะพร้าว",
+      "type": "บำรุงร่างกาย",
+      "benefits": "ช่วยเพิ่มความสดชื่น และลดความร้อนในร่างกาย",
+      "price": 20,
+      "stock": 300,
+      "imageUrl": "https://example.com/images/herb19.jpg"
+    },
+    {
+      "id": 20,
+      "name": "พลูคาว",
+      "type": "ลดอาการอักเสบ",
+      "benefits": "ช่วยลดการอักเสบ และบรรเทาอาการแพ้",
+      "price": 55,
+      "stock": 100,
+      "imageUrl": "https://example.com/images/herb20.jpg"
+    }
+  ]
+}
