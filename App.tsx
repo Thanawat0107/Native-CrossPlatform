@@ -4,6 +4,8 @@ import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
 import useCustomFonts from "./src/hooks/useCustomFonts";
 import { Loading } from "./src/components";
+import { Provider } from "react-redux";
+import { store } from "./src/store/store";
 
 export default function App() {
   const [fontsLoaded, fontError] = useCustomFonts();
@@ -19,8 +21,10 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer onReady={onLayoutRootView}>
-      <RootTabs />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer onReady={onLayoutRootView}>
+        <RootTabs />
+      </NavigationContainer>
+    </Provider>
   );
 }
