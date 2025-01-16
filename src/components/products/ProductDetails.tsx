@@ -6,7 +6,6 @@ import { RouteProp, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "../../../@types/navigation";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 import { wp } from "../../helpers/common";
-import { StatusBar } from "expo-status-bar";
 
 type ProductDetailsRouteProp = RouteProp<RootStackParamList, "ProductDetails">;
 

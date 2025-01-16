@@ -9,9 +9,6 @@ import {
 import React from "react";
 import { themes } from "../../constants/themes";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../../@types/navigation";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 
 const isIOS = Platform.OS === "ios";
