@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Fontisto, Ionicons } from "@expo/vector-icons";
-import { themes } from "../../constants/themes";
+import { COLORS } from "../../constants/themes";
 
 const Navber = () => {
   return (
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
   location: {
     fontFamily: "medium",
-    color: themes.THEME.colors.gray,
+    color: COLORS.gray,
   },
   cartCount: {
     position: "absolute",
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     height: 16,
     borderRadius: 8,
     alignItems: "center",
-    backgroundColor: themes.THEME.colors.green,
+    backgroundColor: COLORS.green,
     justifyContent: "center",
     zIndex: 999
   },
@@ -56,6 +56,6 @@ const styles = StyleSheet.create({
     fontFamily: "regular",
     fontWeight: "600",
     fontSize: 10,
-    color: themes.THEME.colors.lightWhite,
+    color: COLORS.lightWhite,
   }
 });

@@ -6,11 +6,11 @@ import {
 } from "react-native";
 import React from "react";
 import { Feather, Ionicons } from "@expo/vector-icons";
-import { themes } from "../constants/themes";
-import { useNavigation } from "@react-navigation/native";
+import { COLORS, SIZES } from "../constants/themes";
+import { useAppNavigation } from "../hooks/useAppNavigation";
 
 const Search = () => {
-  const navigation = useNavigation();
+  const navigation = useAppNavigation();
 
   return (
     <View style={styles.searchContainer}>
@@ -29,8 +29,8 @@ const Search = () => {
         <TouchableOpacity style={styles.searchBtn}>
           <Ionicons
             name="camera-outline"
-            size={themes.THEME.sizes.xLarge}
-            color={themes.THEME.colors.offwhite}
+            size={SIZES.xLarge}
+            color={COLORS.offwhite}
           />
         </TouchableOpacity>
       </View>
@@ -45,34 +45,34 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: themes.THEME.colors.while,
-    borderRadius: themes.THEME.sizes.medium,
-    marginVertical: themes.THEME.sizes.medium,
+    backgroundColor: COLORS.while,
+    borderRadius: SIZES.medium,
+    marginVertical: SIZES.medium,
     height: 50,
   },
   searchIcon: {
     marginHorizontal: 10,
-    color: themes.THEME.colors.gray,
+    color: COLORS.gray,
   },
   searchWrapper: {
     flex: 1,
-    backgroundColor: themes.THEME.colors.while,
-    marginRight: themes.THEME.sizes.small,
-    borderRadius: themes.THEME.sizes.small,
+    backgroundColor: COLORS.while,
+    marginRight: SIZES.small,
+    borderRadius: SIZES.small,
   },
   textInput: {
     fontFamily: "regular",
     width: "100%",
     height: "100%",
-    paddingHorizontal: themes.THEME.sizes.small,
+    paddingHorizontal: SIZES.small,
     fontSize: 14,
   },
   searchBtn: {
     width: 45,
     height: "90%",
-    borderRadius: themes.THEME.sizes.medium,
+    borderRadius: SIZES.medium,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: themes.THEME.colors.gray2,
+    backgroundColor: COLORS.gray2,
   },
 });

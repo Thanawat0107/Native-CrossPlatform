@@ -8,7 +8,7 @@ import { Platform } from "react-native";
 import { ParamListBase, RouteProp } from "@react-navigation/native";
 import { HomeStack } from "./StackTabs";
 import { AccountScreen, SearchScreen, SettingScreen } from "../screen";
-import { themes } from "../constants/themes";
+import { COLORS } from "../constants/themes";
 
 const Tab = createBottomTabNavigator();
 const isIOS = Platform.OS === "ios";
@@ -20,7 +20,7 @@ const RootTabs = () => {
     headerShown: false,
     tabBarShowLabel: false,
     tabBarHideOnKeyboard: true,
-    tabBarActiveTintColor: themes.THEME.colors.green,
+    tabBarActiveTintColor: COLORS.green,
     tabBarInactiveTintColor: "#6c757d",
     tabBarStyle: {
       backgroundColor: "#f8f9fa",

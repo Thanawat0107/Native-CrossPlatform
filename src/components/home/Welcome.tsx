@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet } from "react-native";
 import React from "react";
-import { themes } from "../../constants/themes";
+import { COLORS, SIZES, } from "../../constants/themes";
 import Search from "../Search";
 import Carousels from "./Carousels";
 import Headings from "./Headings";
@@ -10,13 +10,13 @@ const Welcome = () => {
     <View style={styles.container}>
       <Text
         style={welcomeText(
-          themes.THEME.colors.primary,
-          themes.THEME.sizes.xSmall
+          COLORS.primary,
+          SIZES.xSmall
         )}
       >
         Find The Most
       </Text>
-      <Text style={welcomeText(themes.THEME.colors.green3, 0)}>
+      <Text style={welcomeText(COLORS.green3, 0)}>
         Interesting Herbs
       </Text>
       <Search />
@@ -30,7 +30,7 @@ export default Welcome;
 
 const welcomeText = (color: string, top: number = 0) => ({
   fontFamily: "bold",
-  fontSize: themes.THEME.sizes.xxLarge - 6,
+  fontSize: SIZES.xxLarge - 6,
   marginTop: top,
   color: color,
   //marginHorizontal: themes.THEME.sizes.small,

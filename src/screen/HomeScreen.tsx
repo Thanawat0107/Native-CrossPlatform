@@ -4,7 +4,7 @@ import ProductCard from "../components/products/ProductCard";
 import { View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { themes } from "../constants/themes";
+import { SIZES } from "../constants/themes";
 import { Navber, ProductList, Welcome } from "../components";
 
 const HomeScreen = () => {
@@ -25,7 +25,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: themes.THEME.sizes.small,
+    marginHorizontal: SIZES.small,
     marginVertical: 12,
   },
 });

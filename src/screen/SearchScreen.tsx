@@ -1,7 +1,7 @@
 import { StyleSheet, SafeAreaView, Platform, TextInput, TouchableOpacity, View } from 'react-native'
 import { StatusBar } from "expo-status-bar";
 import React from 'react'
-import { themes } from "../constants/themes";
+import { COLORS, SIZES } from "../constants/themes";
 import { Ionicons, Feather } from '@expo/vector-icons';
 
 const isIOS = Platform.OS === "ios";
@@ -14,7 +14,7 @@ const SearchScreen = () => {
         <TouchableOpacity>
           <Ionicons
             name="camera-outline"
-            size={themes.THEME.sizes.xLarge}
+            size={SIZES.xLarge}
             style={styles.searchIcon}
           />
         </TouchableOpacity>
@@ -30,7 +30,7 @@ const SearchScreen = () => {
             <Feather
               name="search"
               size={24}
-              color={themes.THEME.colors.offwhite}
+              color={COLORS.offwhite}
             />
           </TouchableOpacity>
         </View>
@@ -44,7 +44,7 @@ export default SearchScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: themes.THEME.sizes.small,
+    marginHorizontal: SIZES.small,
     marginTop: 12,
     marginBottom: isIOS ? 45 : 70,
   },
@@ -52,34 +52,34 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: themes.THEME.colors.while,
-    borderRadius: themes.THEME.sizes.medium,
-    marginVertical: themes.THEME.sizes.medium,
+    backgroundColor: COLORS.while,
+    borderRadius: SIZES.medium,
+    marginVertical: SIZES.medium,
     height: 50,
   },
   searchIcon: {
     marginHorizontal: 10,
-    color: themes.THEME.colors.gray,
+    color: COLORS.gray,
   },
   searchWrapper: {
     flex: 1,
-    backgroundColor: themes.THEME.colors.while,
-    marginRight: themes.THEME.sizes.small,
-    borderRadius: themes.THEME.sizes.small,
+    backgroundColor: COLORS.while,
+    marginRight: SIZES.small,
+    borderRadius: SIZES.small,
   },
   textInput: {
     fontFamily: "regular",
     width: "100%",
     height: "100%",
-    paddingHorizontal: themes.THEME.sizes.small,
+    paddingHorizontal: SIZES.small,
     fontSize: 14,
   },
   searchBtn: {
     width: 45,
     height: "90%",
-    borderRadius: themes.THEME.sizes.medium,
+    borderRadius: SIZES.medium,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: themes.THEME.colors.gray2,
+    backgroundColor: COLORS.gray2,
   },
 });

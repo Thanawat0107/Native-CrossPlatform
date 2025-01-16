@@ -16,7 +16,7 @@ const Carousels = () => {
         ]}
         localImg={true} // ระบุว่าเป็นรูป Local
         caroselImageContainerStyle={{
-          width: wp,
+          // width: wp,
           height: 200,
           borderRadius: 15,
           overflow: "hidden",
@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
   carouselContainer: {
     flex: 1,
     alignItems: "center",
-    width: wp,
-    height: hp,
+    // width: wp,
+    // height: hp,
     marginBottom: 16,
     overflow : "hidden",
     borderRadius: 15

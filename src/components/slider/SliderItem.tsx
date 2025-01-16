@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, ImageBackground, TouchableOpacity } from
 import React from "react";
 import { ImageSliderType } from "./SliderData";
 import { wp } from "../../helpers/common";
-import { themes } from "../../constants/themes";
+import { SIZES } from "../../constants/themes";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     gap: 20,
-    width: wp,
-    marginBottom: themes.THEME.sizes.xSmall,
+    width: wp(100),
+    marginBottom: SIZES.xSmall,
   },
   image: {
     width: 300,

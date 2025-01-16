@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { themes } from '../../constants/themes';
+import { COLORS, SIZES } from '../../constants/themes';
 
 const Headings = () => {
   return (
@@ -9,7 +9,7 @@ const Headings = () => {
       <View style={styles.header}>
         <Text style={styles.headerTitle}>New Rivals</Text>
         <TouchableOpacity>
-            <Ionicons name='grid' size={24} color={themes.THEME.colors.primary} />
+            <Ionicons name='grid' size={24} color={COLORS.primary} />
         </TouchableOpacity>
       </View>
     </View>
@@ -29,6 +29,6 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontFamily: "medium",
-    fontSize: themes.THEME.sizes.xLarge -2,
+    fontSize: SIZES.xLarge -2,
   },
 });

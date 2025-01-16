@@ -7,7 +7,7 @@ import {
   Text,
 } from "react-native";
 import React from "react";
-import { themes } from "../../constants/themes";
+import { COLORS, SIZES } from "../../constants/themes";
 import { Ionicons } from "@expo/vector-icons";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 
@@ -44,7 +44,7 @@ const ProductCard = ({item, index}: Products) => {
         <Ionicons
           name="add-circle"
           size={35}
-          color={themes.THEME.colors.green}
+          color={COLORS.green}
         />
       </TouchableOpacity>
     </TouchableOpacity>
@@ -69,11 +69,11 @@ const styles = StyleSheet.create({
           elevation: 5,
         }),
     backgroundColor: "#FFFFFF",
-    borderRadius: themes.THEME.sizes.medium,
+    borderRadius: SIZES.medium,
   },
 
   imageWepper: {
-    borderRadius: themes.THEME.sizes.medium,
+    borderRadius: SIZES.medium,
     backgroundColor: "#6c757d",
     marginTop: 5,
     marginHorizontal: 5,
@@ -82,32 +82,32 @@ const styles = StyleSheet.create({
   productImage: {
     width: "100%",
     height: 160,
-    borderRadius: themes.THEME.sizes.medium,
+    borderRadius: SIZES.medium,
     resizeMode: "cover",
   },
   contentContainer: {
-     padding: themes.THEME.sizes.small,
+     padding: SIZES.small,
   },
   productName: {
     color: "#444444",
-    fontSize: themes.THEME.sizes.large,
+    fontSize: SIZES.large,
     fontFamily: "bold",
     marginBottom: 5,
   },
   categoty: {
     color: "#737373",
     fontFamily: "regular",
-    fontSize: themes.THEME.sizes.small,
+    fontSize: SIZES.small,
     marginBottom: 2,
   },
   productPrice: {
-    fontSize: themes.THEME.sizes.large,
+    fontSize: SIZES.large,
     color: "#5B41FF",
     fontFamily: "medium",
   },
   addBtn:{
     position: "absolute",
-    bottom: themes.THEME.sizes.xSmall,
-    right: themes.THEME.sizes.xSmall
+    bottom: SIZES.xSmall,
+    right: SIZES.xSmall
   }
 });
