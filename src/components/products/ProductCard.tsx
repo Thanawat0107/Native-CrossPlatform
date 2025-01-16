@@ -56,19 +56,9 @@ export default ProductCard;
 const styles = StyleSheet.create({
   container: {
     width: isIOS ? 182 : 184,
-    height: 260,
+    // height: isIOS ? 270 : 235,
     marginEnd: 22,
-    ...(isIOS
-      ? {
-          shadowColor: "black",
-          shadowOffset: { width: 0, height: 10 },
-          shadowRadius: 10,
-          shadowOpacity: 0.1,
-        }
-      : {
-          elevation: 5,
-        }),
-    backgroundColor: "#FFFFFF",
+    backgroundColor: COLORS.white,
     borderRadius: SIZES.medium,
   },
 
@@ -81,7 +71,7 @@ const styles = StyleSheet.create({
   },
   productImage: {
     width: "100%",
-    height: 160,
+    height: isIOS ? 160 : 120,
     borderRadius: SIZES.medium,
     resizeMode: "cover",
   },
@@ -92,13 +82,12 @@ const styles = StyleSheet.create({
     color: "#444444",
     fontSize: SIZES.large,
     fontFamily: "bold",
-    marginBottom: 5,
+    marginBottom: 2,
   },
   categoty: {
     color: "#737373",
     fontFamily: "regular",
     fontSize: SIZES.small,
-    marginBottom: 2,
   },
   productPrice: {
     fontSize: SIZES.large,

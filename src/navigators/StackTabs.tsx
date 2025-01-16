@@ -4,10 +4,10 @@ import { HomeScreen, ProductDetailsScreen } from '../screen';
 
 const Stack = createNativeStackNavigator();
 const screenOptions = {
-  headerStyle: { backgroundColor: "#6200EE" },  // สีพื้นหลัง Header
-  headerTintColor: "#FFFFFF",                  // สีตัวอักษร Header
-  headerTitleStyle: { fontWeight: "bold" },    // รูปแบบตัวอักษร
-  animation: "slide_from_right",               // Animation เปลี่ยนหน้า
+  headerStyle: { backgroundColor: "#6200EE" },  
+  headerTintColor: "#FFFFFF",                  
+  headerTitleStyle: { fontWeight: "bold" },   
+  animation: "slide_from_right",               
 }
 
 const HomeStack = () => {

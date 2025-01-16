@@ -14,25 +14,48 @@ const Tab = createBottomTabNavigator();
 const isIOS = Platform.OS === "ios";
 
 const RootTabs = () => {
-  const screenOptions = ({ route }: {
+  const screenOptions = ({
+    route,
+  }: {
     route: RouteProp<ParamListBase, string>;
   }): BottomTabNavigationOptions => ({
-    headerShown: false,
     tabBarShowLabel: false,
     tabBarHideOnKeyboard: true,
+    headerShown: false,
     tabBarActiveTintColor: COLORS.green,
     tabBarInactiveTintColor: "#6c757d",
+      // paddingVertical: 15,
     tabBarStyle: {
-      backgroundColor: "#f8f9fa",
-      height: 60,
       position: "absolute",
-      bottom: isIOS ? 25 : 15,
+      bottom: isIOS ? 25 : 5,
+      height: 60,
       flexDirection: "row",
       justifyContent: "space-between",
-      // alignItems: "center",
-      marginHorizontal: 15,
-      // paddingVertical: 15,
-      borderRadius: 30,
+      ...(isIOS ? {
+            //ios
+            alignItems: "center",
+          }
+        : {
+            //and
+          }),
+      ...(isIOS
+        ? {
+            //ios
+            marginHorizontal: 15,
+          }
+        : {
+            //and
+            marginHorizontal: 15,
+          }),
+      ...(isIOS
+        ? {
+            //ios
+            borderRadius: 30,
+          }
+        : {
+            //and
+            borderRadius: 25,
+          }),
       ...(isIOS
         ? {
             shadowColor: "black",
