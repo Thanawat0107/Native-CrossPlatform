@@ -11,7 +11,7 @@ import { COLORS, SIZES } from "../../constants/themes";
 import { Ionicons } from "@expo/vector-icons";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 import { Herb } from "../../../@types";
-import { baseUrlOs } from "../../helpers/SD";
+import { baseUrl } from "../../helpers/SD";
 
 const isIOS = Platform.OS === "ios";
 
@@ -24,7 +24,7 @@ const ProductCard = ({ herb }: { herb: Herb }) => {
       style={styles.container}
     >
       <View style={styles.imageWepper}>
-        <Image source={{ uri: `${baseUrlOs}${herb.imageUrl}` }} style={styles.productImage} />
+        <Image source={{ uri: `${baseUrl}${herb.imageUrl}` }} style={styles.productImage} />
       </View>
       <View style={styles.contentContainer}>
         <Text style={styles.productName} numberOfLines={1}>

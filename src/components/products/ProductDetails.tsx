@@ -7,7 +7,7 @@ import { useAppNavigation } from "../../hooks/useAppNavigation";
 import { RootStackParamList } from "../../../@types/navigation";
 import { wp } from "../../helpers/common";
 import { useGetHerbsQuery } from "../../fetch/herbsApi";
-import { baseUrlOs } from "../../helpers/SD";
+import { baseUrl } from "../../helpers/SD";
 
 type ProductDetailsRouteProp = RouteProp<RootStackParamList, "ProductDetails">;
 
@@ -44,7 +44,7 @@ const ProductDetails = () => {
 
         <View style={styles.imageWepper}>
           <Image
-            source={{ uri: `${baseUrlOs}${herb.imageUrl}` }}
+            source={{ uri: `${baseUrl}${herb.imageUrl}` }}
             style={styles.productImage}
           />
         </View>

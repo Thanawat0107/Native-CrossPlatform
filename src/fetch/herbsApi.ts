@@ -1,9 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { baseUrlIos, baseUrlOs } from "../helpers/SD";
-import { Platform } from "react-native";
-const isIOS = Platform.OS === "ios";
-
-const baseUrl = isIOS ? baseUrlIos : baseUrlOs;
+import { baseUrl } from "../helpers/SD";
 
 export const herbsApi = createApi({
   reducerPath: "herbsApi",
