@@ -41,7 +41,7 @@ export const herbsApi = createApi({
 
     deleteHerb: builder.mutation({
       query: (id) => ({
-        url: `herb/${id}`,
+        url: `herbs/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: (result, error, id) => [{ type: "herbs", id }],
