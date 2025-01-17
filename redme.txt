@@ -1,3 +1,5 @@
+*json-server : "json-server": "0.17.0",
+
 *วิธีเช็ค IP Address บน macOS : IP Address ipconfig getifaddr en0
 *IP Address macOS : 10.120.0.38
 *ping : ping 10.120.0.38

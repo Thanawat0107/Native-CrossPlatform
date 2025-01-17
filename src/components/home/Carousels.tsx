@@ -1,6 +1,5 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
-import { hp, wp } from "../../helpers/common";
 import { ImageSlider } from "react-native-image-slider-banner";
 
 const Carousels = () => {
@@ -8,11 +7,11 @@ const Carousels = () => {
     <View style={styles.carouselContainer}>
       <ImageSlider
         data={[
-          { img: require("../../../assets/images/image1.jpg") },
-          { img: require("../../../assets/images/image2.jpg") },
-          { img: require("../../../assets/images/image3.jpg") },
-          { img: require("../../../assets/images/image4.jpg") },
-          { img: require("../../../assets/images/image5.jpg") },
+          { img: require("../../../assets/braners/image1.jpg") },
+          { img: require("../../../assets/braners/image2.jpg") },
+          { img: require("../../../assets/braners/image3.jpg") },
+          { img: require("../../../assets/braners/image4.jpg") },
+          { img: require("../../../assets/braners/image5.jpg") },
         ]}
         localImg={true} // ระบุว่าเป็นรูป Local
         caroselImageContainerStyle={{

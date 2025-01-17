@@ -7,7 +7,7 @@
       "benefits": "ช่วยเสริมภูมิคุ้มกัน และบรรเทาอาการหวัด",
       "price": 50,
       "stock": 200,
-      "imageUrl": "https://example.com/images/herb1.jpg"
+      "imageUrl": "/image1.jpg"
     },
     {
       "id": 2,
@@ -16,7 +16,7 @@
       "benefits": "ช่วยบำรุงตับ และระบบย่อยอาหาร",
       "price": 35,
       "stock": 150,
-      "imageUrl": "https://example.com/images/herb2.jpg"
+      "imageUrl": "/image2.jpg"
     },
     {
       "id": 3,
@@ -25,7 +25,7 @@
       "benefits": "ช่วยบำรุงหัวใจ และลดความดันโลหิต",
       "price": 25,
       "stock": 300,
-      "imageUrl": "https://example.com/images/herb3.jpg"
+      "imageUrl": "/image3.jpg"
     },
     {
       "id": 4,
@@ -34,7 +34,7 @@
       "benefits": "ช่วยบำรุงกำลัง และเสริมสมรรถภาพ",
       "price": 60,
       "stock": 100,
-      "imageUrl": "https://example.com/images/herb4.jpg"
+      "imageUrl": "/image4.jpg"
     },
     {
       "id": 5,
@@ -43,7 +43,7 @@
       "benefits": "เสริมภูมิคุ้มกัน และช่วยลดไข้",
       "price": 40,
       "stock": 250,
-      "imageUrl": "https://example.com/images/herb5.jpg"
+      "imageUrl": "/image5.jpg"
     },
     {
       "id": 6,
@@ -52,7 +52,7 @@
       "benefits": "ลดอาการอักเสบ และบรรเทาอาการร้อนใน",
       "price": 30,
       "stock": 200,
-      "imageUrl": "https://example.com/images/herb6.jpg"
+      "imageUrl": "/image1.jpg"
     },
     {
       "id": 7,
@@ -61,7 +61,7 @@
       "benefits": "ช่วยกระตุ้นการไหลเวียนเลือด และเพิ่มการเผาผลาญ",
       "price": 45,
       "stock": 180,
-      "imageUrl": "https://example.com/images/herb7.jpg"
+      "imageUrl": "/image2.jpg"
     },
     {
       "id": 8,
@@ -70,7 +70,7 @@
       "benefits": "ช่วยขับพิษ และบำรุงตับ",
       "price": 35,
       "stock": 220,
-      "imageUrl": "https://example.com/images/herb8.jpg"
+      "imageUrl": "/image3.jpg"
     },
     {
       "id": 9,
@@ -79,7 +79,7 @@
       "benefits": "ช่วยบำรุงสายตา และเพิ่มการไหลเวียนโลหิต",
       "price": 30,
       "stock": 190,
-      "imageUrl": "https://example.com/images/herb9.jpg"
+      "imageUrl": "/image4.jpg"
     },
     {
       "id": 10,
@@ -88,7 +88,7 @@
       "benefits": "ช่วยลดระดับน้ำตาลในเลือด",
       "price": 50,
       "stock": 130,
-      "imageUrl": "https://example.com/images/herb10.jpg"
+      "imageUrl": "/image5.jpg"
     },
     {
       "id": 11,
@@ -97,7 +97,7 @@
       "benefits": "ช่วยล้างพิษ และลดอาการแพ้",
       "price": 40,
       "stock": 120,
-      "imageUrl": "https://example.com/images/herb11.jpg"
+      "imageUrl": "/image1.jpg"
     },
     {
       "id": 12,
@@ -106,7 +106,7 @@
       "benefits": "ช่วยบำรุงกระดูก และลดอาการอักเสบ",
       "price": 45,
       "stock": 150,
-      "imageUrl": "https://example.com/images/herb12.jpg"
+      "imageUrl": "/image2.jpg"
     },
     {
       "id": 13,
@@ -115,7 +115,7 @@
       "benefits": "ช่วยลดระดับน้ำตาล และบำรุงตับอ่อน",
       "price": 50,
       "stock": 110,
-      "imageUrl": "https://example.com/images/herb13.jpg"
+      "imageUrl": "/image3.jpg"
     },
     {
       "id": 14,
@@ -124,7 +124,7 @@
       "benefits": "ช่วยขับปัสสาวะ และลดความดันโลหิต",
       "price": 40,
       "stock": 160,
-      "imageUrl": "https://example.com/images/herb14.jpg"
+      "imageUrl": "/image4.jpg"
     },
     {
       "id": 15,
@@ -133,7 +133,7 @@
       "benefits": "ช่วยลดไข้ และรักษาโรคผิวหนัง",
       "price": 35,
       "stock": 140,
-      "imageUrl": "https://example.com/images/herb15.jpg"
+      "imageUrl": "/image5.jpg"
     },
     {
       "id": 16,
@@ -142,7 +142,7 @@
       "benefits": "ช่วยบำรุงหัวใจ และลดกลิ่นปาก",
       "price": 25,
       "stock": 210,
-      "imageUrl": "https://example.com/images/herb16.jpg"
+      "imageUrl": "/image1.jpg"
     },
     {
       "id": 17,
@@ -151,7 +151,7 @@
       "benefits": "ช่วยเพิ่มพลังงาน และบำรุงไต",
       "price": 150,
       "stock": 50,
-      "imageUrl": "https://example.com/images/herb17.jpg"
+      "imageUrl": "/image2.jpg"
     },
     {
       "id": 18,
@@ -160,7 +160,7 @@
       "benefits": "ช่วยบำรุงผิว และลดการอักเสบ",
       "price": 30,
       "stock": 170,
-      "imageUrl": "https://example.com/images/herb18.jpg"
+      "imageUrl": "/image3.jpg"
     },
     {
       "id": 19,
@@ -169,7 +169,7 @@
       "benefits": "ช่วยเพิ่มความสดชื่น และลดความร้อนในร่างกาย",
       "price": 20,
       "stock": 300,
-      "imageUrl": "https://example.com/images/herb19.jpg"
+      "imageUrl": "/image4.jpg"
     },
     {
       "id": 20,
@@ -178,7 +178,7 @@
       "benefits": "ช่วยลดการอักเสบ และบรรเทาอาการแพ้",
       "price": 55,
       "stock": 100,
-      "imageUrl": "https://example.com/images/herb20.jpg"
+      "imageUrl": "/image5.jpg"
     }
   ]
 }
