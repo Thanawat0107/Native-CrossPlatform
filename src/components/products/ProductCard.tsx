@@ -10,34 +10,30 @@ import React from "react";
 import { COLORS, SIZES } from "../../constants/themes";
 import { Ionicons } from "@expo/vector-icons";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
+import { Herb } from "../../../@types";
 
 const isIOS = Platform.OS === "ios";
 
-interface Products {
-  item: any;
-  index: number;
-}
-
-const ProductCard = ({item, index}: Products) => {
+const ProductCard = ({ herb }: { herb: Herb }) => {
   const navigation = useAppNavigation();
   
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate("ProductDetails", { productId: "123" })}
+      onPress={() => navigation.navigate("ProductDetails", { productId: herb.id })}
       style={styles.container}
     >
       <View style={styles.imageWepper}>
-        <Image source={item.image} style={styles.productImage} />
+        <Image source={{ uri: herb.imageUrl }} style={styles.productImage} />
       </View>
       <View style={styles.contentContainer}>
         <Text style={styles.productName} numberOfLines={1}>
-          ProductName
+          {herb.name}
         </Text>
         <Text style={styles.categoty} numberOfLines={1}>
-          HerbGood!
+          {herb.type}
         </Text>
         <Text style={styles.productPrice} numberOfLines={1}>
-          $550
+          ${herb.price}
         </Text>
       </View>
       <TouchableOpacity style={styles.addBtn}>

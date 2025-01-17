@@ -1,7 +1,5 @@
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
-import ProductCard from "../components/products/ProductCard";
-import { View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SIZES } from "../constants/themes";

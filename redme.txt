@@ -1,1 +1,12 @@
-json-server --watch api/db.json --port 3001
+*วิธีเช็ค IP Address บน macOS : IP Address ipconfig getifaddr en0
+*IP Address macOS : 10.120.0.38
+*ping : ping 10.120.0.38
+
+*วิธีเช็ค IP Address บน Windows : ipconfig
+
+
+*การตรวจสอบการเชื่อมต่อ-รันคำสั่ง curl ใน macOS หรือ Windows Command Prompt : curl http://10.120.0.38:3001/herbs #
+*run-json-serverOs: json-server --watch api/db.json --host 10.120.0.38 --port 3001 #
+
+*run-json-serverOs: json-server --watch api/db.json --host 10.0.2.2 --port 3001
+*run-json-serverIos: json-server --watch api/db.json --port 3001

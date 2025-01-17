@@ -2,21 +2,21 @@ import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-nativ
 import React from 'react'
 import { SIZES } from '../../constants/themes';
 import ProductCard from './ProductCard';
-import { imgSlider } from '../slider/SliderData';
 import { useGetHerbsQuery } from '../../fetch/herbsApi';
 
 const ProductList = () => {
   const { data: herbs, isLoading, isError, error } = useGetHerbsQuery(null);
 
   if (isLoading) return <ActivityIndicator size="large" color="#0000ff" />;
-  // if (isError) return <Text>Error: {error}</Text>;
+  if (isError) return <Text>Error: {error.error}</Text>;
+
   return (
     <View style={styles.productGrid}>
       <FlatList
-        data={imgSlider}
-        keyExtractor={(_, index) => index.toString()}
+        data={herbs}
+        keyExtractor={(item) => item.id.toString()}
         horizontal
-        renderItem={({ item, index }) => <ProductCard item={item} index={index} />}
+        renderItem={({ item }) => <ProductCard herb={item} />}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ columnGap: SIZES.small }}
       />

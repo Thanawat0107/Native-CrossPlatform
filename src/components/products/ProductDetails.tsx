@@ -3,10 +3,10 @@ import React, {useState} from "react";
 import { COLORS, SIZES } from "../../constants/themes";
 import { Fontisto, Ionicons, MaterialCommunityIcons, SimpleLineIcons } from "@expo/vector-icons";
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { RootStackParamList } from "../../../@types/navigation";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
-import { StatusBar } from "expo-status-bar";
+import { RootStackParamList } from "../../../@types/navigation";
 import { wp } from "../../helpers/common";
+import { useGetHerbsQuery } from "../../fetch/herbsApi";
 
 type ProductDetailsRouteProp = RouteProp<RootStackParamList, "ProductDetails">;
 
@@ -15,16 +15,15 @@ const ProductDetails = () => {
   const route = useRoute<ProductDetailsRouteProp>();
   const { productId } = route.params;
 
+  const { data: herbs } = useGetHerbsQuery(null); // ดึงข้อมูลสมุนไพรทั้งหมด
+  const herb = herbs?.find((h: any) => h.id === productId); // ค้นหาสมุนไพรตาม productId
+
+  if (!herb) return <Text>Product not found</Text>;
+
   const [count, setCount] = useState<number>(1);
 
-  const increment = () => {
-    setCount(count + 1);
-  }
-  const decrement = () => {
-    if(count > 1) {
-      setCount(count - 1);
-    }
-  }
+  const increment = () => setCount(count + 1);
+  const decrement = () => count > 1 && setCount(count - 1);
 
   return (
     <>
@@ -44,16 +43,16 @@ const ProductDetails = () => {
 
         <View style={styles.imageWepper}>
           <Image
-            source={require("../../../assets/images/image4.jpg")}
+            source={{ uri: herb.image }}
             style={styles.productImage}
           />
         </View>
 
         <View style={styles.contentContainer}>
           <View style={styles.titleRow}>
-            <Text style={styles.title}>ProductName</Text>
+            <Text style={styles.title}>{herb.name}</Text>
             <View style={styles.priceWrapper}>
-              <Text style={styles.price}>$ 550.00</Text>
+              <Text style={styles.price}>$ {herb.price}</Text>
             </View>
           </View>
 
@@ -80,11 +79,9 @@ const ProductDetails = () => {
           </View>
 
           <View style={styles.descriptionWrapper}>
-            <Text style={styles.description}>Description</Text>
+            <Text style={styles.description}>Benefits</Text>
             <Text style={styles.descText}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
-              corrupti enim tempora rem, expedita quia sequi fugiat maxime eos.
-              Qui?
+              {herb.benefits}
             </Text>
           </View>
 

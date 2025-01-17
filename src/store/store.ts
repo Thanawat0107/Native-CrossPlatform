@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { herbsApi } from "../fetch";
+import { herbsReducer } from "./slices/herbsSlice";
 
 export const store = configureStore({
   reducer: {
-    [herbsApi.reducerPath]: herbsApi.reducer,
+    [herbsApi.reducerPath]: herbsApi.reducer, // เพิ่ม RTK Query API Reducer
+    herbs: herbsReducer, // เพิ่ม Local State Reducer
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(herbsApi.middleware),
+    getDefaultMiddleware().concat(herbsApi.middleware), // เพิ่ม middleware ของ RTK Query
 });
 
 // Share Get State
