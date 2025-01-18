@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   imageWepper: {
     width: wp(100),
-    height: 440,
+    // height: 440,
     backgroundColor: "#6c757d",
     overflow: "hidden",
   },

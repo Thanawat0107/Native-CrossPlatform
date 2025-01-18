@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: SIZES.small,
-    marginTop: 12,
+    marginTop: SIZES.xxLarge,
     marginBottom: isIOS ? 45 : 70,
   },
   searchContainer: {

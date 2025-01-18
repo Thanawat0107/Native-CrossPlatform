@@ -27,7 +27,7 @@ const RootTabs = () => {
       // paddingVertical: 15,
     tabBarStyle: {
       position: "absolute",
-      bottom: isIOS ? 25 : 5,
+      bottom: isIOS ? 25 : 0,
       height: 60,
       flexDirection: "row",
       justifyContent: "space-between",
@@ -36,7 +36,7 @@ const RootTabs = () => {
             alignItems: "center",
           }
         : {
-            //and
+            //os
           }),
       ...(isIOS
         ? {
@@ -44,8 +44,7 @@ const RootTabs = () => {
             marginHorizontal: 15,
           }
         : {
-            //and
-            marginHorizontal: 15,
+            //os
           }),
       ...(isIOS
         ? {
@@ -53,8 +52,7 @@ const RootTabs = () => {
             borderRadius: 30,
           }
         : {
-            //and
-            borderRadius: 25,
+            //os
           }),
       ...(isIOS
         ? {
@@ -64,7 +62,7 @@ const RootTabs = () => {
             shadowOpacity: 0.1,
           }
         : {
-            elevation: 5,
+            elevation: 0,
           }),
     },
   });

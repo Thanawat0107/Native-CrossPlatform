@@ -52,7 +52,7 @@ export default ProductCard;
 
 const styles = StyleSheet.create({
   container: {
-    width: isIOS ? 182 : 184,
+    width: isIOS ? 182 : 173,
     // height: isIOS ? 270 : 235,
     marginEnd: 22,
     backgroundColor: COLORS.white,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   productImage: {
     width: "100%",
-    height: isIOS ? 160 : 120,
+    height: isIOS ? 160 : 130,
     borderRadius: SIZES.medium,
     resizeMode: "cover",
   },
