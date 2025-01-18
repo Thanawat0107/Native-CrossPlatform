@@ -1,7 +1,8 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeScreen, ProductDetailsScreen } from '../screen';
+import { HomeScreen, SettingScreen } from '../screen';
 import { ProductDetails } from '../components';
+import { CategoryCRUD, ProductCRUD } from '../components/settting';
 
 const Stack = createNativeStackNavigator();
 const screenOptions = {
@@ -13,7 +14,7 @@ const screenOptions = {
 
 const HomeStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator>
       <Stack.Screen
         name="Home"
         component={HomeScreen}
@@ -27,5 +28,26 @@ const HomeStack = () => {
     </Stack.Navigator>
   );
 }
+const SettingStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Setting"
+        component={SettingScreen}
+        options={{ headerShown: false, animation: "fade" }}
+      />
+      <Stack.Screen
+        name="ProductCRUD"
+        component={ProductCRUD}
+        options={{ headerShown: false, animation: "fade" }}
+      />
+      <Stack.Screen
+        name="CategoryCRUD"
+        component={CategoryCRUD}
+        options={{ headerShown: false, animation: "fade" }}
+      />
+    </Stack.Navigator>
+  );
+}
 
-export { HomeStack }
+export { HomeStack, SettingStack }

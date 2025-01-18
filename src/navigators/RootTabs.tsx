@@ -6,8 +6,8 @@ import { AntDesign } from "@expo/vector-icons";
 import Feather from '@expo/vector-icons/Feather';
 import { Platform } from "react-native";
 import { ParamListBase, RouteProp } from "@react-navigation/native";
-import { HomeStack } from "./StackTabs";
-import { AccountScreen, SearchScreen, SettingScreen } from "../screen";
+import { HomeStack, SettingStack } from "./StackTabs";
+import { AccountScreen, SearchScreen } from "../screen";
 import { COLORS } from "../constants/themes";
 
 const Tab = createBottomTabNavigator();
@@ -114,8 +114,8 @@ const RootTabs = () => {
         }}
       />
       <Tab.Screen
-        name="Setting"
-        component={SettingScreen}
+        name="SettingTab"
+        component={SettingStack}
         options={{
           tabBarIcon: ({ color, size, focused }) => (
             <AntDesign name="setting" size={size || 26} color={color} />
