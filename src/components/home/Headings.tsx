@@ -1,13 +1,13 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { COLORS, SIZES } from '../../constants/themes';
 
 const Headings = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>New Rivals</Text>
+        <Text style={styles.headerTitle}>New Herbs</Text>
         <TouchableOpacity>
             <Ionicons name='grid' size={24} color={COLORS.primary} />
         </TouchableOpacity>

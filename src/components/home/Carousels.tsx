@@ -1,6 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
 import { ImageSlider } from "react-native-image-slider-banner";
+import { hp, wp } from "../../helpers/common";
 
 const Carousels = () => {
   return (
@@ -15,28 +16,31 @@ const Carousels = () => {
         ]}
         localImg={true} // ระบุว่าเป็นรูป Local
         caroselImageContainerStyle={{
-          // width: wp,
-          height: 200,
+          width: wp(100),
+          height: hp(23),
           borderRadius: 15,
           overflow: "hidden",
-          shadowColor: "#000",
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.3,
-          shadowRadius: 5,
-          elevation: 5,
         }}
         caroselImageStyle={{ resizeMode: 'cover' }}
         indicatorContainerStyle={{ position: "absolute", bottom: 10 }}
         autoPlay={true}
-        timer={3000}
-        closeIconColor="#fff"
-        indicatorActiveColor="#FFA500"
-        indicatorInActiveColor="#FFFFFF"
-        indicatorStyle={{ width: 8, height: 8, borderRadius: 4 }}
+        timer={5000}
       />
     </View>
   );
 };
+
+// caroselImageContainerStyle={{
+//   width: wp(100),
+//   height: hp(24),
+//   borderRadius: 15,
+//   overflow: "hidden",
+//   shadowColor: "#000",
+//   shadowOffset: { width: 0, height: 2 },
+//   shadowOpacity: 0.3,
+//   shadowRadius: 5,
+//   elevation: 5,
+// }}
 
 export default Carousels;
 

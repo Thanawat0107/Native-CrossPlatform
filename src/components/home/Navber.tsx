@@ -2,8 +2,10 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Fontisto, Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../constants/themes";
+import { useAppNavigation } from "../../hooks/useAppNavigation";
 
 const Navber = () => {
+  const navigation = useAppNavigation();
   return (
     <View style={styles.appBar}>
       <Ionicons name="location-outline" size={24} />
@@ -12,7 +14,7 @@ const Navber = () => {
         <View style={styles.cartCount}>
           <Text style={styles.cartNumber}> 99 </Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={ ()=> navigation.navigate("Cart")}>
           <Fontisto name="shopping-bag" size={24} />
         </TouchableOpacity>
       </View>

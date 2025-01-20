@@ -35,11 +35,6 @@ const SIZES = {
   height,
   width,
 };
-// font_weights: {
-//   medium: "500",
-//   semibold: "600",
-//   bold: "700",
-// },
 
 const SHADOWS = {
   small: {

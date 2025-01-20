@@ -89,18 +89,6 @@ const RootTabs = () => {
           tabBarLabel: "ค้นหา",
         }}
       />
-      {/* <Tab.Screen
-        name="Cart"
-        component={CartScreen}
-        options={{
-          tabBarIcon: ({ color, size, focused }) => (
-            <AntDesign name="shoppingcart" size={size || 26} color={color} />
-          ),
-          tabBarBadge: 99,
-          tabBarBadgeStyle: { backgroundColor: "#dc3545", color: "#fff" },
-          tabBarLabel: "รถเข็น",
-        }}
-      /> */}
       <Tab.Screen
         name="Account"
         component={AccountScreen}

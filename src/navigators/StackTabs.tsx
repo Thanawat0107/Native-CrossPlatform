@@ -1,7 +1,7 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeScreen, SettingScreen } from '../screen';
-import { ProductDetails } from '../components';
+import { CartScreen, HomeScreen, SettingScreen } from '../screen';
+import { Cart, ProductDetails } from '../components';
 import { CategoryCRUD, ProductCRUD } from '../components/settting';
 
 const Stack = createNativeStackNavigator();
@@ -25,9 +25,15 @@ const HomeStack = () => {
         component={ProductDetails}
         options={{ headerShown: false, animation: "fade" }}
       />
+      <Stack.Screen
+        name="Cart"
+        component={CartScreen}
+        options={{ headerShown: false, animation: "fade" }}
+      />
     </Stack.Navigator>
   );
 }
+
 const SettingStack = () => {
   return (
     <Stack.Navigator>

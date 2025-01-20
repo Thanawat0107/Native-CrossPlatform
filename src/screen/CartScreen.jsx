@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native'
 import { StatusBar } from "expo-status-bar";
 import React from 'react'
+import { Cart } from '../components';
 
 const CartScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style='auto'/>
-      <Text>CartScreen</Text>
+      <Cart />
     </SafeAreaView>
   )
 }
