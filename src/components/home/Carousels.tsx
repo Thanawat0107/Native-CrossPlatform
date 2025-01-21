@@ -48,8 +48,6 @@ const styles = StyleSheet.create({
   carouselContainer: {
     flex: 1,
     alignItems: "center",
-    // width: wp,
-    // height: hp,
     marginBottom: 16,
     overflow : "hidden",
     borderRadius: 15

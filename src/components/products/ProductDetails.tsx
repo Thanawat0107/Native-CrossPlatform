@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View, Image, SafeAreaView } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import React, {useState} from "react";
 import { COLORS, SIZES } from "../../constants/themes";
 import { Fontisto, Ionicons, MaterialCommunityIcons, SimpleLineIcons } from "@expo/vector-icons";

@@ -1,7 +1,6 @@
 import {
   StyleSheet,
   TouchableOpacity,
-  Platform,
   View,
   Image,
   Text,
@@ -11,9 +10,7 @@ import { COLORS, SIZES } from "../../constants/themes";
 import { Ionicons } from "@expo/vector-icons";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 import { Herb } from "../../../@types";
-import { baseUrl } from "../../helpers/SD";
-
-const isIOS = Platform.OS === "ios";
+import { baseUrl, isIOS } from "../../helpers/SD";
 
 const ProductCard = ({ herb }: { herb: Herb }) => {
   const navigation = useAppNavigation();
@@ -31,7 +28,7 @@ const ProductCard = ({ herb }: { herb: Herb }) => {
           {herb.name}
         </Text>
         <Text style={styles.categoty} numberOfLines={1}>
-          {herb.type}
+          {herb.categories}
         </Text>
         <Text style={styles.productPrice} numberOfLines={1}>
           ${herb.price}
@@ -53,7 +50,6 @@ export default ProductCard;
 const styles = StyleSheet.create({
   container: {
     width: isIOS ? 182 : 173,
-    // height: isIOS ? 270 : 235,
     marginEnd: 22,
     backgroundColor: COLORS.white,
     borderRadius: SIZES.medium,

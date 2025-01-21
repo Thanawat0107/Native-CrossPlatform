@@ -1,7 +1,7 @@
 export interface Herb {
   id: number;
   name: string;
-  type: string;
+  categories: string;
   benefits: string;
   price: number;
   stock: number;

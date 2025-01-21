@@ -9,9 +9,9 @@ import { ParamListBase, RouteProp } from "@react-navigation/native";
 import { HomeStack, SettingStack } from "./StackTabs";
 import { AccountScreen, SearchScreen } from "../screen";
 import { COLORS } from "../constants/themes";
+import { isIOS } from "../helpers/SD";
 
 const Tab = createBottomTabNavigator();
-const isIOS = Platform.OS === "ios";
 
 const RootTabs = () => {
   const screenOptions = ({

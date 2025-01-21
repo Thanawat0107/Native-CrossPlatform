@@ -1,5 +1,5 @@
 import { RootStackParamList } from "./navigation";
 import { Herb } from "./herb";
-import { Type } from "./type";
+import { Category } from "./category";
 
-export { RootStackParamList, Herb, Type }
+export { RootStackParamList, Herb, Category }
