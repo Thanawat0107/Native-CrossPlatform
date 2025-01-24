@@ -8,34 +8,32 @@ const isIOS = Platform.OS === "ios";
 
 const SearchScreen = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <>
       <StatusBar style="auto" />
-      <View style={styles.searchContainer}>
-        <TouchableOpacity>
-          <Ionicons
-            name="camera-outline"
-            size={SIZES.xLarge}
-            style={styles.searchIcon}
-          />
-        </TouchableOpacity>
-        <View style={styles.searchWrapper}>
-          <TextInput
-            placeholder="What are you looking for"
-            style={styles.textInput}
-            onPressIn={() => {}}
-          />
-        </View>
-        <View>
-          <TouchableOpacity style={styles.searchBtn}>
-            <Feather
-              name="search"
-              size={24}
-              color={COLORS.offwhite}
+      <SafeAreaView style={styles.container}>
+        <View style={styles.searchContainer}>
+          <TouchableOpacity>
+            <Ionicons
+              name="camera-outline"
+              size={SIZES.xLarge}
+              style={styles.searchIcon}
             />
           </TouchableOpacity>
+          <View style={styles.searchWrapper}>
+            <TextInput
+              placeholder="What are you looking for"
+              style={styles.textInput}
+              onPressIn={() => {}}
+            />
+          </View>
+          <View>
+            <TouchableOpacity style={styles.searchBtn}>
+              <Feather name="search" size={24} color={COLORS.offwhite} />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </>
   );
 }
 
@@ -45,9 +43,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: SIZES.small,
-    marginVertical: 22,
-    // marginTop: SIZES.xLarge,
-    // marginBottom: isIOS ? 45 : 70,
+    // marginVertical: 22,
+    marginTop: SIZES.xsLarge,
+    marginBottom: isIOS ? 45 : 70,
   },
   searchContainer: {
     flexDirection: "row",

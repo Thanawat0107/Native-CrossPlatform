@@ -31,10 +31,7 @@ const ProductDetails = () => {
       <View style={styles.container}>
         <View style={styles.upperRow}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Ionicons
-              name="chevron-back-circle"
-              size={30}
-            />
+            <Ionicons name="chevron-back-circle" size={30} />
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => {}}>
@@ -67,51 +64,53 @@ const ProductDetails = () => {
             </View>
 
             <View style={styles.rating}>
-              <TouchableOpacity onPress={() => increment()}>
-                <SimpleLineIcons name="plus" size={20} />
+              <TouchableOpacity onPress={() => decrement()}>
+                <SimpleLineIcons name="minus" size={20} />
               </TouchableOpacity>
 
               <Text style={styles.ratingText}>{count}</Text>
 
-              <TouchableOpacity onPress={() => decrement()}>
-                <SimpleLineIcons name="minus" size={20} />
+              <TouchableOpacity onPress={() => increment()}>
+                <SimpleLineIcons name="plus" size={20} />
               </TouchableOpacity>
             </View>
           </View>
 
           <View style={styles.descriptionWrapper}>
             <Text style={styles.description}>Benefits</Text>
-            <Text style={styles.descText}>
-              {herb.benefits}
-            </Text>
+            <Text style={styles.descText}>{herb.benefits}</Text>
           </View>
 
           <View style={{ marginBottom: SIZES.small }}>
             <View style={styles.location}>
-
               <View style={{ flexDirection: "row" }}>
                 <Ionicons name="location-outline" size={20} />
-                <Text>  Dallas</Text>
+                <Text> Dallas</Text>
               </View>
 
               <View style={{ flexDirection: "row" }}>
-                <MaterialCommunityIcons name="truck-delivery-outline" size={20} />
-                <Text>  Free Delivery  </Text>
+                <MaterialCommunityIcons
+                  name="truck-delivery-outline"
+                  size={20}
+                />
+                <Text> Free Delivery </Text>
               </View>
-
             </View>
           </View>
-          
+
           <View style={styles.cartRow}>
             <TouchableOpacity onPress={() => {}} style={styles.cartBtn}>
               <Text style={styles.cartTitle}>BUY NOW </Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {}} style={styles.addCart}>
-              <Fontisto name="shopping-bag" size={22} color={COLORS.lightWhite} />
+              <Fontisto
+                name="shopping-bag"
+                size={22}
+                color={COLORS.lightWhite}
+              />
             </TouchableOpacity>
           </View>
-
         </View>
       </View>
     </>

@@ -9,7 +9,6 @@ import {
 import React, { useEffect } from "react";
 import { COLORS, SIZES } from "../../../constants/themes";
 import { useAppNavigation } from "../../../hooks/useAppNavigation";
-import { isIOS } from "../../../helpers/SD";
 import { StatusBar } from "expo-status-bar";
 import { useGetHerbsQuery } from "../../../fetch/herbsApi";
 import Loading from "../../Loading";
@@ -43,11 +42,14 @@ const ProductSetting = () => {
     <>
       <StatusBar style="auto" />
       <SafeAreaView style={styles.container}>
-        <View style={styles.upperRow}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Ionicons name="chevron-back-circle" size={30} />
-          </TouchableOpacity>
-        </View>
+
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={{ top: SIZES.xSmall }}
+        >
+          <Ionicons name="chevron-back-circle" size={30} />
+        </TouchableOpacity>
+
         <View
           style={{
             flexDirection: "row",
@@ -55,18 +57,15 @@ const ProductSetting = () => {
             alignItems: "center",
           }}
         >
-          <Text style={styles.txtMain}>Herbs List {selector.herbs.length}</Text>
-          <TouchableOpacity style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}>
-              <Text> เพิ่มสินค้าใหม่ </Text>
-              <Ionicons name="add-circle" size={60} color={COLORS.green} />
+          <Text style={styles.txtMain}>Herbs List {selector.herbs?.length || 0}</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("ProductUpsert")}>
+            <Ionicons name="add-circle" size={60} color={COLORS.green} />
           </TouchableOpacity>
+
         </View>
+
         <FlatList
-          data={herbs}
+          data={herbs || []}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => <ProductItem herb={item} />}
         />
@@ -82,21 +81,12 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: SIZES.small,
     marginTop: SIZES.xsLarge,
-    marginBottom: isIOS ? 55 : 55,
-  },
-  upperRow: {
-    // flexDirection: "row",
-    // zIndex: 999,
-  },
-  addBtn:{
-    // position: "absolute",
-    // bottom: SIZES.xSmall,
-    // right: SIZES.xSmall
+    marginBottom: 55,
   },
   txtMain: {
     fontSize: 24,
     fontWeight: "bold",
-    marginTop: 20,
+    marginTop: 25,
     marginBottom: 20,
   },
   errorText: {

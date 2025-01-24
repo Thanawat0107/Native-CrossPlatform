@@ -11,6 +11,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 import { Herb } from "../../../@types";
 import { baseUrl, isIOS } from "../../helpers/SD";
+import { hp, wp } from "../../helpers/common";
 
 const ProductCard = ({ herb }: { herb: Herb }) => {
   const navigation = useAppNavigation();
@@ -49,7 +50,7 @@ export default ProductCard;
 
 const styles = StyleSheet.create({
   container: {
-    width: isIOS ? 182 : 173,
+    width: wp(42.3),
     marginEnd: 22,
     backgroundColor: COLORS.white,
     borderRadius: SIZES.medium,
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
   },
   productImage: {
     width: "100%",
-    height: isIOS ? 160 : 130,
+    height: isIOS ? hp(18) : hp(15),
     borderRadius: SIZES.medium,
     resizeMode: "cover",
   },

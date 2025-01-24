@@ -2,8 +2,7 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { CartScreen, HomeScreen, SettingScreen } from '../screen';
 import { ProductDetails } from '../components';
-import { CategorySetting, ProductSetting } from '../components/settting';
-import ProductTest from '../components/settting/product-setting/ProductTest';
+import { CategorySetting, ProductSetting, ProductUpsert } from '../components/settting';
 
 const Stack = createNativeStackNavigator();
 const screenOptions = {
@@ -46,6 +45,11 @@ const SettingStack = () => {
       <Stack.Screen
         name="ProductSetting"
         component={ProductSetting}
+        options={{ headerShown: false, animation: "fade" }}
+      />
+      <Stack.Screen
+        name="ProductUpsert"
+        component={ProductUpsert}
         options={{ headerShown: false, animation: "fade" }}
       />
       <Stack.Screen
