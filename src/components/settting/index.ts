@@ -1,4 +1,5 @@
-import CategoryCRUD from "./CategoryCRUD";
-import ProductCRUD from "./ProductCRUD";
+import CategorySetting from ".//category-setting/CategorySetting";
+import ProductSetting from "./product-setting/ProductSetting";
+import ProductItem from "./product-setting/ProductItem";
 
-export { CategoryCRUD, ProductCRUD };
+export { CategorySetting, ProductSetting, ProductItem };

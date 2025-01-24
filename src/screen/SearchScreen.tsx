@@ -45,8 +45,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: SIZES.small,
-    marginTop: SIZES.xxLarge,
-    marginBottom: isIOS ? 45 : 70,
+    marginVertical: 22,
+    // marginTop: SIZES.xLarge,
+    // marginBottom: isIOS ? 45 : 70,
   },
   searchContainer: {
     flexDirection: "row",

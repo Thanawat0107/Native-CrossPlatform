@@ -5,10 +5,9 @@ import ProductCard from './ProductCard';
 import { useGetHerbsQuery } from '../../fetch/herbsApi';
 
 const ProductList = () => {
-  const { data: herbs, isLoading, isError, error } = useGetHerbsQuery(null);
+  const { data: herbs, isLoading} = useGetHerbsQuery(null);
 
   if (isLoading) return <ActivityIndicator size="large" color="#0000ff" />;
-  if (isError) return <Text>Error: {error.error}</Text>;
 
   return (
     <View style={styles.productGrid}>

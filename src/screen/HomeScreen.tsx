@@ -7,14 +7,16 @@ import { Navber, ProductList, Welcome } from "../components";
 
 const HomeScreen = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <>
       <StatusBar style="auto" />
-      <Navber />
-      <ScrollView>
-        <Welcome />
-        <ProductList />
-      </ScrollView>
-    </SafeAreaView>
+      <SafeAreaView style={styles.container}>
+        <Navber />
+        <ScrollView>
+          <Welcome />
+          <ProductList />
+        </ScrollView>
+      </SafeAreaView>
+    </>
   );
 };
 

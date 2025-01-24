@@ -12,7 +12,7 @@ const Navber = () => {
       <Text style={styles.location}> Herb Application </Text>
       <View style={{ alignItems: "flex-end" }}>
         <View style={styles.cartCount}>
-          <Text style={styles.cartNumber}> 99 </Text>
+          <Text style={styles.cartNumber}> 9 </Text>
         </View>
         <TouchableOpacity onPress={ ()=> navigation.navigate("Cart")}>
           <Fontisto name="shopping-bag" size={24} />

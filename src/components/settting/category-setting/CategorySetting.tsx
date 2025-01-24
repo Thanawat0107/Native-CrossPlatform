@@ -1,10 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
-import { SIZES } from '../../constants/themes'
-import { useAppNavigation } from '../../hooks/useAppNavigation'
+import { SIZES } from '../../../constants/themes';
+import { useAppNavigation } from '../../../hooks/useAppNavigation';
 
-const CategoryCRUD = () => {
+const CategorySetting = () => {
   const navigation = useAppNavigation();
   return (
     <View>
@@ -20,7 +20,7 @@ const CategoryCRUD = () => {
   )
 }
 
-export default CategoryCRUD
+export default CategorySetting
 
 const styles = StyleSheet.create({
   upperRow: {

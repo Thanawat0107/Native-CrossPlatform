@@ -5,6 +5,7 @@ export type RootStackParamList = {
   Cart: undefined;
   Account: { userId: string };
   Seting: undefined;
-  ProductCRUD: undefined;
-  CategoryCRUD: undefined;
+  ProductTest: undefined;
+  ProductSetting: undefined;
+  CategorySetting: undefined;
 };

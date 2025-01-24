@@ -1,8 +1,9 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { CartScreen, HomeScreen, SettingScreen } from '../screen';
-import { Cart, ProductDetails } from '../components';
-import { CategoryCRUD, ProductCRUD } from '../components/settting';
+import { ProductDetails } from '../components';
+import { CategorySetting, ProductSetting } from '../components/settting';
+import ProductTest from '../components/settting/product-setting/ProductTest';
 
 const Stack = createNativeStackNavigator();
 const screenOptions = {
@@ -43,13 +44,13 @@ const SettingStack = () => {
         options={{ headerShown: false, animation: "fade" }}
       />
       <Stack.Screen
-        name="ProductCRUD"
-        component={ProductCRUD}
+        name="ProductSetting"
+        component={ProductSetting}
         options={{ headerShown: false, animation: "fade" }}
       />
       <Stack.Screen
-        name="CategoryCRUD"
-        component={CategoryCRUD}
+        name="CategorySetting"
+        component={CategorySetting}
         options={{ headerShown: false, animation: "fade" }}
       />
     </Stack.Navigator>

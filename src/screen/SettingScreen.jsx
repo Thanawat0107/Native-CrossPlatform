@@ -12,14 +12,14 @@ const SettingScreen = () => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("ProductCRUD")}
+          onPress={() => navigation.navigate("ProductSetting")}
         >
           <Text style={styles.buttonText}>Manage Products</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("CategoryCRUD")}
+          onPress={() => navigation.navigate("CategorySetting")}
         >
           <Text style={styles.buttonText}>Manage Categories</Text>
         </TouchableOpacity>
