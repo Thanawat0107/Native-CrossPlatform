@@ -55,7 +55,7 @@ const ProductSetting = () => {
             alignItems: "center",
           }}
         >
-          <Text style={styles.txtMain}>Herbs List {state.herbs?.length || 0}</Text>
+          <Text style={styles.txtMain}>รายการสมุนไพร [ {state.herbs?.length || 0} ]</Text>
           <TouchableOpacity onPress={handleAddProduct}>
             <Ionicons name="add-circle" size={60} color={COLORS.green} />
           </TouchableOpacity>

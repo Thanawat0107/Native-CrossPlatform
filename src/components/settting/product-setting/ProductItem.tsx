@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     width: wp(20),
     height: hp(10),
     borderRadius: SIZES.medium,
-    backgroundColor: "#6c757d",
+    backgroundColor: COLORS.gray,
     overflow: "hidden",
     marginRight: 10,
   },
