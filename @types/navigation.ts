@@ -1,3 +1,5 @@
+import { Herb } from "./herb";
+
 export type RootStackParamList = {
   Home: undefined;
   ProductDetails: { productId: number };
@@ -6,6 +8,6 @@ export type RootStackParamList = {
   Account: { userId: string };
   Seting: undefined;
   ProductSetting: undefined;
-  ProductUpsert: undefined;
+  ProductUpsert: { herb?: Herb };
   CategorySetting: undefined;
 };

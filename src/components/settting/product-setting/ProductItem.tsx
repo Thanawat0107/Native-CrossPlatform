@@ -14,10 +14,8 @@ import { hp, wp } from "../../../helpers/common";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { useAppNavigation } from "../../../hooks/useAppNavigation";
 
-const ProductItem = React.memo(
-  ({ herb }: { herb: Herb }) => {
+const ProductItem = React.memo(({ herb }: { herb: Herb }) => {
     const navigation = useAppNavigation();
-
     const [imageLoading, setImageLoading] = useState(true);
 
     const handleEdit = () => {

@@ -30,7 +30,7 @@ const ProductSetting = () => {
   }, [data, state.herbs ,dispatch]);
 
   const handleGoBack = () => navigation.goBack();
-  const handleAddProduct = () => navigation.navigate("ProductUpsert");
+  const handleAddProduct = () => navigation.navigate("ProductUpsert",{ herb: undefined });
 
   if (isLoading) return <Loading />
   if (isError) return <Text style={{ color: 'red' }}>Failed to load herbs</Text>;

@@ -1,19 +1,18 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { useAppNavigation } from '../../../hooks/useAppNavigation'
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../../../../@types';
 
-type ProductUpsertRouteProp = RouteProp<RootStackParamList>;
+type ProductUpsertRouteProp = RouteProp<RootStackParamList, "ProductUpsert">;
 
-const ProductUpsert = () => {
+const ProductUpsert = ({ route }: { route: ProductUpsertRouteProp }) => {
     const navigation = useAppNavigation();
-    const route = useRoute<ProductUpsertRouteProp>();
-  
-    const isEdit = !!route?.params; // ตรวจสอบว่าเป็นการแก้ไขหรือไม่
+    const herb = route.params?.herb;
+    const isEditMode = !!herb;
     return (
-    <View>
-      <Text>ProductUpsert</Text>
+    <View style={styles.container}>
+      <Text>{isEditMode ? `Edit: ${herb.name}` : "Add New Product"}</Text>
     </View>
   )
 }
@@ -21,5 +20,5 @@ const ProductUpsert = () => {
 export default ProductUpsert
 
 const styles = StyleSheet.create({
-    
+  container: { justifyContent: "center", alignItems: "center", margin: "auto" },
 });
