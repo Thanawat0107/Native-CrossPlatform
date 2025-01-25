@@ -19,32 +19,30 @@ import { setHerbs } from "../../../store/slices/herbsSlice";
 
 const ProductSetting = () => {
   const navigation = useAppNavigation();
-  const { data: herbs, isLoading, error } = useGetHerbsQuery(null);
+  const { data, isLoading, isError } = useGetHerbsQuery(null);
   const dispatch = useAppDispatch();
-  const selector = useAppSelector(state => state.herbs);
+  const state = useAppSelector(state => state.herbs);
 
   useEffect(() => {
-    if (herbs) {
-      dispatch(setHerbs(herbs));
+    if (data && data !== state.herbs) {
+      dispatch(setHerbs(data));
     }
-  }, [herbs, dispatch]);
+  }, [data, state.herbs ,dispatch]);
+
+  const handleGoBack = () => navigation.goBack();
+  const handleAddProduct = () => navigation.navigate("ProductUpsert");
 
   if (isLoading) return <Loading />
-  if (error) {
-    return (
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.errorText}>Failed to fetch data. Please try again later.</Text>
-      </SafeAreaView>
-    );
-  }
-  
+  if (isError) return <Text style={{ color: 'red' }}>Failed to load herbs</Text>;
+  if (!data?.length) return <Text>No herbs available</Text>;
+
   return (
     <>
       <StatusBar style="auto" />
       <SafeAreaView style={styles.container}>
 
         <TouchableOpacity
-          onPress={() => navigation.goBack()}
+          onPress={handleGoBack}
           style={{ top: SIZES.xSmall }}
         >
           <Ionicons name="chevron-back-circle" size={30} />
@@ -57,17 +55,18 @@ const ProductSetting = () => {
             alignItems: "center",
           }}
         >
-          <Text style={styles.txtMain}>Herbs List {selector.herbs?.length || 0}</Text>
-          <TouchableOpacity onPress={() => navigation.navigate("ProductUpsert")}>
+          <Text style={styles.txtMain}>Herbs List {state.herbs?.length || 0}</Text>
+          <TouchableOpacity onPress={handleAddProduct}>
             <Ionicons name="add-circle" size={60} color={COLORS.green} />
           </TouchableOpacity>
 
         </View>
 
         <FlatList
-          data={herbs || []}
+          data={data || []}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => <ProductItem herb={item} />}
+          initialNumToRender={10}
         />
       </SafeAreaView>
     </>

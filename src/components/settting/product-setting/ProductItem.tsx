@@ -1,73 +1,99 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
-import { Herb } from '../../../../@types';
-import { baseUrl } from '../../../helpers/SD';
-import { COLORS, SIZES } from '../../../constants/themes';
-import { hp, wp } from '../../../helpers/common';
-import { AntDesign, Ionicons } from '@expo/vector-icons';
-import { useAppNavigation } from '../../../hooks/useAppNavigation';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
+import React, { useState } from "react";
+import { Herb } from "../../../../@types";
+import { baseUrl } from "../../../helpers/SD";
+import { COLORS, SIZES } from "../../../constants/themes";
+import { hp, wp } from "../../../helpers/common";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { useAppNavigation } from "../../../hooks/useAppNavigation";
 
-const ProductItem = ({ herb }: { herb: Herb }) => {
-  const navigation = useAppNavigation();
-  return (
-    <View style={styles.itemContainer}>
-      <View style={{ flexDirection: "row" }}>
-        <View style={styles.imageWepper}>
-          <Image
-            source={{ uri: `${baseUrl}${herb.imageUrl}` }}
-            style={styles.productImage}
-          />
-        </View>
+const ProductItem = React.memo(
+  ({ herb }: { herb: Herb }) => {
+    const navigation = useAppNavigation();
 
-        <View style={{ width: wp(40), marginEnd: 5 }}>
-          <Text style={styles.itemName} numberOfLines={1}>
-            {herb.name}
-          </Text>
-          <Text style={styles.itemDescription} numberOfLines={1}>
-            หมวดหมู่ : {herb.categories}
-          </Text>
-          <Text style={styles.itemDescription} numberOfLines={1}>
-            ราคา : {herb.price} บาท
-          </Text>
-        </View>
+    const [imageLoading, setImageLoading] = useState(true);
 
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
-          <TouchableOpacity onPress={() => {}} style={{ margin: 7 }}>
-            <Ionicons name="eye" size={24} color={COLORS.gray} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("ProductUpsert")}
-            style={{ margin: 7 }}
-          >
-            <AntDesign name="edit" size={24} color={COLORS.tertiary} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("ProductUpsert")}
-            style={{ margin: 7 }}
-          >
-            <AntDesign name="delete" size={24} color={COLORS.red} />
-          </TouchableOpacity>
+    const handleEdit = () => {
+      navigation.navigate("ProductUpsert", { herb });
+    };
+
+    const handleDelete = () => {
+      console.log(`Delete product with id: ${herb.id}`);
+    };
+
+    return (
+      <View style={styles.itemContainer}>
+        <View style={styles.row}>
+          <View style={styles.imageWrapper}>
+            <Image
+              source={{ uri: `${baseUrl}${herb.imageUrl}` }}
+              style={styles.productImage}
+              onLoadStart={() => setImageLoading(true)}
+              onLoadEnd={() => setImageLoading(false)}
+            />
+            {imageLoading && (
+              <ActivityIndicator
+                size="small"
+                color={COLORS.gray}
+                style={styles.imageLoader}
+              />
+            )}
+          </View>
+
+          <View style={styles.detailsWrapper}>
+            <Text style={styles.itemName} numberOfLines={1}>
+              {herb.name}
+            </Text>
+            <Text style={styles.itemDescription} numberOfLines={1}>
+              หมวดหมู่ : {herb.categories}
+            </Text>
+            <Text style={styles.itemDescription} numberOfLines={1}>
+              ราคา : {herb.price} บาท
+            </Text>
+          </View>
+
+          <View style={styles.actionButtons}>
+            <TouchableOpacity
+              onPress={() => console.log(`View details of ${herb.id}`)}
+              style={styles.button}
+            >
+              <Ionicons name="eye" size={24} color={COLORS.gray} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleEdit} style={styles.button}>
+              <AntDesign name="edit" size={24} color={COLORS.tertiary} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleDelete} style={styles.button}>
+              <AntDesign name="delete" size={24} color={COLORS.red} />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
-  );
-};
+    );
+  },
+  (prevProps, nextProps) => prevProps.herb === nextProps.herb
+);
 
-export default ProductItem
+export default ProductItem;
 
 const styles = StyleSheet.create({
   itemContainer: {
     padding: 5,
     marginVertical: 5,
     backgroundColor: "#fff",
-    borderRadius: 10,
+    borderRadius: SIZES.medium,
   },
-  imageWepper: {
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  imageWrapper: {
     width: wp(20),
     height: hp(10),
     borderRadius: SIZES.medium,
@@ -81,12 +107,30 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.medium,
     resizeMode: "cover",
   },
+  imageLoader: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: [{ translateX: -10 }, { translateY: -10 }],
+  },
+  detailsWrapper: {
+    width: wp(40),
+    marginEnd: 5,
+  },
   itemName: {
-    fontSize: 18,
     fontWeight: "bold",
+    fontSize: 16,
+    marginBottom: 5,
   },
   itemDescription: {
     fontSize: 14,
-    color: "#6c757d",
+    color: COLORS.gray,
+  },
+  actionButtons: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  button: {
+    margin: 7,
   },
 });
