@@ -112,9 +112,6 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
 
       <View style={styles.buttonContainer}>
         <Button title="Save" onPress={handleSubmit} color="green" />
-        {isEditMode && (
-          <Button title="Delete" onPress={() => {}} color="red" />
-        )}
         <Button title="Cancel" onPress={() => navigation.goBack()} />
       </View>
     </ScrollView>

@@ -2,183 +2,231 @@
   "herbs": [
     {
       "id": 1,
-      "name": "ฟ้าทะลายโจร",
-      "categories": "บำรุงร่างกาย",
-      "benefits": "ช่วยเสริมภูมิคุ้มกัน และบรรเทาอาการหวัด",
-      "price": 50,
+      "group": "กลุ่มยาลดไขมันในเส้นเลือด",
+      "scientific_name": "Hibiscus sabdariffa L.",
+      "common_names": ["Jamaican Sorel", "Roselle"],
+      "family": "Malvaceae",
+      "other_names": [
+        "กระเจี๊ยบ",
+        "กระเจี๊ยบเปรี้ยว",
+        "ผักเก็งเค็ง",
+        "ส้มเก็งเค็ง",
+        "ส้มตะเลงเครง"
+      ],
+      "botanical_description": "ไม้พุ่ม สูง 50-180 ซม. มีหลายพันธุ์ ลำต้นสีม่วงแดง ใบเดี่ยว รูปฝ่ามือ 3 หรือ 5 แฉก กว้างและยาวใกล้เคียงกัน 8-15 ซม. ดอกเดี่ยว ออกที่ซอกใบ กลีบดอกสีชมพูหรือเหลืองบริเวณกลางดอกสีม่วงแดง เกสรตัวผู้เชื่อมกันเป็นหลอด ผลเป็นผลแห้ง แตกได้ มีกลีบเลี้ยงสีแดงฉ่ำน้ำหุ้มไว้",
+      "properties": {
+        "calyx": [
+          "ลดไขมันในเส้นเลือด",
+          "ช่วยลดน้ำหนัก",
+          "ลดความดันโลหิต",
+          "ลดความเหนียวข้นของเลือด",
+          "รักษาโรคเส้นโลหิตแข็งเปราะ",
+          "ขับปัสสาวะ",
+          "ช่วยย่อยอาหาร",
+          "เพิ่มการหลั่งน้ำดีจากตับ",
+          "ช่วยให้ร่างกายสดชื่น"
+        ],
+        "leaves": [
+          "แก้โรคพยาธิตัวจี๊ด",
+          "กัดเสมหะ",
+          "แก้ไอ",
+          "ขับเมือกมันในลำคอ"
+        ],
+        "flowers": [
+          "แก้โรคนิ่วในไต",
+          "แก้โรคนิ่วในกระเพาะปัสสาวะ",
+          "ขัดเบา",
+          "ละลายไขมันในเส้นเลือด",
+          "กัดเสมหะ",
+          "ขับเมือกในลำไส้"
+        ],
+        "fruit": ["ลดไขมันในเส้นเลือด", "แก้กระหายน้ำ", "รักษาแผลในกระเพาะ"],
+        "seeds": [
+          "บำรุงธาตุ",
+          "บำรุงกำลัง",
+          "แก้ดีพิการ",
+          "ขับปัสสาวะ",
+          "ลดไขมันในเส้นเลือด"
+        ],
+        "general": [
+          "แก้อ่อนเพลีย",
+          "บำรุงกำลัง",
+          "บำรุงธาตุ",
+          "แก้ดีพิการ",
+          "แก้ปัสสาวะพิการ",
+          "แก้คอแห้งกระหายน้ำ",
+          "แก้ความดันโลหิตสูง",
+          "ลดไขมันในเลือด",
+          "บำรุงโลหิต",
+          "ลดอุณหภูมิในร่างกาย",
+          "แก้โรคเบาหวาน",
+          "แก้เส้นเลือดตีบตัน"
+        ]
+      },
+      "usage": {
+        "method": "ใช้กลีบเลี้ยงตากแห้งและบดเป็นผง",
+        "dosage": "ครั้งละ 1 ช้อนชา (3 กรัม) ชงกับน้ำเดือด 1 ถ้วย (250 มิลลิลิตร) ดื่มวันละ 3 ครั้งจนกว่าอาการจะหายไป"
+      },
+      "chemical_composition": [
+        "Protocatechuic acid",
+        "hibiscetin",
+        "hibicin",
+        "organic acid",
+        "malvin",
+        "gossypetin"
+      ],
+      "nutritional_value": {
+        "beverage": [
+          "รสเปรี้ยว",
+          "แก้ร้อนใน",
+          "แก้กระหายน้ำ",
+          "ป้องกันการจับตัวของไขมันในเส้นเลือด"
+        ],
+        "food": ["ทำขนมเยลลี่", "แยม", "สารแต่งสี", "ใบอ่อนใช้เป็นผักแกงส้ม"],
+        "vitamins": {
+          "vitamin_a": "ช่วยบำรุงสายตา",
+          "calcium": "ช่วยบำรุงกระดูกและฟัน"
+        },
+        "coloring": {
+          "anthocyanin": "ใช้แต่งสีอาหาร"
+        }
+      },
+      "price": 100,
       "stock": 200,
       "imageUrl": "/image1.jpg"
     },
     {
       "id": 2,
-      "name": "ขมิ้นชัน",
-      "categories": "บำรุงร่างกาย",
-      "benefits": "ช่วยบำรุงตับ และระบบย่อยอาหาร",
-      "price": 35,
+      "group": "กลุ่มยารักษาโรคผิวหนัง ผื่นคัน กลากเกลื้อน",
+      "scientific_name": "Crateva adansonii DC.",
+      "common_names": ["Sacred Barnar", "Caper Tree"],
+      "family": "Capparaceae",
+      "other_names": ["ผักกุ่ม"],
+      "botanical_description": "ไม้ต้นขนาดกลาง ดอกสีขาวอมเขียว ใบประกอบแบบนิ้วมือ",
+      "properties": {
+        "calyx": null,
+        "leaves": ["ฆ่าเชื้อ", "แก้กลากเกลื้อน"],
+        "flowers": null,
+        "fruit": null,
+        "seeds": null,
+        "general": ["รักษาโรคผิวหนัง"]
+      },
+      "usage": {
+        "method": "ตำใบสด ทาบริเวณที่เป็น",
+        "dosage": "วันละ 2-3 ครั้ง"
+      },
+      "chemical_composition": null,
+      "nutritional_value": null,
+      "price": 120,
       "stock": 150,
       "imageUrl": "/image2.jpg"
     },
     {
       "id": 3,
-      "name": "ใบเตย",
-      "categories": "บำรุงหัวใจ",
-      "benefits": "ช่วยบำรุงหัวใจ และลดความดันโลหิต",
-      "price": 25,
-      "stock": 300,
-      "imageUrl": "/image3.jpg"
+      "group": "กลุ่มพืชหอม เป็นยาบำรุงหัวใจ",
+      "scientific_name": "Cinnamomum verum J. Presl",
+      "common_names": ["True Cinnamon", "Ceylon Cinnamon"],
+      "family": "Lauraceae",
+      "other_names": ["อบเชย"],
+      "botanical_description": "ไม้ต้นขนาดกลาง เปลือกมีกลิ่นหอม ใบเรียวยาว",
+      "properties": {
+        "calyx": null,
+        "leaves": ["บำรุงหัวใจ"],
+        "flowers": null,
+        "fruit": null,
+        "seeds": null,
+        "general": ["ช่วยระบบไหลเวียนโลหิต"]
+      },
+      "usage": {
+        "method": "ต้มน้ำเปลือกและดื่ม",
+        "dosage": "วันละ 1 แก้ว"
+      },
+      "chemical_composition": ["ซินนามาลดีไฮด์"],
+      "nutritional_value": {
+        "beverage": ["รสหอมหวาน", "ช่วยผ่อนคลาย"],
+        "food": ["ปรุงขนมปัง", "โรยกาแฟ"],
+        "vitamins": {
+          "vitamin_c": "ช่วยเสริมภูมิคุ้มกัน"
+        },
+        "coloring": null
+      },
+      "price": 140,
+      "stock": 180,
+            "imageUrl": "/image3.jpg"
     },
     {
       "id": 4,
-      "name": "กระชายดำ",
-      "categories": "บำรุงกำลัง",
-      "benefits": "ช่วยบำรุงกำลัง และเสริมสมรรถภาพ",
-      "price": 60,
+      "group": "กลุ่มถ่ายพยาธิ",
+      "scientific_name": "Areca catechu L.",
+      "common_names": ["Betel Nut", "Areca Palm"],
+      "family": "Arecaceae",
+      "other_names": ["หมาก"],
+      "botanical_description": "ไม้ยืนต้นสูง ใบยาวแบบปาล์ม ผลกลมรี",
+      "properties": {
+        "calyx": null,
+        "leaves": null,
+        "flowers": null,
+        "fruit": ["ขับพยาธิในลำไส้"],
+        "seeds": ["ถ่ายพยาธิ"],
+        "general": ["ขับพยาธิ"]
+      },
+      "usage": {
+        "method": "บดผลแห้งชงน้ำดื่ม",
+        "dosage": "ดื่ม 1 ครั้งทุก 3 วัน"
+      },
+      "chemical_composition": ["สารอัลคาลอยด์"],
+      "nutritional_value": null,
+      "price": 90,
       "stock": 100,
       "imageUrl": "/image4.jpg"
     },
     {
       "id": 5,
-      "name": "มะขามป้อม",
-      "categories": "ต้านอนุมูลอิสระ",
-      "benefits": "เสริมภูมิคุ้มกัน และช่วยลดไข้",
-      "price": 40,
+      "group": "กลุ่มยาถ่าย",
+      "scientific_name": "Senna alexandrina Mill.",
+      "common_names": ["Alexandrian Senna", "Tinnevelly Senna"],
+      "family": "Fabaceae",
+      "other_names": ["มะขามแขก"],
+      "botanical_description": "ไม้พุ่มขนาดเล็ก ใบเรียวยาว ออกดอกสีเหลืองสด",
+      "properties": {
+        "calyx": null,
+        "leaves": ["ยาระบาย"],
+        "flowers": null,
+        "fruit": null,
+        "seeds": null,
+        "general": ["ช่วยการขับถ่าย"]
+      },
+      "usage": {
+        "method": "ชงใบแห้งในน้ำร้อน",
+        "dosage": "ดื่มก่อนนอนวันละ 1 ครั้ง"
+      },
+      "chemical_composition": ["สารแอนทราควิโนน"],
+      "nutritional_value": null,
+      "price": 80,
       "stock": 250,
       "imageUrl": "/image5.jpg"
+    }
+  ],
+  "group": [
+    {
+      "id": 1,
+      "name": "กลุ่มยาลดไขมันในเส้นเลือด"
     },
     {
-      "id": 6,
-      "name": "ใบบัวบก",
-      "categories": "ลดอักเสบ",
-      "benefits": "ลดอาการอักเสบ และบรรเทาอาการร้อนใน",
-      "price": 30,
-      "stock": 200,
-      "imageUrl": "/image1.jpg"
+      "id": 2,
+      "name": "กลุ่มยารักษาโรคผิวหนัง ผื่นคัน กลากเกลื้อน"
     },
     {
-      "id": 7,
-      "name": "พริกไทยดำ",
-      "categories": "เพิ่มการไหลเวียนเลือด",
-      "benefits": "ช่วยกระตุ้นการไหลเวียนเลือด และเพิ่มการเผาผลาญ",
-      "price": 45,
-      "stock": 180,
-      "imageUrl": "/image2.jpg"
+      "id": 3,
+      "name": "กลุ่มพืชหอม เป็นยาบำรุงหัวใจ"
     },
     {
-      "id": 8,
-      "name": "ลูกใต้ใบ",
-      "categories": "บำรุงตับ",
-      "benefits": "ช่วยขับพิษ และบำรุงตับ",
-      "price": 35,
-      "stock": 220,
-      "imageUrl": "/image3.jpg"
+      "id": 4,
+      "name": "กลุ่มถ่ายพยาธิ"
     },
     {
-      "id": 9,
-      "name": "อัญชัน",
-      "categories": "บำรุงสายตา",
-      "benefits": "ช่วยบำรุงสายตา และเพิ่มการไหลเวียนโลหิต",
-      "price": 30,
-      "stock": 190,
-      "imageUrl": "/image4.jpg"
-    },
-    {
-      "id": 10,
-      "name": "บอระเพ็ด",
-      "categories": "ลดน้ำตาลในเลือด",
-      "benefits": "ช่วยลดระดับน้ำตาลในเลือด",
-      "price": 50,
-      "stock": 130,
-      "imageUrl": "/image5.jpg"
-    },
-    {
-      "id": 11,
-      "name": "รางจืด",
-      "categories": "ล้างพิษ",
-      "benefits": "ช่วยล้างพิษ และลดอาการแพ้",
-      "price": 40,
-      "stock": 120,
-      "imageUrl": "/image1.jpg"
-    },
-    {
-      "id": 12,
-      "name": "เพกา",
-      "categories": "บำรุงกระดูก",
-      "benefits": "ช่วยบำรุงกระดูก และลดอาการอักเสบ",
-      "price": 45,
-      "stock": 150,
-      "imageUrl": "/image2.jpg"
-    },
-    {
-      "id": 13,
-      "name": "มะระขี้นก",
-      "categories": "ลดระดับน้ำตาลในเลือด",
-      "benefits": "ช่วยลดระดับน้ำตาล และบำรุงตับอ่อน",
-      "price": 50,
-      "stock": 110,
-      "imageUrl": "/image3.jpg"
-    },
-    {
-      "id": 14,
-      "name": "กระเจี๊ยบแดง",
-      "categories": "บำรุงไต",
-      "benefits": "ช่วยขับปัสสาวะ และลดความดันโลหิต",
-      "price": 40,
-      "stock": 160,
-      "imageUrl": "/image4.jpg"
-    },
-    {
-      "id": 15,
-      "name": "สะเดา",
-      "categories": "ลดไข้",
-      "benefits": "ช่วยลดไข้ และรักษาโรคผิวหนัง",
-      "price": 35,
-      "stock": 140,
-      "imageUrl": "/image5.jpg"
-    },
-    {
-      "id": 16,
-      "name": "เตยหอม",
-      "categories": "บำรุงหัวใจ",
-      "benefits": "ช่วยบำรุงหัวใจ และลดกลิ่นปาก",
-      "price": 25,
-      "stock": 210,
-      "imageUrl": "/image1.jpg"
-    },
-    {
-      "id": 17,
-      "name": "ถั่งเช่า",
-      "categories": "บำรุงร่างกาย",
-      "benefits": "ช่วยเพิ่มพลังงาน และบำรุงไต",
-      "price": 150,
-      "stock": 50,
-      "imageUrl": "/image2.jpg"
-    },
-    {
-      "id": 18,
-      "name": "ว่านหางจระเข้",
-      "categories": "บำรุงผิว",
-      "benefits": "ช่วยบำรุงผิว และลดการอักเสบ",
-      "price": 30,
-      "stock": 170,
-      "imageUrl": "/image3.jpg"
-    },
-    {
-      "id": 19,
-      "name": "มะพร้าว",
-      "categories": "บำรุงร่างกาย",
-      "benefits": "ช่วยเพิ่มความสดชื่น และลดความร้อนในร่างกาย",
-      "price": 20,
-      "stock": 300,
-      "imageUrl": "/image4.jpg"
-    },
-    {
-      "id": 20,
-      "name": "พลูคาว",
-      "categories": "ลดอาการอักเสบ",
-      "benefits": "ช่วยลดการอักเสบ และบรรเทาอาการแพ้",
-      "price": 55,
-      "stock": 100,
-      "imageUrl": "/image5.jpg"
+      "id": 5,
+      "name": "กลุ่มยาถ่าย"
     }
   ]
 }
