@@ -17,6 +17,7 @@ import { useAppNavigation } from "../../../hooks/useAppNavigation";
 const ProductItem = React.memo(({ herb }: { herb: Herb }) => {
     const navigation = useAppNavigation();
     const [imageLoading, setImageLoading] = useState(true);
+    const selectedName = herb.other_names[0];
 
     const handleEdit = () => {
       navigation.navigate("ProductUpsert", { herb });
@@ -47,10 +48,10 @@ const ProductItem = React.memo(({ herb }: { herb: Herb }) => {
 
           <View style={styles.detailsWrapper}>
             <Text style={styles.itemName} numberOfLines={1}>
-              {herb.name}
+              {selectedName}
             </Text>
             <Text style={styles.itemDescription} numberOfLines={1}>
-              หมวดหมู่ : {herb.categories}
+              หมวดหมู่ : {herb.group}
             </Text>
             <Text style={styles.itemDescription} numberOfLines={1}>
               ราคา : {herb.price} บาท

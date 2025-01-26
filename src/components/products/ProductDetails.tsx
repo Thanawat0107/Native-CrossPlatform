@@ -21,6 +21,8 @@ const ProductDetails = () => {
 
   if (!herb) return <Text>Product not found</Text>;
 
+  const selectedName = herb.other_names[0];
+
   const [count, setCount] = useState<number>(1);
 
   const increment = () => setCount(count + 1);
@@ -48,7 +50,7 @@ const ProductDetails = () => {
 
         <View style={styles.contentContainer}>
           <View style={styles.titleRow}>
-            <Text style={styles.title}>{herb.name}</Text>
+            <Text style={styles.title}>{selectedName}</Text>
             <View style={styles.priceWrapper}>
               <Text style={styles.price}>$ {herb.price}</Text>
             </View>
@@ -78,7 +80,7 @@ const ProductDetails = () => {
 
           <View style={styles.descriptionWrapper}>
             <Text style={styles.description}>Benefits</Text>
-            <Text style={styles.descText}>{herb.benefits}</Text>
+            <Text style={styles.descText}>{herb.botanical_description}</Text>
           </View>
 
           <View style={{ marginBottom: SIZES.small }}>

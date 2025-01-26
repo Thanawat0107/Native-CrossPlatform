@@ -6,6 +6,7 @@ import { useAppDispatch } from '../../../hooks/useAppHookState';
 import { addHerb, updateHerb } from '../../../store/slices/herbsSlice';
 import { useAddHerbMutation, useUpdateHerbMutation } from '../../../fetch/herbsApi';
 import { useAppNavigation } from '../../../hooks/useAppNavigation';
+import { SIZES } from '../../../constants/themes';
 
 type ProductUpsertRouteProp = RouteProp<RootStackParamList, "ProductUpsert">;
 
@@ -23,9 +24,13 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
 
   const [form, setForm] = useState<Partial<Herb>>({
     id: herb?.id || 0,
-    name: herb?.name || "",
-    categories: herb?.categories || "",
-    benefits: herb?.benefits || "",
+    group: herb?.group || "",
+    other_names: herb?.other_names || [],
+    botanical_description: herb?.botanical_description || "",
+    properties: herb?.properties || {},
+    usage: herb?.usage || {},
+    chemical_composition: herb?.chemical_composition || [],
+    nutritional_value: herb?.nutritional_value || {},
     price: herb?.price ?? 0,
     stock: herb?.stock ?? 0,
     imageUrl: herb?.imageUrl || "",
@@ -34,9 +39,13 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
   const resetForm = () => {
     setForm({
       id: 0,
-      name: "",
-      categories: "",
-      benefits: "",
+      group: "",
+      other_names: [],
+      botanical_description: "",
+      properties:  {},
+      usage: {},
+      chemical_composition: [],
+      nutritional_value: {},
       price: 0,
       stock: 0,
       imageUrl: "",
@@ -44,7 +53,7 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
   };
 
   const handleSubmit = async () => {
-    if (!form.name || form.price === undefined || form.price < 0) {
+    if (!form.other_names || form.price === undefined || form.price < 0) {
       alert("Please fill out all required fields and ensure the price is valid.");
       return;
     }
@@ -68,26 +77,26 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>
-        {isEditMode ? `Edit Product: ${herb?.name}` : "Add New Product"}
+        {isEditMode ? `Edit Product: ${herb?.other_names}` : "Add New Product"}
       </Text>
 
       <TextInput
         placeholder="Name"
         style={styles.input}
-        value={form.name}
-        onChangeText={(text) => setForm({ ...form, name: text })}
+        value={form.other_names}
+        onChangeText={(text) => setForm({ ...form, other_names: text })}
       />
       <TextInput
         placeholder="Categories"
         style={styles.input}
-        value={form.categories}
-        onChangeText={(text) => setForm({ ...form, categories: text })}
+        value={form.group}
+        onChangeText={(text) => setForm({ ...form, group: text })}
       />
       <TextInput
         placeholder="Benefits"
         style={styles.input}
-        value={form.benefits}
-        onChangeText={(text) => setForm({ ...form, benefits: text })}
+        value={form.botanical_description}
+        onChangeText={(text) => setForm({ ...form, botanical_description: text })}
       />
       <TextInput
         placeholder="Price"
@@ -124,7 +133,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "#fff",
+    // backgroundColor: "#fff",
+    marginHorizontal: SIZES.small,
+    marginTop: SIZES.xsLarge,
+    marginBottom: 55,
   },
   title: {
     fontSize: 24,

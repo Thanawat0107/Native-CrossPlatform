@@ -4,11 +4,13 @@ interface HerbState {
   herbs: Herb[]; // สำหรับจัดเก็บรายการสมุนไพรทั้งหมด
   selectedHerb?: Herb; // สำหรับจัดเก็บสมุนไพรที่ถูกเลือก
   searchQuery: string; // สำหรับค้นหาสมุนไพร
+  filteredHerbs: Herb[]; // สำหรับเก็บผลลัพธ์ที่ค้นหา
 }
 
 const initialState: HerbState = {
   herbs: [],
   searchQuery: "",
+  filteredHerbs: [],
 };
 
 export const herbsSlice = createSlice({
@@ -29,6 +31,8 @@ export const herbsSlice = createSlice({
       );
       if (index !== -1) {
         state.herbs[index] = action.payload;
+      } else {
+        console.warn(`Herb with ID ${action.payload.id} not found.`);
       }
     },
 
@@ -44,6 +48,12 @@ export const herbsSlice = createSlice({
     
     searchHerb: (state, action: PayloadAction<string>) => {
       state.searchQuery = action.payload;
+      state.filteredHerbs = state.herbs.filter((herb) =>
+        herb.scientific_name?.toLowerCase().includes(action.payload.toLowerCase()) ||
+        herb.common_names?.some((name) =>
+          name.toLowerCase().includes(action.payload.toLowerCase())
+        )
+      );
     },
     
   },

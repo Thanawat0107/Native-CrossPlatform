@@ -15,6 +15,8 @@ import { hp, wp } from "../../helpers/common";
 
 const ProductCard = ({ herb }: { herb: Herb }) => {
   const navigation = useAppNavigation();
+
+const selectedName = herb.other_names[0];
   
   return (
     <TouchableOpacity
@@ -26,10 +28,10 @@ const ProductCard = ({ herb }: { herb: Herb }) => {
       </View>
       <View style={styles.contentContainer}>
         <Text style={styles.productName} numberOfLines={1}>
-          {herb.name}
+          {selectedName}
         </Text>
         <Text style={styles.categoty} numberOfLines={1}>
-          {herb.categories}
+          {herb.group}
         </Text>
         <Text style={styles.productPrice} numberOfLines={1}>
           ${herb.price}
