@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Image, ScrollView } from "react-native";
 import React, {useState} from "react";
 import { COLORS, SIZES } from "../../constants/themes";
 import { Fontisto, Ionicons, MaterialCommunityIcons, SimpleLineIcons } from "@expo/vector-icons";
@@ -30,7 +30,7 @@ const ProductDetails = () => {
 
   return (
     <>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.upperRow}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons name="chevron-back-circle" size={30} />
@@ -79,7 +79,7 @@ const ProductDetails = () => {
           </View>
 
           <View style={styles.descriptionWrapper}>
-            <Text style={styles.description}>Benefits</Text>
+            <Text style={styles.description}>คำอธิบายพฤกษศาสตร์</Text>
             <Text style={styles.descText}>{herb.botanical_description}</Text>
           </View>
 
@@ -114,7 +114,7 @@ const ProductDetails = () => {
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 };
@@ -204,6 +204,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontFamily: "medium",
+    marginBottom: 10,
     fontSize: SIZES.large - 2,
   },
   descText: {
