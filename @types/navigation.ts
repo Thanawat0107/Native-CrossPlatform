@@ -2,6 +2,7 @@ import { Herb } from "./herb";
 
 export type RootStackParamList = {
   Home: undefined;
+  ProductList: undefined;
   ProductDetails: { productId: number };
   Search: undefined;
   Cart: undefined;

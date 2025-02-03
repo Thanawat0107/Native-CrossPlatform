@@ -8,9 +8,9 @@ import ProductDetails from "./products/ProductDetails";
 import Welcome from "./home/Welcome";
 import Loading from "./Loading";
 import Headings from "./home/Headings";
-import ProductList from "./products/ProductList";
+import ProductRow from "./products/ProductRow";
 import Navber from "./home/Navber";
-
+import ProductList from "./products/ProductList";
 export {
   Account,
   Category,
@@ -23,5 +23,6 @@ export {
   Navber,
   Loading,
   Headings,
-  ProductList
+  ProductRow,
+  ProductList,
 };

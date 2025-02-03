@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SIZES } from "../constants/themes";
-import { Navber, ProductList, Welcome } from "../components";
+import { Navber, ProductRow, Welcome } from "../components";
 
 const HomeScreen = () => {
   return (
@@ -13,7 +13,7 @@ const HomeScreen = () => {
         <Navber />
         <ScrollView>
           <Welcome />
-          <ProductList />
+          <ProductRow />
         </ScrollView>
       </SafeAreaView>
     </>

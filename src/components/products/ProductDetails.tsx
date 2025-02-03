@@ -83,6 +83,28 @@ const ProductDetails = () => {
             <Text style={styles.descText}>{herb.botanical_description}</Text>
           </View>
 
+          <View style={{ marginHorizontal: SIZES.large }}>
+            <Text
+              style={{
+                fontFamily: "bold",
+                marginBottom: 5,
+                fontSize: SIZES.large - 2,
+              }}
+            >
+              กลุ่มยาสมุนไพร
+            </Text>
+            <Text
+              style={{
+                fontFamily: "regular",
+                fontSize: SIZES.small,
+                textAlign: "justify",
+                marginBottom: SIZES.small,
+              }}
+            >
+              {herb.group}
+            </Text>
+          </View>
+
           <View style={{ marginBottom: SIZES.small }}>
             <View style={styles.location}>
               <View style={{ flexDirection: "row" }}>
@@ -203,8 +225,8 @@ const styles = StyleSheet.create({
     marginHorizontal: SIZES.large,
   },
   description: {
-    fontFamily: "medium",
-    marginBottom: 10,
+    fontFamily: "bold",
+    marginBottom: 5,
     fontSize: SIZES.large - 2,
   },
   descText: {

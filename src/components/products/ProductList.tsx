@@ -1,30 +1,36 @@
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { SIZES } from '../../constants/themes';
-import ProductCard from './ProductCard';
-import { useGetHerbsQuery } from '../../fetch/herbsApi';
+import { FlatList, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { useGetHerbsQuery } from "../../fetch/herbsApi";
+import Loading from "../Loading";
+import { SIZES } from "../../constants/themes";
+import ProductCard from "./ProductCard";
 
 const ProductList = () => {
-  const { data: herbs, isLoading} = useGetHerbsQuery(null);
+  const { data: herbs, isLoading } = useGetHerbsQuery(null);
 
-  if (isLoading) return <ActivityIndicator size="large" color="#0000ff" />;
-
+  if (isLoading) return <Loading />;
   return (
-    <View style={styles.productGrid}>
+    <View style={styles.container}>
       <FlatList
         data={herbs}
-        keyExtractor={(item) => item.id.toString()}
-        horizontal
-        renderItem={({ item }) => <ProductCard herb={item} />}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ columnGap: SIZES.small }}
-      />
+        numColumns={2}
+        renderItem={({item}) => < ProductCard herb={item} />}
+        contentContainerStyle={styles.container}
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
+       />
     </View>
   );
-}
+};
 
-export default ProductList
+export default ProductList;
 
 const styles = StyleSheet.create({
-  productGrid: { marginTop: SIZES.large },
+  container: {
+    alignItems: "center",
+    paddingTop: SIZES.xxLarge,
+    paddingLeft: SIZES.small / 2,
+  },
+  separator: {
+    height: 16,
+  }
 });

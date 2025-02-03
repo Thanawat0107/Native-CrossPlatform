@@ -14,5 +14,5 @@ server.use(jsonServer.bodyParser);
 server.use(router);
 
 server.listen(3001, () => {
-  console.log('JSON Server is running at http://localhost:3001');
+  console.log('JSON Server is running at http://localhost:3001/herbs');
 });
