@@ -82,27 +82,78 @@ const ProductDetails = () => {
             <Text style={styles.description}>คำอธิบายพฤกษศาสตร์</Text>
             <Text style={styles.descText}>{herb.botanical_description}</Text>
           </View>
+          <View style={styles.test}>
+            <Text style={{fontFamily: "bold"}}>กลุ่มยาสมุนไพร</Text>
+            <Text>{herb.group}</Text>
+          </View>
+          <View style={styles.test}>
+            <Text style={{fontFamily: "bold"}}>ชื่อวิทยาศาสตร์</Text>
+            <Text>{herb.scientific_name}</Text>
+          </View>
+          <View style={styles.test}>
+            <Text style={{fontFamily: "bold"}}>ชื่อสามัญ</Text>
+            <Text>{herb.common_names}</Text>
+          </View>
+          <View style={styles.test}>
+            <Text style={{fontFamily: "bold"}}>ตระกูล</Text>
+            <Text>{herb.family}</Text>
+          </View>
 
-          <View style={{ marginHorizontal: SIZES.large }}>
-            <Text
-              style={{
-                fontFamily: "bold",
-                marginBottom: 5,
-                fontSize: SIZES.large - 2,
-              }}
-            >
-              กลุ่มยาสมุนไพร
-            </Text>
-            <Text
-              style={{
-                fontFamily: "regular",
-                fontSize: SIZES.small,
-                textAlign: "justify",
-                marginBottom: SIZES.small,
-              }}
-            >
-              {herb.group}
-            </Text>
+          <View style={styles.test}>
+            <Text style={{fontFamily: "bold"}}>คุณสมบัติ : กลีบเลี้ยง</Text>
+            <Text>{herb.properties.calyx}</Text>
+          </View>
+          <View style={styles.test}>
+            <Text style={{fontFamily: "bold"}}>คุณสมบัติ : ใบ</Text>
+            <Text>{herb.properties.leaves}</Text>
+          </View>
+          <View style={styles.test}>
+            <Text style={{fontFamily: "bold"}}>คุณสมบัติ : ผล</Text>
+            <Text>{herb.properties.fruit}</Text>
+          </View>
+          <View style={styles.test}>
+            <Text style={{fontFamily: "bold"}}>คุณสมบัติ : เมล็ดพันธุ์</Text>
+            <Text>{herb.properties.seeds}</Text>
+          </View>
+          <View style={styles.test}>
+            <Text style={{fontFamily: "bold"}}>คุณสมบัติ : ทั่วไป</Text>
+            <Text>{herb.properties.general}</Text>
+          </View>
+          
+          <View style={styles.test}>
+            <Text style={{fontFamily: "bold"}}>วิธี : การใช้งาน</Text>
+            <Text>{herb.usage.method}</Text>
+          </View>
+          <View style={styles.test}>
+            <Text style={{fontFamily: "bold"}}>ปริมาณ : การใช้งาน</Text>
+            <Text>{herb.usage.dosage}</Text>
+          </View>
+
+          <View style={styles.test}>
+            <Text style={{fontFamily: "bold"}}>ปริมาณ : การใช้งาน</Text>
+            <Text>{herb.usage.dosage}</Text>
+          </View>
+
+          <View style={styles.test}>
+            <Text style={{fontFamily: "bold"}}>องค์ประกอบทางเคมี</Text>
+            <Text>{herb.chemical_composition}</Text>
+          </View>
+
+          <View style={styles.test}>
+            <Text style={{fontFamily: "bold"}}>คุณค่าทางโภชนาการ : เครื่องดื่ม</Text>
+            <Text>{herb.nutritional_value.beverage}</Text>
+          </View>
+          <View style={styles.test}>
+            <Text style={{fontFamily: "bold"}}>คุณค่าทางโภชนาการ : อาหาร</Text>
+            <Text>{herb.nutritional_value.food}</Text>
+          </View>
+          <View style={styles.test}>
+            <Text style={{fontFamily: "bold"}}>คุณค่าทางโภชนาการ : วิตามิน</Text>
+            <Text>{herb.nutritional_value.vitamins}</Text>
+          </View>
+          <View style={styles.test}>
+            <Text style={{fontFamily: "bold"}}>คุณค่าทางโภชนาการ : สีอาหาร</Text>
+            <Text>{herb.nutritional_value.coloring}</Text>
           </View>
 
           <View style={{ marginBottom: SIZES.small }}>
@@ -234,6 +285,11 @@ const styles = StyleSheet.create({
     fontSize: SIZES.small,
     textAlign: "justify",
     marginBottom: SIZES.small,
+  },
+  test: {
+    marginHorizontal: SIZES.large,
+    marginBottom: 10,
+    
   },
   location: {
     flexDirection: "row",
