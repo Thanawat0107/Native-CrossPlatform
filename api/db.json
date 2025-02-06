@@ -4,7 +4,10 @@
       "id": 1,
       "group": "กลุ่มยาลดไขมันในเส้นเลือด",
       "scientific_name": "Hibiscus sabdariffa L.",
-      "common_names": ["Jamaican Sorel", "Roselle"],
+      "common_names": [
+        "Jamaican Sorel",
+        "Roselle"
+      ],
       "family": "Malvaceae",
       "other_names": [
         "กระเจี๊ยบ",
@@ -40,7 +43,11 @@
           "กัดเสมหะ",
           "ขับเมือกในลำไส้"
         ],
-        "fruit": ["ลดไขมันในเส้นเลือด", "แก้กระหายน้ำ", "รักษาแผลในกระเพาะ"],
+        "fruit": [
+          "ลดไขมันในเส้นเลือด",
+          "แก้กระหายน้ำ",
+          "รักษาแผลในกระเพาะ"
+        ],
         "seeds": [
           "บำรุงธาตุ",
           "บำรุงกำลัง",
@@ -82,8 +89,16 @@
           "แก้กระหายน้ำ",
           "ป้องกันการจับตัวของไขมันในเส้นเลือด"
         ],
-        "food": ["ทำขนมเยลลี่", "แยม", "สารแต่งสี", "ใบอ่อนใช้เป็นผักแกงส้ม"],
-        "vitamins":  ["ช่วยบำรุงสายตา", "ช่วยบำรุงกระดูกและฟัน"],
+        "food": [
+          "ทำขนมเยลลี่",
+          "แยม",
+          "สารแต่งสี",
+          "ใบอ่อนใช้เป็นผักแกงส้ม"
+        ],
+        "vitamins": [
+          "ช่วยบำรุงสายตา",
+          "ช่วยบำรุงกระดูกและฟัน"
+        ],
         "coloring": [
           "น้ำกระเจี๊ยบแดงที่ได้สีแดงเข้ม สาร Anthocyanin นำไปแต่งสีอาหารตามต้องการ"
         ]
@@ -96,17 +111,27 @@
       "id": 2,
       "group": "กลุ่มยารักษาโรคผิวหนัง ผื่นคัน กลากเกลื้อน",
       "scientific_name": "Crateva adansonii DC.",
-      "common_names": ["Sacred Barnar", "Caper Tree"],
+      "common_names": [
+        "Sacred Barnar",
+        "Caper Tree"
+      ],
       "family": "Capparaceae",
-      "other_names": ["ผักกุ่ม"],
+      "other_names": [
+        "ผักกุ่ม"
+      ],
       "botanical_description": "ไม้ต้นขนาดกลาง ดอกสีขาวอมเขียว ใบประกอบแบบนิ้วมือ",
       "properties": {
         "calyx": null,
-        "leaves": ["ฆ่าเชื้อ", "แก้กลากเกลื้อน"],
+        "leaves": [
+          "ฆ่าเชื้อ",
+          "แก้กลากเกลื้อน"
+        ],
         "flowers": null,
         "fruit": null,
         "seeds": null,
-        "general": ["รักษาโรคผิวหนัง"]
+        "general": [
+          "รักษาโรคผิวหนัง"
+        ]
       },
       "usage": {
         "method": "ตำใบสด ทาบริเวณที่เป็น",
@@ -122,27 +147,46 @@
       "id": 3,
       "group": "กลุ่มพืชหอม เป็นยาบำรุงหัวใจ",
       "scientific_name": "Cinnamomum verum J. Presl",
-      "common_names": ["True Cinnamon", "Ceylon Cinnamon"],
+      "common_names": [
+        "True Cinnamon",
+        "Ceylon Cinnamon"
+      ],
       "family": "Lauraceae",
-      "other_names": ["อบเชย"],
+      "other_names": [
+        "อบเชย"
+      ],
       "botanical_description": "ไม้ต้นขนาดกลาง เปลือกมีกลิ่นหอม ใบเรียวยาว",
       "properties": {
         "calyx": null,
-        "leaves": ["บำรุงหัวใจ"],
+        "leaves": [
+          "บำรุงหัวใจ"
+        ],
         "flowers": null,
         "fruit": null,
         "seeds": null,
-        "general": ["ช่วยระบบไหลเวียนโลหิต"]
+        "general": [
+          "ช่วยระบบไหลเวียนโลหิต"
+        ]
       },
       "usage": {
         "method": "ต้มน้ำเปลือกและดื่ม",
         "dosage": "วันละ 1 แก้ว"
       },
-      "chemical_composition": ["ซินนามาลดีไฮด์"],
+      "chemical_composition": [
+        "ซินนามาลดีไฮด์"
+      ],
       "nutritional_value": {
-        "beverage": ["รสหอมหวาน", "ช่วยผ่อนคลาย"],
-        "food": ["ปรุงขนมปัง", "โรยกาแฟ"],
-        "vitamins": ["ช่วยเสริมภูมิคุ้มกัน"],
+        "beverage": [
+          "รสหอมหวาน",
+          "ช่วยผ่อนคลาย"
+        ],
+        "food": [
+          "ปรุงขนมปัง",
+          "โรยกาแฟ"
+        ],
+        "vitamins": [
+          "ช่วยเสริมภูมิคุ้มกัน"
+        ],
         "coloring": null
       },
       "price": 140,
@@ -153,23 +197,36 @@
       "id": 4,
       "group": "กลุ่มถ่ายพยาธิ",
       "scientific_name": "Areca catechu L.",
-      "common_names": ["Betel Nut", "Areca Palm"],
+      "common_names": [
+        "Betel Nut",
+        "Areca Palm"
+      ],
       "family": "Arecaceae",
-      "other_names": ["หมาก"],
+      "other_names": [
+        "หมาก"
+      ],
       "botanical_description": "ไม้ยืนต้นสูง ใบยาวแบบปาล์ม ผลกลมรี",
       "properties": {
         "calyx": null,
         "leaves": null,
         "flowers": null,
-        "fruit": ["ขับพยาธิในลำไส้"],
-        "seeds": ["ถ่ายพยาธิ"],
-        "general": ["ขับพยาธิ"]
+        "fruit": [
+          "ขับพยาธิในลำไส้"
+        ],
+        "seeds": [
+          "ถ่ายพยาธิ"
+        ],
+        "general": [
+          "ขับพยาธิ"
+        ]
       },
       "usage": {
         "method": "บดผลแห้งชงน้ำดื่ม",
         "dosage": "ดื่ม 1 ครั้งทุก 3 วัน"
       },
-      "chemical_composition": ["สารอัลคาลอยด์"],
+      "chemical_composition": [
+        "สารอัลคาลอยด์"
+      ],
       "nutritional_value": null,
       "price": 90,
       "stock": 100,
@@ -179,27 +236,55 @@
       "id": 5,
       "group": "กลุ่มยาถ่าย",
       "scientific_name": "Senna alexandrina Mill.",
-      "common_names": ["Alexandrian Senna", "Tinnevelly Senna"],
+      "common_names": [
+        "Alexandrian Senna",
+        "Tinnevelly Senna"
+      ],
       "family": "Fabaceae",
-      "other_names": ["มะขามแขก"],
+      "other_names": [
+        "มะขามแขก"
+      ],
       "botanical_description": "ไม้พุ่มขนาดเล็ก ใบเรียวยาว ออกดอกสีเหลืองสด",
       "properties": {
         "calyx": null,
-        "leaves": ["ยาระบาย"],
+        "leaves": [
+          "ยาระบาย"
+        ],
         "flowers": null,
         "fruit": null,
         "seeds": null,
-        "general": ["ช่วยการขับถ่าย"]
+        "general": [
+          "ช่วยการขับถ่าย"
+        ]
       },
       "usage": {
         "method": "ชงใบแห้งในน้ำร้อน",
         "dosage": "ดื่มก่อนนอนวันละ 1 ครั้ง"
       },
-      "chemical_composition": ["สารแอนทราควิโนน"],
+      "chemical_composition": [
+        "สารแอนทราควิโนน"
+      ],
       "nutritional_value": null,
       "price": 80,
       "stock": 250,
       "imageUrl": "/image5.jpg"
+    },
+    {
+      "id": 6,
+      "group": "Add",
+      "other_names": [
+        "add"
+      ],
+      "botanical_description": "Add",
+      "properties": {},
+      "usage": {},
+      "chemical_composition": [
+        "Add"
+      ],
+      "nutritional_value": {},
+      "price": 0,
+      "stock": 0,
+      "imageUrl": "Image1.jpg"
     }
   ],
   "group": [

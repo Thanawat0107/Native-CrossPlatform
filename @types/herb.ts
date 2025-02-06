@@ -1,6 +1,6 @@
 export interface Herb {
   id: number;
-  group?: string | null;
+  group?: string;
   scientific_name?: string;
   common_names?: string[];
   family?: string;
@@ -32,11 +32,6 @@ interface Usage {
 interface NutritionalValue {
   beverage?: string[];
   food?: string[];
-  vitamins?: {
-    vitamin_a?: string;
-    calcium?: string;
-  };
-  coloring?: {
-    anthocyanin?: string;
-  };
+  vitamins?: string[];
+  coloring?: string[];
 }

@@ -7,7 +7,7 @@ import {
   TextInput,
   View,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { RouteProp } from "@react-navigation/native";
 import { Herb, RootStackParamList } from "../../../../@types";
 import { useAppDispatch } from "../../../hooks/useAppHookState";
@@ -18,6 +18,7 @@ import {
 } from "../../../fetch/herbsApi";
 import { useAppNavigation } from "../../../hooks/useAppNavigation";
 import { SIZES } from "../../../constants/themes";
+import defaultHerb from "./defaultHerb";
 
 type ProductUpsertRouteProp = RouteProp<RootStackParamList, "ProductUpsert">;
 
@@ -30,60 +31,37 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
   const navigation = useAppNavigation();
   const isEditMode = !!herb;
   const dispatch = useAppDispatch();
-  const [addHerb] = useAddHerbMutation();
-  const [updateHerb] = useUpdateHerbMutation();
+  const [addHerbApi] = useAddHerbMutation();
+  const [updateHerbApi] = useUpdateHerbMutation();
 
-  const [form, setForm] = useState<Partial<Herb>>({
-    id: herb?.id || 0,
-    group: herb?.group || "",
-    other_names: herb?.other_names || [],
-    botanical_description: herb?.botanical_description || "",
-    properties: herb?.properties || {},
-    usage: herb?.usage || {},
-    chemical_composition: herb?.chemical_composition || [],
-    nutritional_value: herb?.nutritional_value || {},
-    price: herb?.price ?? 0,
-    stock: herb?.stock ?? 0,
-    imageUrl: herb?.imageUrl || "",
-  });
-
-  const resetForm = () => {
-    setForm({
-      id: 0,
-      group: "",
-      other_names: [],
-      botanical_description: "",
-      properties: {},
-      usage: {},
-      chemical_composition: [],
-      nutritional_value: {},
-      price: 0,
-      stock: 0,
-      imageUrl: "",
-    });
-  };
+  const [form, setForm] = useState<Herb>(herb ?? defaultHerb);
+  const resetForm = () => setForm(defaultHerb);
 
   const handleSubmit = async () => {
-    if (!form.other_names || form.price === undefined || form.price < 0) {
-      alert(
-        "Please fill out all required fields and ensure the price is valid."
-      );
+    if (!form.group || !form.scientific_name || !form.other_names.length || form.price < 0) {
+      Alert.alert("Invalid Input", "Please fill in all required fields.");
       return;
     }
 
     try {
       if (isEditMode && herb) {
-        await updateHerb({ id: herb.id, editHerb: form });
+        // Update product
+        const updatedHerb = { ...herb, ...form };
+        await updateHerbApi({ id: herb.id, editHerb: updatedHerb });
+        dispatch(updateHerb(updatedHerb)); 
         Alert.alert("Success", "Herb updated successfully!");
       } else {
-        await addHerb(form);
-        Alert.alert("Success", "Herb added successfully!");
+        // Add new product
+        const newHerb = { ...form, id: Date.now() };
+        await addHerbApi(newHerb);
+        dispatch(addHerb(newHerb)); 
+        Alert.alert("Success", "Herb added successfully!", [{ text: "OK" }]);
       }
       navigation.goBack();
       resetForm();
     } catch (error) {
-      console.error("Failed to save herb:", error);
-      Alert.alert("Error", "Error saving herb");
+      console.error("Error saving herb:", error);
+      Alert.alert("Error", "Failed to save herb.");
     }
   };
 
@@ -94,9 +72,16 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
       </Text>
 
       <TextInput
-        placeholder="Name"
+        placeholder="กลุ่มยาสมุนไพร"
         style={styles.input}
-        value={form.other_names?.join(", ")}
+        value={form.group ?? ""}
+        onChangeText={(text) => setForm({ ...form, group: text })}
+      />
+
+      <TextInput
+        placeholder="ชื่อสมุนไพร"
+        style={styles.input}
+        value={form.other_names?.join(", ") ?? ""}
         onChangeText={(text) =>
           setForm({
             ...form,
@@ -104,69 +89,249 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
           })
         }
       />
+
       <TextInput
-        placeholder="Group"
+        placeholder="ชื่อวิทยาศาสตร์"
         style={styles.input}
-        value={form.group ?? ""}
-        onChangeText={(text) => setForm({ ...form, group: text })}
+        value={form.scientific_name ?? ""}
+        onChangeText={(text) => setForm({ ...form, scientific_name: text })}
       />
+
       <TextInput
-        placeholder="Description"
+        placeholder="ชื่อสามัญ"
         style={styles.input}
-        value={form.botanical_description}
+        value={form.common_names?.join(", ") ?? ""}
+        onChangeText={(text) =>
+          setForm({
+            ...form,
+            common_names: text.split(",").map((name) => name.trim()),
+          })
+        }
+      />
+
+      <TextInput
+        placeholder="ตระกูล"
+        style={styles.input}
+        value={form.family ?? ""}
+        onChangeText={(text) => setForm({ ...form, family: text })}
+      />
+
+      <TextInput
+        placeholder="คำอธิบายพฤกษศาสตร์"
+        style={styles.input}
+        value={form.botanical_description ?? ""}
         onChangeText={(text) =>
           setForm({ ...form, botanical_description: text })
         }
       />
+
+      {/* Properties Input Fields */}
+      <Text style={{ fontFamily: "bold" }}>คุณสมบัติ</Text>
+
       <TextInput
-        placeholder="Properties (JSON)"
+        placeholder="กลีบเลี้ยง"
         style={styles.input}
-        value={JSON.stringify(form.properties)}
-        onChangeText={(text) =>
-          setForm({ ...form, properties: JSON.parse(text) })
-        }
-      />
-      <TextInput
-        placeholder="Usage (JSON)"
-        style={styles.input}
-        value={JSON.stringify(form.usage)}
-        onChangeText={(text) => setForm({ ...form, usage: JSON.parse(text) })}
-      />
-      <TextInput
-        placeholder="Chemical Composition (comma-separated)"
-        style={styles.input}
-        value={form.chemical_composition?.join(", ")}
+        value={form.properties?.calyx?.join(", ") ?? ""}
         onChangeText={(text) =>
           setForm({
             ...form,
-            chemical_composition: text.split(",").map((comp) => comp.trim()),
+            properties: {
+              ...form.properties,
+              calyx: text.split(",").map((item) => item.trim()),
+            },
           })
         }
       />
       <TextInput
-        placeholder="Nutritional Value (JSON)"
+        placeholder="ใบไม้"
         style={styles.input}
-        value={JSON.stringify(form.nutritional_value)}
+        value={form.properties?.leaves?.join(", ") ?? ""}
         onChangeText={(text) =>
-          setForm({ ...form, nutritional_value: JSON.parse(text) })
+          setForm({
+            ...form,
+            properties: {
+              ...form.properties,
+              leaves: text.split(",").map((item) => item.trim()),
+            },
+          })
         }
       />
       <TextInput
-        placeholder="Price"
+        placeholder="ดอกไม้"
         style={styles.input}
-        value={(form.price ?? 0).toString()}
+        value={form.properties?.flowers?.join(", ") ?? ""}
+        onChangeText={(text) =>
+          setForm({
+            ...form,
+            properties: {
+              ...form.properties,
+              flowers: text.split(",").map((item) => item.trim()),
+            },
+          })
+        }
+      />
+      <TextInput
+        placeholder="ผลไม้"
+        style={styles.input}
+        value={form.properties?.fruit?.join(", ") ?? ""}
+        onChangeText={(text) =>
+          setForm({
+            ...form,
+            properties: {
+              ...form.properties,
+              fruit: text.split(",").map((item) => item.trim()),
+            },
+          })
+        }
+      />
+      <TextInput
+        placeholder="เมล็ดพันธุ์"
+        style={styles.input}
+        value={form.properties?.seeds?.join(", ") ?? ""}
+        onChangeText={(text) =>
+          setForm({
+            ...form,
+            properties: {
+              ...form.properties,
+              seeds: text.split(",").map((item) => item.trim()),
+            },
+          })
+        }
+      />
+      <TextInput
+        placeholder="ทั่วไป"
+        style={styles.input}
+        value={form.properties?.general?.join(", ") ?? ""}
+        onChangeText={(text) =>
+          setForm({
+            ...form,
+            properties: {
+              ...form.properties,
+              general: text.split(",").map((item) => item.trim()),
+            },
+          })
+        }
+      />
+
+      <Text style={{ fontFamily: "bold" }}>การใช้งาน</Text>
+
+      <TextInput
+        placeholder="วิธีใช้"
+        style={styles.input}
+        value={form.usage?.method ?? ""}
+        onChangeText={(text) =>
+          setForm({
+            ...form,
+            usage: {
+              ...form.usage,
+              method: text,
+            },
+          })
+        }
+      />
+
+      <TextInput
+        placeholder="ปริมาณการใช้"
+        style={styles.input}
+        value={form.usage?.dosage ?? ""}
+        onChangeText={(text) =>
+          setForm({
+            ...form,
+            usage: {
+              ...form.usage,
+              dosage: text,
+            },
+          })
+        }
+      />
+
+      <TextInput
+        placeholder="องค์ประกอบทางเคมี"
+        style={styles.input}
+        value={form.chemical_composition?.join(", ") ?? ""}
+        onChangeText={(text) =>
+          setForm({
+            ...form,
+            chemical_composition: text.split(",").map((name) => name.trim()),
+          })
+        }
+      />
+
+      <Text style={{ fontFamily: "bold" }}>คุณค่าทางโภชนาการ</Text>
+
+      <TextInput
+        placeholder="เครื่องดื่ม"
+        style={styles.input}
+        value={form.nutritional_value?.beverage?.join(", ") ?? ""}
+        onChangeText={(text) =>
+          setForm({
+            ...form,
+            nutritional_value: {
+              ...form.nutritional_value,
+              beverage: text.split(",").map((item) => item.trim()),
+            },
+          })
+        }
+      />
+      <TextInput
+        placeholder="อาหาร"
+        style={styles.input}
+        value={form.nutritional_value?.food?.join(", ") ?? ""}
+        onChangeText={(text) =>
+          setForm({
+            ...form,
+            nutritional_value: {
+              ...form.nutritional_value,
+              food: text.split(",").map((item) => item.trim()),
+            },
+          })
+        }
+      />
+      <TextInput
+        placeholder="วิตามิน"
+        style={styles.input}
+        value={form.nutritional_value?.vitamins?.join(", ") ?? ""}
+        onChangeText={(text) =>
+          setForm({
+            ...form,
+            nutritional_value: {
+              ...form.nutritional_value,
+              vitamins: text.split(",").map((item) => item.trim()),
+            },
+          })
+        }
+      />
+      <TextInput
+        placeholder="สีอาหาร"
+        style={styles.input}
+        value={form.nutritional_value?.coloring?.join(", ") ?? ""}
+        onChangeText={(text) =>
+          setForm({
+            ...form,
+            nutritional_value: {
+              ...form.nutritional_value,
+              coloring: text.split(",").map((item) => item.trim()),
+            },
+          })
+        }
+      />
+
+      <TextInput
+        placeholder="ราคา"
+        style={styles.input}
+        value={(form.price ?? "").toString()}
         onChangeText={(text) => setForm({ ...form, price: Number(text) })}
         keyboardType="numeric"
       />
       <TextInput
-        placeholder="Stock"
+        placeholder="จำนวนสต๊อก"
         style={styles.input}
-        value={(form.stock ?? 0).toString()}
+        value={(form.stock ?? "").toString()}
         onChangeText={(text) => setForm({ ...form, stock: Number(text) })}
         keyboardType="numeric"
       />
       <TextInput
-        placeholder="Image URL"
+        placeholder="รูปภาพ"
         style={styles.input}
         value={form.imageUrl}
         onChangeText={(text) => setForm({ ...form, imageUrl: text })}
@@ -207,7 +372,3 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
-
-function deleteHerb(id: number): any {
-  throw new Error("Function not implemented.");
-}
