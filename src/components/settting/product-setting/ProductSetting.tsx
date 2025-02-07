@@ -19,15 +19,19 @@ import { setHerbs } from "../../../store/slices/herbsSlice";
 
 const ProductSetting = () => {
   const navigation = useAppNavigation();
-  const { data, isLoading, isError } = useGetHerbsQuery(null);
+  const { data, isLoading, isError, refetch } = useGetHerbsQuery(null);
   const dispatch = useAppDispatch();
-  const state = useAppSelector(state => state.herbs);
+  const state = useAppSelector(state => state.herbs.herbs);
 
   useEffect(() => {
-    if (data && data !== state.herbs) {
+    if (data && JSON.stringify(data) !== JSON.stringify(state)) {
       dispatch(setHerbs(data));
     }
-  }, [data, state.herbs ,dispatch]);
+  }, [data ,dispatch, state]);
+
+  const handleRefresh = () => {
+    refetch();
+  }
 
   const handleGoBack = () => navigation.goBack();
   const handleAddProduct = () => navigation.navigate("ProductUpsert",{ herb: undefined });
@@ -61,7 +65,7 @@ const ProductSetting = () => {
           }}
         >
           <Text style={styles.txtMain}>
-            รายการสมุนไพร [ {state.herbs?.length || 0} ]
+            รายการสมุนไพร [ {state.length || 0} ]
           </Text>
           <TouchableOpacity onPress={handleAddProduct}>
             <Ionicons name="add-circle" size={60} color={COLORS.green} />
@@ -73,6 +77,8 @@ const ProductSetting = () => {
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => <ProductItem herb={item} />}
           initialNumToRender={10}
+          refreshing={isLoading}
+          onRefresh={handleRefresh}
         />
       </SafeAreaView>
     </>

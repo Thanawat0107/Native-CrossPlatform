@@ -4,7 +4,7 @@ import { SIZES } from "../../constants/themes";
 
 interface NutritionalValueItem {
   label: string;
-  value: string | number;
+  value: unknown;
 }
 
 interface NutritionalValueListProps {
@@ -19,7 +19,11 @@ const NutritionalValueList = ({ data }: NutritionalValueListProps) => {
       {data.map((item, index) => (
         <View key={`${item.label}-${index}`} style={styles.item}>
           <Text style={styles.label}>{item.label}</Text>
-          <Text style={styles.value}>{item.value}</Text>
+          <Text style={styles.value}>
+            {typeof item.value === "string" || typeof item.value === "number"
+              ? item.value
+              : ""}
+          </Text>
         </View>
       ))}
     </ScrollView>

@@ -6,7 +6,7 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { COLORS, SIZES } from "../../constants/themes";
 import {
   Fontisto,
@@ -18,12 +18,15 @@ import { RouteProp, useRoute } from "@react-navigation/native";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 import { RootStackParamList } from "../../../@types/navigation";
 import { wp } from "../../helpers/common";
-import { useGetHerbsQuery } from "../../fetch/herbsApi";
+import { useGetHerbByIdQuery } from "../../fetch/herbsApi";
 import { baseUrl } from "../../helpers/SD";
 import InfoText from "./InfoText";
 import NutritionalValueList from "./NutritionalValueList";
 import PropertyList from "./PropertyList";
 import ExpandableInfo from "../slider/ExpandableInfo";
+import Loading from "../Loading";
+import { useAppDispatch } from "../../hooks/useAppHookState";
+import { setHerbs } from "../../store/slices/herbsSlice";
 
 type ProductDetailsRouteProp = RouteProp<RootStackParamList, "ProductDetails">;
 
@@ -31,26 +34,34 @@ const ProductDetails = () => {
   const navigation = useAppNavigation();
   const route = useRoute<ProductDetailsRouteProp>();
   const { productId } = route.params;
+  const dispatch = useAppDispatch();
 
-  const { data: herbs } = useGetHerbsQuery(null);
-  const herb = herbs?.find((h: any) => h.id === productId);
-
-  if (!herb) return <Text>Product not found</Text>;
-
-  const selectedName = herb.other_names && herb.other_names.length > 0 ? herb.other_names[0] : "ชื่อสมุนไพร";
-
+  const { data: herb, isLoading, isError } = useGetHerbByIdQuery(productId);
+  useEffect(() => {
+    if(herb) {
+      dispatch(setHerbs(herb));
+    }
+  },[herb, dispatch]);
+  
   const [count, setCount] = useState(1);
   const increment = () => setCount((prev) => prev + 1);
   const decrement = () => setCount((prev) => (prev > 1 ? prev - 1 : prev));
 
-  const propertiesData = herb.properties
+  if (isLoading) return <Loading />;
+  if (isError) return <Text style={{ color: "red" }}>Failed to load herbs</Text>;
+
+  const selectedName = herb?.other_names?.length 
+  ? herb.other_names[0] 
+  : "ชื่อสมุนไพร";
+
+  const propertiesData = herb?.properties
     ? Object.entries(herb.properties).map(([key, value]) => ({
         label: `คุณสมบัติ : ${key}`,
         value: Array.isArray(value) ? value.join(", ") : value,
       }))
     : [];
 
-  const nutritionalValueData = herb.nutritional_value
+  const nutritionalValueData = herb?.nutritional_value
     ? Object.entries(herb.nutritional_value).map(([key, value]) => ({
         label: `คุณค่าทางโภชนาการ : ${key}`,
         value: Array.isArray(value) ? value.join(", ") : value,

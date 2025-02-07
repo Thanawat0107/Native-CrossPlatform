@@ -7,7 +7,7 @@ import {
   TextInput,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RouteProp } from "@react-navigation/native";
 import { Herb, RootStackParamList } from "../../../../@types";
 import { useAppDispatch } from "../../../hooks/useAppHookState";
@@ -19,6 +19,7 @@ import {
 import { useAppNavigation } from "../../../hooks/useAppNavigation";
 import { SIZES } from "../../../constants/themes";
 import defaultHerb from "./defaultHerb";
+import { isIOS } from "../../../helpers/SD";
 
 type ProductUpsertRouteProp = RouteProp<RootStackParamList, "ProductUpsert">;
 
@@ -30,12 +31,21 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
   const herb = route.params?.herb as Herb | undefined;
   const navigation = useAppNavigation();
   const isEditMode = !!herb;
-  const dispatch = useAppDispatch();
+
   const [addHerbApi] = useAddHerbMutation();
   const [updateHerbApi] = useUpdateHerbMutation();
 
+  const dispatch = useAppDispatch();
+
   const [form, setForm] = useState<Herb>(herb ?? defaultHerb);
   const resetForm = () => setForm(defaultHerb);
+  useEffect(() => {
+    if (herb) {
+      setForm(herb);
+    } else {
+      resetForm();
+    }
+  }, [herb]);
 
   const handleSubmit = async () => {
     if (!form.group || !form.scientific_name || !form.other_names.length || form.price < 0) {
@@ -45,20 +55,17 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
 
     try {
       if (isEditMode && herb) {
-        // Update product
         const updatedHerb = { ...herb, ...form };
-        await updateHerbApi({ id: herb.id, editHerb: updatedHerb });
-        dispatch(updateHerb(updatedHerb)); 
+        const response = await updateHerbApi({ id: herb.id, editHerb: updatedHerb }).unwrap();
+        dispatch(updateHerb(response));
         Alert.alert("Success", "Herb updated successfully!");
       } else {
-        // Add new product
         const newHerb = { ...form, id: Date.now() };
-        await addHerbApi(newHerb);
-        dispatch(addHerb(newHerb)); 
+        const response = await addHerbApi(newHerb).unwrap();
+        dispatch(addHerb(response));
         Alert.alert("Success", "Herb added successfully!", [{ text: "OK" }]);
       }
       navigation.goBack();
-      resetForm();
     } catch (error) {
       console.error("Error saving herb:", error);
       Alert.alert("Error", "Failed to save herb.");
@@ -71,271 +78,273 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         {isEditMode ? `Edit Product: ${herb?.other_names}` : "Add New Product"}
       </Text>
 
-      <TextInput
-        placeholder="กลุ่มยาสมุนไพร"
-        style={styles.input}
-        value={form.group ?? ""}
-        onChangeText={(text) => setForm({ ...form, group: text })}
-      />
+      <ScrollView>
+        <TextInput
+          placeholder="กลุ่มยาสมุนไพร"
+          style={styles.input}
+          value={form.group ?? ""}
+          onChangeText={(text) => setForm({ ...form, group: text })}
+        />
 
-      <TextInput
-        placeholder="ชื่อสมุนไพร"
-        style={styles.input}
-        value={form.other_names?.join(", ") ?? ""}
-        onChangeText={(text) =>
-          setForm({
-            ...form,
-            other_names: text.split(",").map((name) => name.trim()),
-          })
-        }
-      />
+        <TextInput
+          placeholder="ชื่อสมุนไพร"
+          style={styles.input}
+          value={form.other_names?.join(", ") ?? ""}
+          onChangeText={(text) =>
+            setForm({
+              ...form,
+              other_names: text.split(",").map((name) => name.trim()).filter(Boolean),
+            })
+          }
+        />
 
-      <TextInput
-        placeholder="ชื่อวิทยาศาสตร์"
-        style={styles.input}
-        value={form.scientific_name ?? ""}
-        onChangeText={(text) => setForm({ ...form, scientific_name: text })}
-      />
+        <TextInput
+          placeholder="ชื่อวิทยาศาสตร์"
+          style={styles.input}
+          value={form.scientific_name ?? ""}
+          onChangeText={(text) => setForm({ ...form, scientific_name: text })}
+        />
 
-      <TextInput
-        placeholder="ชื่อสามัญ"
-        style={styles.input}
-        value={form.common_names?.join(", ") ?? ""}
-        onChangeText={(text) =>
-          setForm({
-            ...form,
-            common_names: text.split(",").map((name) => name.trim()),
-          })
-        }
-      />
+        <TextInput
+          placeholder="ชื่อสามัญ"
+          style={styles.input}
+          value={form.common_names?.join(", ") ?? ""}
+          onChangeText={(text) =>
+            setForm({
+              ...form,
+              common_names: text.split(",").map((name) => name.trim()),
+            })
+          }
+        />
 
-      <TextInput
-        placeholder="ตระกูล"
-        style={styles.input}
-        value={form.family ?? ""}
-        onChangeText={(text) => setForm({ ...form, family: text })}
-      />
+        <TextInput
+          placeholder="ตระกูล"
+          style={styles.input}
+          value={form.family ?? ""}
+          onChangeText={(text) => setForm({ ...form, family: text })}
+        />
 
-      <TextInput
-        placeholder="คำอธิบายพฤกษศาสตร์"
-        style={styles.input}
-        value={form.botanical_description ?? ""}
-        onChangeText={(text) =>
-          setForm({ ...form, botanical_description: text })
-        }
-      />
+        <TextInput
+          placeholder="คำอธิบายพฤกษศาสตร์"
+          style={styles.input}
+          value={form.botanical_description ?? ""}
+          onChangeText={(text) =>
+            setForm({ ...form, botanical_description: text })
+          }
+        />
 
-      {/* Properties Input Fields */}
-      <Text style={{ fontFamily: "bold" }}>คุณสมบัติ</Text>
+        {/* Properties Input Fields */}
+        <Text style={{ fontFamily: "bold" }}>คุณสมบัติ</Text>
 
-      <TextInput
-        placeholder="กลีบเลี้ยง"
-        style={styles.input}
-        value={form.properties?.calyx?.join(", ") ?? ""}
-        onChangeText={(text) =>
-          setForm({
-            ...form,
-            properties: {
-              ...form.properties,
-              calyx: text.split(",").map((item) => item.trim()),
-            },
-          })
-        }
-      />
-      <TextInput
-        placeholder="ใบไม้"
-        style={styles.input}
-        value={form.properties?.leaves?.join(", ") ?? ""}
-        onChangeText={(text) =>
-          setForm({
-            ...form,
-            properties: {
-              ...form.properties,
-              leaves: text.split(",").map((item) => item.trim()),
-            },
-          })
-        }
-      />
-      <TextInput
-        placeholder="ดอกไม้"
-        style={styles.input}
-        value={form.properties?.flowers?.join(", ") ?? ""}
-        onChangeText={(text) =>
-          setForm({
-            ...form,
-            properties: {
-              ...form.properties,
-              flowers: text.split(",").map((item) => item.trim()),
-            },
-          })
-        }
-      />
-      <TextInput
-        placeholder="ผลไม้"
-        style={styles.input}
-        value={form.properties?.fruit?.join(", ") ?? ""}
-        onChangeText={(text) =>
-          setForm({
-            ...form,
-            properties: {
-              ...form.properties,
-              fruit: text.split(",").map((item) => item.trim()),
-            },
-          })
-        }
-      />
-      <TextInput
-        placeholder="เมล็ดพันธุ์"
-        style={styles.input}
-        value={form.properties?.seeds?.join(", ") ?? ""}
-        onChangeText={(text) =>
-          setForm({
-            ...form,
-            properties: {
-              ...form.properties,
-              seeds: text.split(",").map((item) => item.trim()),
-            },
-          })
-        }
-      />
-      <TextInput
-        placeholder="ทั่วไป"
-        style={styles.input}
-        value={form.properties?.general?.join(", ") ?? ""}
-        onChangeText={(text) =>
-          setForm({
-            ...form,
-            properties: {
-              ...form.properties,
-              general: text.split(",").map((item) => item.trim()),
-            },
-          })
-        }
-      />
+        <TextInput
+          placeholder="กลีบเลี้ยง"
+          style={styles.input}
+          value={form.properties?.calyx?.join(", ") ?? ""}
+          onChangeText={(text) =>
+            setForm({
+              ...form,
+              properties: {
+                ...form.properties,
+                calyx: text.split(",").map((item) => item.trim()),
+              },
+            })
+          }
+        />
+        <TextInput
+          placeholder="ใบไม้"
+          style={styles.input}
+          value={form.properties?.leaves?.join(", ") ?? ""}
+          onChangeText={(text) =>
+            setForm({
+              ...form,
+              properties: {
+                ...form.properties,
+                leaves: text.split(",").map((item) => item.trim()),
+              },
+            })
+          }
+        />
+        <TextInput
+          placeholder="ดอกไม้"
+          style={styles.input}
+          value={form.properties?.flowers?.join(", ") ?? ""}
+          onChangeText={(text) =>
+            setForm({
+              ...form,
+              properties: {
+                ...form.properties,
+                flowers: text.split(",").map((item) => item.trim()),
+              },
+            })
+          }
+        />
+        <TextInput
+          placeholder="ผลไม้"
+          style={styles.input}
+          value={form.properties?.fruit?.join(", ") ?? ""}
+          onChangeText={(text) =>
+            setForm({
+              ...form,
+              properties: {
+                ...form.properties,
+                fruit: text.split(",").map((item) => item.trim()),
+              },
+            })
+          }
+        />
+        <TextInput
+          placeholder="เมล็ดพันธุ์"
+          style={styles.input}
+          value={form.properties?.seeds?.join(", ") ?? ""}
+          onChangeText={(text) =>
+            setForm({
+              ...form,
+              properties: {
+                ...form.properties,
+                seeds: text.split(",").map((item) => item.trim()),
+              },
+            })
+          }
+        />
+        <TextInput
+          placeholder="ทั่วไป"
+          style={styles.input}
+          value={form.properties?.general?.join(", ") ?? ""}
+          onChangeText={(text) =>
+            setForm({
+              ...form,
+              properties: {
+                ...form.properties,
+                general: text.split(",").map((item) => item.trim()),
+              },
+            })
+          }
+        />
 
-      <Text style={{ fontFamily: "bold" }}>การใช้งาน</Text>
+        <Text style={{ fontFamily: "bold" }}>การใช้งาน</Text>
 
-      <TextInput
-        placeholder="วิธีใช้"
-        style={styles.input}
-        value={form.usage?.method ?? ""}
-        onChangeText={(text) =>
-          setForm({
-            ...form,
-            usage: {
-              ...form.usage,
-              method: text,
-            },
-          })
-        }
-      />
+        <TextInput
+          placeholder="วิธีใช้"
+          style={styles.input}
+          value={form.usage?.method ?? ""}
+          onChangeText={(text) =>
+            setForm({
+              ...form,
+              usage: {
+                ...form.usage,
+                method: text,
+              },
+            })
+          }
+        />
 
-      <TextInput
-        placeholder="ปริมาณการใช้"
-        style={styles.input}
-        value={form.usage?.dosage ?? ""}
-        onChangeText={(text) =>
-          setForm({
-            ...form,
-            usage: {
-              ...form.usage,
-              dosage: text,
-            },
-          })
-        }
-      />
+        <TextInput
+          placeholder="ปริมาณการใช้"
+          style={styles.input}
+          value={form.usage?.dosage ?? ""}
+          onChangeText={(text) =>
+            setForm({
+              ...form,
+              usage: {
+                ...form.usage,
+                dosage: text,
+              },
+            })
+          }
+        />
 
-      <TextInput
-        placeholder="องค์ประกอบทางเคมี"
-        style={styles.input}
-        value={form.chemical_composition?.join(", ") ?? ""}
-        onChangeText={(text) =>
-          setForm({
-            ...form,
-            chemical_composition: text.split(",").map((name) => name.trim()),
-          })
-        }
-      />
+        <TextInput
+          placeholder="องค์ประกอบทางเคมี"
+          style={styles.input}
+          value={form.chemical_composition?.join(", ") ?? ""}
+          onChangeText={(text) =>
+            setForm({
+              ...form,
+              chemical_composition: text.split(",").map((name) => name.trim()),
+            })
+          }
+        />
 
-      <Text style={{ fontFamily: "bold" }}>คุณค่าทางโภชนาการ</Text>
+        <Text style={{ fontFamily: "bold" }}>คุณค่าทางโภชนาการ</Text>
 
-      <TextInput
-        placeholder="เครื่องดื่ม"
-        style={styles.input}
-        value={form.nutritional_value?.beverage?.join(", ") ?? ""}
-        onChangeText={(text) =>
-          setForm({
-            ...form,
-            nutritional_value: {
-              ...form.nutritional_value,
-              beverage: text.split(",").map((item) => item.trim()),
-            },
-          })
-        }
-      />
-      <TextInput
-        placeholder="อาหาร"
-        style={styles.input}
-        value={form.nutritional_value?.food?.join(", ") ?? ""}
-        onChangeText={(text) =>
-          setForm({
-            ...form,
-            nutritional_value: {
-              ...form.nutritional_value,
-              food: text.split(",").map((item) => item.trim()),
-            },
-          })
-        }
-      />
-      <TextInput
-        placeholder="วิตามิน"
-        style={styles.input}
-        value={form.nutritional_value?.vitamins?.join(", ") ?? ""}
-        onChangeText={(text) =>
-          setForm({
-            ...form,
-            nutritional_value: {
-              ...form.nutritional_value,
-              vitamins: text.split(",").map((item) => item.trim()),
-            },
-          })
-        }
-      />
-      <TextInput
-        placeholder="สีอาหาร"
-        style={styles.input}
-        value={form.nutritional_value?.coloring?.join(", ") ?? ""}
-        onChangeText={(text) =>
-          setForm({
-            ...form,
-            nutritional_value: {
-              ...form.nutritional_value,
-              coloring: text.split(",").map((item) => item.trim()),
-            },
-          })
-        }
-      />
+        <TextInput
+          placeholder="เครื่องดื่ม"
+          style={styles.input}
+          value={form.nutritional_value?.beverage?.join(", ") ?? ""}
+          onChangeText={(text) =>
+            setForm({
+              ...form,
+              nutritional_value: {
+                ...form.nutritional_value,
+                beverage: text.split(",").map((item) => item.trim()),
+              },
+            })
+          }
+        />
+        <TextInput
+          placeholder="อาหาร"
+          style={styles.input}
+          value={form.nutritional_value?.food?.join(", ") ?? ""}
+          onChangeText={(text) =>
+            setForm({
+              ...form,
+              nutritional_value: {
+                ...form.nutritional_value,
+                food: text.split(",").map((item) => item.trim()),
+              },
+            })
+          }
+        />
+        <TextInput
+          placeholder="วิตามิน"
+          style={styles.input}
+          value={form.nutritional_value?.vitamins?.join(", ") ?? ""}
+          onChangeText={(text) =>
+            setForm({
+              ...form,
+              nutritional_value: {
+                ...form.nutritional_value,
+                vitamins: text.split(",").map((item) => item.trim()),
+              },
+            })
+          }
+        />
+        <TextInput
+          placeholder="สีอาหาร"
+          style={styles.input}
+          value={form.nutritional_value?.coloring?.join(", ") ?? ""}
+          onChangeText={(text) =>
+            setForm({
+              ...form,
+              nutritional_value: {
+                ...form.nutritional_value,
+                coloring: text.split(",").map((item) => item.trim()),
+              },
+            })
+          }
+        />
 
-      <TextInput
-        placeholder="ราคา"
-        style={styles.input}
-        value={(form.price ?? "").toString()}
-        onChangeText={(text) => setForm({ ...form, price: Number(text) })}
-        keyboardType="numeric"
-      />
-      <TextInput
-        placeholder="จำนวนสต๊อก"
-        style={styles.input}
-        value={(form.stock ?? "").toString()}
-        onChangeText={(text) => setForm({ ...form, stock: Number(text) })}
-        keyboardType="numeric"
-      />
-      <TextInput
-        placeholder="รูปภาพ"
-        style={styles.input}
-        value={form.imageUrl}
-        onChangeText={(text) => setForm({ ...form, imageUrl: text })}
-      />
+        <TextInput
+          placeholder="ราคา"
+          style={styles.input}
+          value={(form.price ?? 0).toString()}
+          onChangeText={(text) => setForm({ ...form, price: text ? Number(text) : 0 })}
+          keyboardType="numeric"
+        />
+        <TextInput
+          placeholder="จำนวนสต๊อก"
+          style={styles.input}
+          value={(form.stock ?? 0).toString()}
+          onChangeText={(text) => setForm({ ...form, stock: text ? Number(text) : 0 })}
+          keyboardType="numeric"
+        />
+        <TextInput
+          placeholder="รูปภาพ"
+          style={styles.input}
+          value={form.imageUrl}
+          onChangeText={(text) => setForm({ ...form, imageUrl: text })}
+        />
+      </ScrollView>
 
       <View style={styles.buttonContainer}>
         <Button title="Save" onPress={handleSubmit} color="green" />
@@ -353,7 +362,7 @@ const styles = StyleSheet.create({
     padding: 20,
     marginHorizontal: SIZES.small,
     marginTop: SIZES.xsLarge,
-    marginBottom: 55,
+    marginBottom: isIOS ? 70 : 55,
   },
   title: {
     fontSize: 24,
@@ -369,6 +378,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   buttonContainer: {
-    marginTop: 20,
+    // marginTop: 20,
   },
 });

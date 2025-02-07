@@ -5,6 +5,7 @@ import {
   Image,
   TouchableOpacity,
   ActivityIndicator,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import { Herb } from "../../../../@types";
@@ -13,18 +14,37 @@ import { COLORS, SIZES } from "../../../constants/themes";
 import { hp, wp } from "../../../helpers/common";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { useAppNavigation } from "../../../hooks/useAppNavigation";
+import { useDeleteHerbMutation } from "../../../fetch/herbsApi";
+import { useAppDispatch } from "../../../hooks/useAppHookState";
+import { removeHerb } from "../../../store/slices/herbsSlice";
 
 const ProductItem = React.memo(({ herb }: { herb: Herb }) => {
     const navigation = useAppNavigation();
     const [imageLoading, setImageLoading] = useState(true);
     const selectedName = herb.other_names[0];
+    const [deleteHerbApi] = useDeleteHerbMutation();
+    const dispatch = useAppDispatch();
 
     const handleEdit = () => {
       navigation.navigate("ProductUpsert", { herb });
     };
 
-    const handleDelete = () => {
-      console.log(`Delete product with id: ${herb.id}`);
+    const handleDelete = async () => {
+      Alert.alert(
+        "ยืนยันการลบ",
+        `คุณต้องการลบ ${herb.other_names[0]} หรือไม่?`,
+        [
+          { text: "ยกเลิก", style: "cancel" },
+          { text: "ลบ", onPress: async () => {
+            try {
+              const response = await deleteHerbApi(herb.id).unwrap();
+              dispatch(removeHerb(response));
+            } catch (error) {
+              console.error("Failed to delete:", error);
+            }
+          }, style: "destructive" },
+        ]
+      );
     };
 
     return (

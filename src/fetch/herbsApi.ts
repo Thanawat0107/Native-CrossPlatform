@@ -40,7 +40,7 @@ export const herbsApi = createApi({
         url: `herbs/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: (result, error, id) => [{ type: "herbs", id }],
+      invalidatesTags: ["herbs"],
     }),
 
   }),

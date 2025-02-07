@@ -270,20 +270,117 @@
       "imageUrl": "/image5.jpg"
     },
     {
-      "id": 6,
-      "group": "Add",
+      "id": 1738915844969,
+      "group": "asd555",
       "other_names": [
-        "add"
+        "asd"
       ],
-      "botanical_description": "Add",
-      "properties": {},
-      "usage": {},
+      "scientific_name": "asd",
+      "common_names": [
+        "asd"
+      ],
+      "family": "asd",
+      "botanical_description": "asd",
+      "properties": {
+        "calyx": [
+          "ads"
+        ],
+        "leaves": [
+          "asd"
+        ],
+        "flowers": [
+          "asda"
+        ],
+        "fruit": [
+          "asd"
+        ],
+        "seeds": [
+          "asd"
+        ],
+        "general": [
+          "asd"
+        ]
+      },
+      "usage": {
+        "method": "asd",
+        "dosage": "asd"
+      },
       "chemical_composition": [
-        "Add"
+        "asd"
       ],
-      "nutritional_value": {},
-      "price": 0,
-      "stock": 0,
+      "nutritional_value": {
+        "beverage": [
+          "asd"
+        ],
+        "food": [
+          "asd"
+        ],
+        "vitamins": [
+          "asd"
+        ],
+        "coloring": [
+          "asd"
+        ]
+      },
+      "price": 100,
+      "stock": 20,
+      "imageUrl": "Image3.jpg"
+    },
+    {
+      "id": 1738928161521,
+      "group": "T",
+      "other_names": [
+        "T"
+      ],
+      "scientific_name": "T",
+      "common_names": [
+        "T"
+      ],
+      "family": "T",
+      "botanical_description": "T",
+      "properties": {
+        "calyx": [
+          "T"
+        ],
+        "leaves": [
+          "T"
+        ],
+        "flowers": [
+          "T"
+        ],
+        "fruit": [
+          "T"
+        ],
+        "seeds": [
+          "T"
+        ],
+        "general": [
+          "T"
+        ]
+      },
+      "usage": {
+        "method": "T",
+        "dosage": "T"
+      },
+      "chemical_composition": [
+        "T"
+      ],
+      "nutritional_value": {
+        "beverage": [
+          "T"
+        ],
+        "food": [
+          "T"
+        ],
+        "vitamins": [
+          "T"
+        ],
+        "coloring": [
+          "T"
+        ]
+      },
+      "price": 110,
+      "stock": 400,
       "imageUrl": "Image1.jpg"
     }
   ],
