@@ -32,6 +32,14 @@
     "fonts": {
       "Roboto-Black": "./assets/fonts/Roboto-Black.ttf",
       "Roboto-Bold": "./assets/fonts/Roboto-Bold.ttf"
-    }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ]
+    ]
   }
 }

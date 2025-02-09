@@ -6,6 +6,7 @@ import {
   Text,
   TextInput,
   View,
+  Image
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { RouteProp } from "@react-navigation/native";
@@ -20,6 +21,7 @@ import { useAppNavigation } from "../../../hooks/useAppNavigation";
 import { SIZES } from "../../../constants/themes";
 import defaultHerb from "./defaultHerb";
 import { isIOS } from "../../../helpers/SD";
+import * as ImagePicker from "expo-image-picker";
 
 type ProductUpsertRouteProp = RouteProp<RootStackParamList, "ProductUpsert">;
 
@@ -72,6 +74,26 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
     }
   };
 
+  const pickImage = async () => {
+    // ขออนุญาตเข้าถึงอัลบั้มภาพ
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== "granted") {
+      alert("ขออภัย! ต้องอนุญาตเข้าถึงรูปภาพก่อนใช้งาน");
+      return;
+    }
+   // เปิดแกลเลอรีให้เลือกภาพ
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ['images'],
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+  
+    if (!result.canceled) {
+      setForm({ ...form, imageUrl: result.assets[0].uri });
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>
@@ -93,7 +115,10 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
           onChangeText={(text) =>
             setForm({
               ...form,
-              other_names: text.split(",").map((name) => name.trim()).filter(Boolean),
+              other_names: text
+                .split(",")
+                .map((name) => name.trim())
+                .filter(Boolean),
             })
           }
         />
@@ -328,22 +353,29 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
           placeholder="ราคา"
           style={styles.input}
           value={(form.price ?? 0).toString()}
-          onChangeText={(text) => setForm({ ...form, price: text ? Number(text) : 0 })}
+          onChangeText={(text) =>
+            setForm({ ...form, price: text ? Number(text) : 0 })
+          }
           keyboardType="numeric"
         />
         <TextInput
           placeholder="จำนวนสต๊อก"
           style={styles.input}
           value={(form.stock ?? 0).toString()}
-          onChangeText={(text) => setForm({ ...form, stock: text ? Number(text) : 0 })}
+          onChangeText={(text) =>
+            setForm({ ...form, stock: text ? Number(text) : 0 })
+          }
           keyboardType="numeric"
         />
-        <TextInput
-          placeholder="รูปภาพ"
-          style={styles.input}
-          value={form.imageUrl}
-          onChangeText={(text) => setForm({ ...form, imageUrl: text })}
-        />
+        <View style={styles.imageWrapper}>
+          <Button title="เลือกรูปภาพ" onPress={pickImage} />
+          {form.imageUrl ? (
+            <Image
+              source={{ uri: form.imageUrl }}
+              style={styles.image}
+            />
+          ) : null}
+        </View>
       </ScrollView>
 
       <View style={styles.buttonContainer}>
@@ -378,6 +410,14 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   buttonContainer: {
-    // marginTop: 20,
+    marginTop: 20,
   },
+  imageWrapper: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  image: {
+     width: 200, height: 200, marginTop: 10 
+  }
 });
