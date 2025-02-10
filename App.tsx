@@ -6,6 +6,7 @@ import useCustomFonts from "./src/hooks/useCustomFonts";
 import { Loading } from "./src/components";
 import { Provider } from "react-redux";
 import { store } from "./src/store/store";
+import { StackTabs } from "./src/navigators/StackTabs";
 
 export default function App() {
   const [fontsLoaded, fontError] = useCustomFonts();
@@ -23,7 +24,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer onReady={onLayoutRootView}>
-        <RootTabs />
+        <StackTabs />
       </NavigationContainer>
     </Provider>
   );

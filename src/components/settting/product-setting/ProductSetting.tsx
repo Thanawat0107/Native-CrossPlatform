@@ -16,6 +16,7 @@ import ProductItem from "./ProductItem";
 import { Ionicons } from "@expo/vector-icons";
 import { useAppDispatch, useAppSelector } from "../../../hooks/useAppHookState";
 import { setHerbs } from "../../../store/slices/herbsSlice";
+import { isIOS } from "../../../helpers/SD";
 
 const ProductSetting = () => {
   const navigation = useAppNavigation();
@@ -43,7 +44,7 @@ const ProductSetting = () => {
   return (
     <>
       <StatusBar style="auto" />
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <View style={styles.upperRow}>
           <TouchableOpacity onPress={handleGoBack}>
             <Ionicons
@@ -80,7 +81,7 @@ const ProductSetting = () => {
           refreshing={isLoading}
           onRefresh={handleRefresh}
         />
-      </SafeAreaView>
+      </View>
     </>
   );
 };
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: SIZES.small,
     marginTop: SIZES.xsLarge,
-    marginBottom: 55,
+    marginBottom: isIOS ? 10 : 0,
   },
   upperRow: {
     flexDirection: "row",

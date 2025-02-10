@@ -11,7 +11,7 @@ const NewRivalsScreen = () => {
   const handleGoBack = () => navigation.goBack();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.wrapper}>
         <View style={styles.upperRow}>
           <TouchableOpacity onPress={handleGoBack}>
@@ -27,7 +27,7 @@ const NewRivalsScreen = () => {
         
         <ProductList />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // backgroundColor: COLORS.lightWhite,
     marginTop: SIZES.xsLarge,
-    marginBottom: isIOS? 80 : 55,
+    marginBottom: isIOS? 10 : 0,
   },
   wrapper: {
     flex: 1,

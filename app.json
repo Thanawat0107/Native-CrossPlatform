@@ -14,7 +14,10 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.my-project"
+      "bundleIdentifier": "com.anonymous.my-project",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "This app requires access to your photo library to upload images."
+      }
     },
     "android": {
       "adaptiveIcon": {

@@ -51,7 +51,7 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images'],
       allowsEditing: true,
-      // aspect: [4, 3],
+      aspect: [4, 3],
       quality: 1,
     });
   
@@ -107,7 +107,7 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.container}>
       <Text style={styles.title}>
         {isEditMode ? `Edit Product: ${herb?.other_names}` : "Add New Product"}
       </Text>
@@ -394,7 +394,7 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         <Button title="Save" onPress={handleSubmit} color="green" />
         <Button title="Cancel" onPress={() => navigation.goBack()} />
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -406,7 +406,6 @@ const styles = StyleSheet.create({
     padding: 20,
     marginHorizontal: SIZES.small,
     marginTop: SIZES.xsLarge,
-    marginBottom: isIOS ? 70 : 55,
   },
   title: {
     fontSize: 24,

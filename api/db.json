@@ -105,7 +105,7 @@
       },
       "price": 100,
       "stock": 200,
-      "imageUrl": "/image1.jpg"
+      "imageUrl": "https://res.cloudinary.com/dyct5fy0j/image/upload/v1739185769/o5r6nzrk1ogoyuogpbuq.jpg"
     },
     {
       "id": 2,
@@ -141,7 +141,7 @@
       "nutritional_value": null,
       "price": 120,
       "stock": 150,
-      "imageUrl": "/image2.jpg"
+      "imageUrl": "https://res.cloudinary.com/dyct5fy0j/image/upload/v1739194996/v6hljs6wzcwvvvl5xwoc.jpg"
     },
     {
       "id": 3,

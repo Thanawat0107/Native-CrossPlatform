@@ -4,10 +4,8 @@ import {
 } from "@react-navigation/bottom-tabs";
 import { AntDesign } from "@expo/vector-icons";
 import Feather from '@expo/vector-icons/Feather';
-import { Platform } from "react-native";
 import { ParamListBase, RouteProp } from "@react-navigation/native";
-import { HomeStack, SettingStack } from "./StackTabs";
-import { AccountScreen, SearchScreen } from "../screen";
+import { AccountScreen, HomeScreen, SearchScreen, SettingScreen } from "../screen";
 import { COLORS } from "../constants/themes";
 import { isIOS } from "../helpers/SD";
 
@@ -70,8 +68,8 @@ const RootTabs = () => {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen
-        name="HomeTab"
-        component={HomeStack}
+        name="Home"
+        component={HomeScreen}
         options={{
           tabBarIcon: ({ color, size, focused }) => (
             <AntDesign name="home" size={size || 26} color={color} />
@@ -102,8 +100,8 @@ const RootTabs = () => {
         }}
       />
       <Tab.Screen
-        name="SettingTab"
-        component={SettingStack}
+        name="Setting"
+        component={SettingScreen}
         options={{
           tabBarIcon: ({ color, size, focused }) => (
             <AntDesign name="setting" size={size || 26} color={color} />
