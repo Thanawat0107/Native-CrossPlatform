@@ -1,12 +1,22 @@
-import { StyleSheet, SafeAreaView, Platform, TextInput, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, SafeAreaView, TextInput, TouchableOpacity, View } from 'react-native'
 import { StatusBar } from "expo-status-bar";
-import React from 'react'
+import React, { useState } from 'react'
 import { COLORS, SIZES } from "../constants/themes";
 import { Ionicons, Feather } from '@expo/vector-icons';
-
-const isIOS = Platform.OS === "ios";
+import { isIOS } from '../helpers/SD';
 
 const SearchScreen = () => {
+  const [searchKey, setSearchKey] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleSearch = () => {
+    try {
+      
+    } catch (error) {
+
+    }
+  }
+
   return (
     <>
       <StatusBar style="auto" />
@@ -23,11 +33,12 @@ const SearchScreen = () => {
             <TextInput
               placeholder="What are you looking for"
               style={styles.textInput}
-              onPressIn={() => {}}
+              value={searchKey}
+              onChangeText={setSearchKey}
             />
           </View>
           <View>
-            <TouchableOpacity style={styles.searchBtn}>
+            <TouchableOpacity style={styles.searchBtn} onPress={() => handleSearch()}>
               <Feather name="search" size={24} color={COLORS.offwhite} />
             </TouchableOpacity>
           </View>
