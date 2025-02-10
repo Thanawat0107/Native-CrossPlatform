@@ -52,7 +52,7 @@ const ProductItem = React.memo(({ herb }: { herb: Herb }) => {
         <View style={styles.row}>
           <View style={styles.imageWrapper}>
             <Image
-              source={{ uri: `${baseUrl}${herb.imageUrl}` }}
+              source={{ uri: `${herb.imageUrl}` }}
               style={styles.productImage}
               onLoadStart={() => setImageLoading(true)}
               onLoadEnd={() => setImageLoading(false)}

@@ -382,6 +382,63 @@
       "price": 110,
       "stock": 400,
       "imageUrl": "Image1.jpg"
+    },
+    {
+      "id": 1739181111151,
+      "group": "a",
+      "other_names": [
+        "a"
+      ],
+      "scientific_name": "a",
+      "common_names": [
+        "a"
+      ],
+      "family": "a",
+      "botanical_description": "a",
+      "properties": {
+        "calyx": [
+          "a"
+        ],
+        "leaves": [
+          "a"
+        ],
+        "flowers": [
+          "a"
+        ],
+        "fruit": [
+          "a"
+        ],
+        "seeds": [
+          "a"
+        ],
+        "general": [
+          "a"
+        ]
+      },
+      "usage": {
+        "method": "a",
+        "dosage": "a"
+      },
+      "chemical_composition": [
+        "a"
+      ],
+      "nutritional_value": {
+        "beverage": [
+          "a"
+        ],
+        "food": [
+          "a"
+        ],
+        "vitamins": [
+          "a"
+        ],
+        "coloring": [
+          "a"
+        ]
+      },
+      "price": 12,
+      "stock": 20,
+      "imageUrl": "https://res.cloudinary.com/dyct5fy0j/image/upload/v1739181051/ud5xbxycbgaxl0pkjqup.jpg"
     }
   ],
   "group": [

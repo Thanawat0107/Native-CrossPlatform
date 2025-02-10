@@ -82,7 +82,7 @@ const ProductDetails = () => {
 
       <View style={styles.imageWepper}>
         <Image
-          source={{ uri: `${baseUrl}${herb.imageUrl}` }}
+          source={{ uri: `${herb.imageUrl}` }}
           style={styles.productImage}
         />
       </View>

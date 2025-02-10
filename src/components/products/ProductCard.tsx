@@ -24,7 +24,7 @@ const selectedName = herb.other_names[0];
       style={styles.container}
     >
       <View style={styles.imageWepper}>
-        <Image source={{ uri: `${baseUrl}${herb.imageUrl}` }} style={styles.productImage} />
+        <Image source={{ uri: `${herb.imageUrl}` }} style={styles.productImage} />
       </View>
       <View style={styles.contentContainer}>
         <Text style={styles.productName} numberOfLines={1}>

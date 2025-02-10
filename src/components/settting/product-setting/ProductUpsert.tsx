@@ -22,6 +22,7 @@ import { SIZES } from "../../../constants/themes";
 import defaultHerb from "./defaultHerb";
 import { isIOS } from "../../../helpers/SD";
 import * as ImagePicker from "expo-image-picker";
+import { uploadImageToCloudinary } from "../../../helpers/uploadImageToCloudinary";
 
 type ProductUpsertRouteProp = RouteProp<RootStackParamList, "ProductUpsert">;
 
@@ -38,6 +39,33 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
   const [updateHerbApi] = useUpdateHerbMutation();
 
   const dispatch = useAppDispatch();
+
+  const pickImage = async () => {
+    // ขออนุญาตเข้าถึงอัลบั้มภาพ
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== "granted") {
+      alert("ขออภัย! ต้องอนุญาตเข้าถึงรูปภาพก่อนใช้งาน");
+      return;
+    }
+   // เปิดแกลเลอรีให้เลือกภาพ
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ['images'],
+      allowsEditing: true,
+      // aspect: [4, 3],
+      quality: 1,
+    });
+  
+    if (!result.canceled) {
+      const imageUri = result.assets[0].uri;      
+      const uploadedImageUrl = await uploadImageToCloudinary(imageUri);
+      
+      if (uploadedImageUrl) {
+        setForm((prev) => ({ ...prev, imageUrl: uploadedImageUrl }));
+      } else {
+        Alert.alert("Upload Failed", "ไม่สามารถอัปโหลดรูปภาพได้");
+      }
+    }
+  };
 
   const [form, setForm] = useState<Herb>(herb ?? defaultHerb);
   const resetForm = () => setForm(defaultHerb);
@@ -58,39 +86,23 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
     try {
       if (isEditMode && herb) {
         const updatedHerb = { ...herb, ...form };
+
         const response = await updateHerbApi({ id: herb.id, editHerb: updatedHerb }).unwrap();
         dispatch(updateHerb(response));
+
         Alert.alert("Success", "Herb updated successfully!");
       } else {
         const newHerb = { ...form, id: Date.now() };
+
         const response = await addHerbApi(newHerb).unwrap();
         dispatch(addHerb(response));
+
         Alert.alert("Success", "Herb added successfully!", [{ text: "OK" }]);
       }
       navigation.goBack();
     } catch (error) {
       console.error("Error saving herb:", error);
       Alert.alert("Error", "Failed to save herb.");
-    }
-  };
-
-  const pickImage = async () => {
-    // ขออนุญาตเข้าถึงอัลบั้มภาพ
-    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (status !== "granted") {
-      alert("ขออภัย! ต้องอนุญาตเข้าถึงรูปภาพก่อนใช้งาน");
-      return;
-    }
-   // เปิดแกลเลอรีให้เลือกภาพ
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images'],
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-  
-    if (!result.canceled) {
-      setForm({ ...form, imageUrl: result.assets[0].uri });
     }
   };
 
