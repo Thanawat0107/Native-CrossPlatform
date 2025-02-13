@@ -19,7 +19,6 @@ import { useAppNavigation } from "../../hooks/useAppNavigation";
 import { RootStackParamList } from "../../../@types/navigation";
 import { wp } from "../../helpers/common";
 import { useGetHerbByIdQuery } from "../../fetch/herbsApi";
-import { baseUrl } from "../../helpers/SD";
 import InfoText from "./InfoText";
 import NutritionalValueList from "./NutritionalValueList";
 import PropertyList from "./PropertyList";

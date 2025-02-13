@@ -1,5 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native'
-import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { SIZES } from "../constants/themes";
 import React from 'react'
 import { useAppNavigation } from '../hooks/useAppNavigation';
@@ -12,16 +11,16 @@ const SettingScreen = () => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("ProductSetting")}
+          onPress={() => navigation.navigate("MainManagements")}
         >
-          <Text style={styles.buttonText}>Manage Products</Text>
+          <Text style={styles.buttonText}>Managements</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("CategorySetting")}
+          onPress={() => navigation.navigate("MainDashboards")}
         >
-          <Text style={styles.buttonText}>Manage Categories</Text>
+          <Text style={styles.buttonText}>Dashboards</Text>
         </TouchableOpacity>
       </View>
   );

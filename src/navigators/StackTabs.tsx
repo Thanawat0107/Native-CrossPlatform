@@ -4,6 +4,9 @@ import { CartScreen, NewRivalsScreen } from '../screen';
 import { ProductDetails } from '../components';
 import { CategorySetting, ProductSetting, ProductUpsert } from '../components/settting';
 import RootTabs from './RootTabs';
+import HerbalPropertiesReport from '../components/settting/dashboard-setting/HerbalPropertiesReport';
+import { MainDashboards, MainManagements } from '../components/settting/main-setting/MainSetting';
+import HerbalNutritionReport from '../components/settting/dashboard-setting/HerbalNutritionReport';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +36,11 @@ const StackTabs = () => {
       />
 
       <Stack.Screen
+        name="MainManagements"
+        component={MainManagements}
+        options={{ headerShown: false, }}
+      />
+      <Stack.Screen
         name="ProductSetting"
         component={ProductSetting}
         options={{ headerShown: false, }}
@@ -47,8 +55,24 @@ const StackTabs = () => {
         component={CategorySetting}
         options={{ headerShown: false, }}
       />
+
+      <Stack.Screen
+        name="MainDashboards"
+        component={MainDashboards}
+        options={{ headerShown: false, }}
+      />
+      <Stack.Screen
+        name="HerbalPropertiesReport"
+        component={HerbalPropertiesReport}
+        options={{ headerShown: false, }}
+      />
+      <Stack.Screen
+        name="HerbalNutritionReport"
+        component={HerbalNutritionReport}
+        options={{ headerShown: false, }}
+      />
     </Stack.Navigator>
   )
 }
 
-export {StackTabs }
+export { StackTabs }

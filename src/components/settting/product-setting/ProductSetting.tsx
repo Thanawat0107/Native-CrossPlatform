@@ -9,7 +9,6 @@ import {
 import React, { useEffect } from "react";
 import { COLORS, SIZES } from "../../../constants/themes";
 import { useAppNavigation } from "../../../hooks/useAppNavigation";
-import { StatusBar } from "expo-status-bar";
 import { useGetHerbsQuery } from "../../../fetch/herbsApi";
 import Loading from "../../Loading";
 import ProductItem from "./ProductItem";
@@ -43,7 +42,6 @@ const ProductSetting = () => {
 
   return (
     <>
-      <StatusBar style="auto" />
       <View style={styles.container}>
         <View style={styles.upperRow}>
           <TouchableOpacity onPress={handleGoBack}>
