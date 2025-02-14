@@ -22,21 +22,31 @@ const MainManagements = () => {
         <Text style={styles.heading}>Admin Setting</Text>
       </View>
 
-      <Text style={styles.title}>Admin Managements</Text>
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("ProductSetting")}
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: SIZES.xxLarge,
+        }}
       >
-        <Text style={styles.buttonText}>Management Product</Text>
-      </TouchableOpacity>
+        <Text style={styles.title}>Admin Managements</Text>
+      </View>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("CategorySetting")}
-      >
-        <Text style={styles.buttonText}>Management Category</Text>
-      </TouchableOpacity>
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("ProductSetting")}
+        >
+          <Text style={styles.buttonText}>Management Product</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("CategorySetting")}
+        >
+          <Text style={styles.buttonText}>Management Category</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -59,21 +69,30 @@ const MainDashboards = () => {
         <Text style={styles.heading}>Admin Setting</Text>
       </View>
 
-      <Text style={styles.title}>Admin Dashboards</Text>
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("HerbalPropertiesReport")}
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: SIZES.xxLarge,
+        }}
       >
-        <Text style={styles.buttonText}>HerbalPropertiesReport</Text>
-      </TouchableOpacity>
+        <Text style={styles.title}>Admin Dashboards</Text>
+      </View>
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("HerbalPropertiesReport")}
+        >
+          <Text style={styles.buttonText}>HerbalPropertiesReport</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("HerbalNutritionReport")}
-      >
-        <Text style={styles.buttonText}>HerbalNutritionReport</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("HerbalNutritionReport")}
+        >
+          <Text style={styles.buttonText}>HerbalNutritionReport</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -89,6 +108,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
+    marginTop: 25,
     marginBottom: 20,
   },
   button: {

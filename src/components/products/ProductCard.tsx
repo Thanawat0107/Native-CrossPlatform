@@ -10,7 +10,7 @@ import { COLORS, SIZES } from "../../constants/themes";
 import { Ionicons } from "@expo/vector-icons";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
 import { Herb } from "../../../@types";
-import { baseUrl, isIOS } from "../../helpers/SD";
+import { isIOS } from "../../helpers/SD";
 import { hp, wp } from "../../helpers/common";
 
 const ProductCard = ({ herb }: { herb: Herb }) => {

@@ -56,8 +56,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: SIZES.small,
     marginTop: SIZES.xsLarge,
-    // marginBottom: isIOS ? 10 : 0,
-    // backgroundColor: "#F5F5DC",
   },
   title: {
     fontSize: 22,

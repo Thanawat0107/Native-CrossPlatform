@@ -1,3 +1,4 @@
+import { groupsApi } from "./groupsApi";
 import { herbsApi } from "./herbsApi";
 
-export { herbsApi }
+export { herbsApi, groupsApi }

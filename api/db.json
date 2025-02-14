@@ -2,7 +2,7 @@
   "herbs": [
     {
       "id": 1,
-      "group": "กลุ่มยาลดไขมันในเส้นเลือด",
+      "groupId": 1,
       "scientific_name": "Hibiscus sabdariffa L.",
       "common_names": [
         "Jamaican Sorel",
@@ -109,7 +109,7 @@
     },
     {
       "id": 2,
-      "group": "กลุ่มยารักษาโรคผิวหนัง ผื่นคัน กลากเกลื้อน",
+      "groupId": 2,
       "scientific_name": "Crateva adansonii DC.",
       "common_names": [
         "Sacred Barnar",
@@ -121,14 +121,14 @@
       ],
       "botanical_description": "ไม้ต้นขนาดกลาง ดอกสีขาวอมเขียว ใบประกอบแบบนิ้วมือ",
       "properties": {
-        "calyx": null,
+        "calyx": "",
         "leaves": [
           "ฆ่าเชื้อ",
           "แก้กลากเกลื้อน"
         ],
-        "flowers": null,
-        "fruit": null,
-        "seeds": null,
+        "flowers": "",
+        "fruit": "",
+        "seeds": "",
         "general": [
           "รักษาโรคผิวหนัง"
         ]
@@ -137,15 +137,15 @@
         "method": "ตำใบสด ทาบริเวณที่เป็น",
         "dosage": "วันละ 2-3 ครั้ง"
       },
-      "chemical_composition": null,
-      "nutritional_value": null,
+      "chemical_composition": "",
+      "nutritional_value": "",
       "price": 120,
       "stock": 150,
       "imageUrl": "https://res.cloudinary.com/dyct5fy0j/image/upload/v1739194996/v6hljs6wzcwvvvl5xwoc.jpg"
     },
     {
       "id": 3,
-      "group": "กลุ่มพืชหอม เป็นยาบำรุงหัวใจ",
+      "groupId": 3,
       "scientific_name": "Cinnamomum verum J. Presl",
       "common_names": [
         "True Cinnamon",
@@ -157,13 +157,13 @@
       ],
       "botanical_description": "ไม้ต้นขนาดกลาง เปลือกมีกลิ่นหอม ใบเรียวยาว",
       "properties": {
-        "calyx": null,
+        "calyx": "",
         "leaves": [
           "บำรุงหัวใจ"
         ],
-        "flowers": null,
-        "fruit": null,
-        "seeds": null,
+        "flowers": "",
+        "fruit": "",
+        "seeds": "",
         "general": [
           "ช่วยระบบไหลเวียนโลหิต"
         ]
@@ -187,7 +187,7 @@
         "vitamins": [
           "ช่วยเสริมภูมิคุ้มกัน"
         ],
-        "coloring": null
+        "coloring": ""
       },
       "price": 140,
       "stock": 180,
@@ -195,7 +195,7 @@
     },
     {
       "id": 4,
-      "group": "กลุ่มถ่ายพยาธิ",
+      "groupId": 4,
       "scientific_name": "Areca catechu L.",
       "common_names": [
         "Betel Nut",
@@ -207,9 +207,9 @@
       ],
       "botanical_description": "ไม้ยืนต้นสูง ใบยาวแบบปาล์ม ผลกลมรี",
       "properties": {
-        "calyx": null,
-        "leaves": null,
-        "flowers": null,
+        "calyx": "",
+        "leaves": "",
+        "flowers": "",
         "fruit": [
           "ขับพยาธิในลำไส้"
         ],
@@ -227,14 +227,14 @@
       "chemical_composition": [
         "สารอัลคาลอยด์"
       ],
-      "nutritional_value": null,
+      "nutritional_value": "",
       "price": 90,
       "stock": 100,
       "imageUrl": "/image4.jpg"
     },
     {
       "id": 5,
-      "group": "กลุ่มยาถ่าย",
+      "groupId": 5,
       "scientific_name": "Senna alexandrina Mill.",
       "common_names": [
         "Alexandrian Senna",
@@ -246,13 +246,13 @@
       ],
       "botanical_description": "ไม้พุ่มขนาดเล็ก ใบเรียวยาว ออกดอกสีเหลืองสด",
       "properties": {
-        "calyx": null,
+        "calyx": "",
         "leaves": [
           "ยาระบาย"
         ],
-        "flowers": null,
-        "fruit": null,
-        "seeds": null,
+        "flowers": "",
+        "fruit": "",
+        "seeds": "",
         "general": [
           "ช่วยการขับถ่าย"
         ]
@@ -264,14 +264,14 @@
       "chemical_composition": [
         "สารแอนทราควิโนน"
       ],
-      "nutritional_value": null,
+      "nutritional_value": "",
       "price": 80,
       "stock": 250,
       "imageUrl": "/image5.jpg"
     },
     {
       "id": 1738915844969,
-      "group": "asd555",
+      "groupId": 1,
       "other_names": [
         "asd"
       ],
@@ -328,7 +328,7 @@
     },
     {
       "id": 1738928161521,
-      "group": "T",
+      "groupId": 2,
       "other_names": [
         "T"
       ],
@@ -385,7 +385,7 @@
     },
     {
       "id": 1739181111151,
-      "group": "a",
+      "groupId": 4,
       "other_names": [
         "a"
       ],

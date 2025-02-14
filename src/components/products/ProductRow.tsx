@@ -8,31 +8,43 @@ import React, { useEffect } from "react";
 import { SIZES } from "../../constants/themes";
 import ProductCard from "./ProductCard";
 import { useGetHerbsQuery } from "../../fetch/herbsApi";
+import { useGetGroupsQuery } from "../../fetch/groupsApi";
 import Loading from "../Loading";
 import { useAppDispatch } from "../../hooks/useAppHookState";
 import { setHerbs } from "../../store/slices/herbsSlice";
 
 const ProductRow = () => {
-  const { data, isLoading, isError, refetch } = useGetHerbsQuery(null);
+  const {
+    data: herbs,
+    isLoading: herbsLoading,
+    isError: herbsError,
+    refetch: refetchHerbs,
+  } = useGetHerbsQuery(null);
+  const {
+    data: groups,
+    isLoading: groupsLoading,
+    isError: groupsError,
+  } = useGetGroupsQuery(null);
+  
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (data) {
-      dispatch(setHerbs(data));
+    if (herbs) {
+      dispatch(setHerbs(herbs));
     }
-  }, [data, dispatch]);
+  }, [herbs, dispatch]);
 
   const handleRefresh = () => {
-    refetch();
+    refetchHerbs();
   }
 
-  if (isLoading) return <Loading />;
-  if (isError) return <Text style={{ color: "red" }}>Failed to load herbs</Text>;
+  if (herbsLoading || groupsLoading) return <Loading />;
+  if (herbsError || groupsError) return <Text style={{ color: "red" }}>Failed to load data</Text>;
 
   return (
     <View style={styles.productGrid}>
       <FlatList
-        data={data}
+        data={herbs}
         keyExtractor={(item) => item.id.toString()}
         horizontal
         renderItem={({ item }) => <ProductCard herb={item} />}
