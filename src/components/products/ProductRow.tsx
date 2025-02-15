@@ -10,6 +10,8 @@ import { useGetGroupsQuery } from "../../fetch/groupsApi";
 import { setGroups } from "../../store/slices/groupsSlice";
 
 const ProductRow = () => {
+  const dispatch = useAppDispatch();
+
   const {
     data: herbs,
     isLoading: herbsLoading,
@@ -22,8 +24,6 @@ const ProductRow = () => {
     isLoading: groupsLoading,
     isError: groupsError,
   } = useGetGroupsQuery(null);
-
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (herbs && groups) {

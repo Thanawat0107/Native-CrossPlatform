@@ -26,28 +26,45 @@ import ExpandableInfo from "../slider/ExpandableInfo";
 import Loading from "../Loading";
 import { useAppDispatch } from "../../hooks/useAppHookState";
 import { setHerbs } from "../../store/slices/herbsSlice";
+import { useGetGroupByIdQuery } from "../../fetch/groupsApi";
+import { setGroups } from "../../store/slices/groupsSlice";
 
 type ProductDetailsRouteProp = RouteProp<RootStackParamList, "ProductDetails">;
 
 const ProductDetails = () => {
-  const navigation = useAppNavigation();
   const route = useRoute<ProductDetailsRouteProp>();
-  const { productId } = route.params;
+  const navigation = useAppNavigation();
+  const { productId, groupId } = route.params;
   const dispatch = useAppDispatch();
 
-  const { data: herb, isLoading, isError } = useGetHerbByIdQuery(productId);
+  const {
+    data: herb,
+    isLoading: herbsLoading,
+    isError: herbsError,
+  } = useGetHerbByIdQuery(productId);
+
+  const {
+    data: group,
+    isLoading: groupsLoading,
+    isError: groupsError,
+  } = useGetGroupByIdQuery(groupId);
+
+  const groupName = group?.name || "";
+
   useEffect(() => {
-    if(herb) {
+    if(herb && group) {
       dispatch(setHerbs(herb));
+      dispatch(setGroups(group));
     }
-  },[herb, dispatch]);
+  },[herb, group, dispatch]);
   
   const [count, setCount] = useState(1);
   const increment = () => setCount((prev) => prev + 1);
   const decrement = () => setCount((prev) => (prev > 1 ? prev - 1 : prev));
 
-  if (isLoading) return <Loading />;
-  if (isError) return <Text style={{ color: "red" }}>Failed to load herbs</Text>;
+  if (herbsLoading || groupsLoading) return <Loading />;
+  if (herbsError || groupsError)
+    return <Text style={{ color: "red" }}>Failed to load data</Text>;
 
   const selectedName = herb?.other_names?.length 
   ? herb.other_names[0] 
@@ -122,7 +139,7 @@ const ProductDetails = () => {
 
         <View style={{ marginHorizontal: SIZES.large }}>
           <ExpandableInfo label="ข้อมูลสมุนไพรเพิ่มเติม">
-            <InfoText label="กลุ่มยาสมุนไพร" value={herb.group} />
+            <InfoText label="กลุ่มยาสมุนไพร" value={groupName} />
             <InfoText label="ชื่อวิทยาศาสตร์" value={herb.scientific_name} />
             <InfoText label="ชื่อสามัญ" value={herb.common_names} />
             <InfoText label="ตระกูล" value={herb.family} />

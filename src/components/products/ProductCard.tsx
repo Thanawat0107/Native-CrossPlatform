@@ -15,7 +15,7 @@ import { hp, wp } from "../../helpers/common";
 
 interface Props {
   herbs: Herb;
-  groups: Group[]
+  groups: Group[];
 }
 
 const ProductCard = ({ herbs, groups }: Props) => {
@@ -26,7 +26,10 @@ const ProductCard = ({ herbs, groups }: Props) => {
   return (
     <TouchableOpacity
       onPress={() =>
-        navigation.navigate("ProductDetails", { productId: herbs.id })
+        navigation.navigate("ProductDetails", {
+          productId: herbs.id,
+          groupId: herbs.groupId,
+        })
       }
       style={styles.container}
     >
