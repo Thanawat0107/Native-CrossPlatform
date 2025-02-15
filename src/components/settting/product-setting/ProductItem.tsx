@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { Herb } from "../../../../@types";
-import { baseUrl } from "../../../helpers/SD";
 import { COLORS, SIZES } from "../../../constants/themes";
 import { hp, wp } from "../../../helpers/common";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
@@ -71,7 +70,7 @@ const ProductItem = React.memo(({ herb }: { herb: Herb }) => {
               {selectedName}
             </Text>
             <Text style={styles.itemDescription} numberOfLines={1}>
-              หมวดหมู่ : {herb.group}
+              หมวดหมู่ : {herb.groupId}
             </Text>
             <Text style={styles.itemDescription} numberOfLines={1}>
               ราคา : {herb.price} บาท

@@ -78,7 +78,7 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
   }, [herb]);
 
   const handleSubmit = async () => {
-    if (!form.group || !form.scientific_name || !form.other_names.length || form.price < 0) {
+    if (!form.groupId || !form.scientific_name || !form.other_names.length || form.price < 0) {
       Alert.alert("Invalid Input", "Please fill in all required fields.");
       return;
     }
@@ -116,8 +116,8 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         <TextInput
           placeholder="กลุ่มยาสมุนไพร"
           style={styles.input}
-          value={form.group ?? ""}
-          onChangeText={(text) => setForm({ ...form, group: text })}
+          value={(form.groupId ?? "").toString()}
+          onChangeText={(text) => setForm({ ...form, groupId: text ? Number(text): 0})}
         />
 
         <TextInput
