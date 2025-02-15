@@ -15,9 +15,9 @@ export type RootStackParamList = {
   Seting: undefined;
   MainManagements: undefined;
   ProductSetting: undefined;
-  ProductUpsert: { herb?: Herb };
+  ProductUpsert: { herbs?: Herb, groups: Group[] };
   GroupSetting: undefined;
-  GroupUpsert: { category?: Group }
+  GroupUpsert: { groups?: Group }
 
   MainDashboards: undefined;
   HerbalPropertiesReport: undefined;

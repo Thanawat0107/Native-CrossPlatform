@@ -20,24 +20,21 @@ import {
 import { useAppNavigation } from "../../../hooks/useAppNavigation";
 import { SIZES } from "../../../constants/themes";
 import defaultHerb from "./defaultHerb";
-import { isIOS } from "../../../helpers/SD";
 import * as ImagePicker from "expo-image-picker";
 import { uploadImageToCloudinary } from "../../../helpers/uploadImageToCloudinary";
+import RNPickerSelect from "react-native-picker-select";
 
 type ProductUpsertRouteProp = RouteProp<RootStackParamList, "ProductUpsert">;
-
 interface ProductUpsertProps {
   route: ProductUpsertRouteProp;
 }
 
 const ProductUpsert = ({ route }: ProductUpsertProps) => {
-  const herb = route.params?.herb as Herb | undefined;
+  const { herbs, groups } = route.params;
   const navigation = useAppNavigation();
-  const isEditMode = !!herb;
-
+  const isEditMode = !!herbs;
   const [addHerbApi] = useAddHerbMutation();
   const [updateHerbApi] = useUpdateHerbMutation();
-
   const dispatch = useAppDispatch();
 
   const pickImage = async () => {
@@ -67,15 +64,15 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
     }
   };
 
-  const [form, setForm] = useState<Herb>(herb ?? defaultHerb);
+  const [form, setForm] = useState<Herb>(herbs ?? defaultHerb);
   const resetForm = () => setForm(defaultHerb);
   useEffect(() => {
-    if (herb) {
-      setForm(herb);
+    if (herbs) {
+      setForm(herbs);
     } else {
       resetForm();
     }
-  }, [herb]);
+  }, [herbs]);
 
   const handleSubmit = async () => {
     if (!form.groupId || !form.scientific_name || !form.other_names.length || form.price < 0) {
@@ -84,10 +81,10 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
     }
 
     try {
-      if (isEditMode && herb) {
-        const updatedHerb = { ...herb, ...form };
+      if (isEditMode && herbs) {
+        const updatedHerb = { ...herbs, ...form };
 
-        const response = await updateHerbApi({ id: herb.id, editHerb: updatedHerb }).unwrap();
+        const response = await updateHerbApi({ id: herbs.id, editHerb: updatedHerb }).unwrap();
         dispatch(updateHerb(response));
 
         Alert.alert("Success", "Herb updated successfully!");
@@ -109,15 +106,34 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
-        {isEditMode ? `Edit Product: ${herb?.other_names}` : "Add New Product"}
+        {isEditMode ? `Edit Product: ${herbs?.other_names}` : "Add New Product"}
       </Text>
 
       <ScrollView>
-        <TextInput
-          placeholder="กลุ่มยาสมุนไพร"
-          style={styles.input}
-          value={(form.groupId ?? "").toString()}
-          onChangeText={(text) => setForm({ ...form, groupId: text ? Number(text): 0})}
+        <RNPickerSelect
+          onValueChange={(value) => setForm({ ...form, groupId: value })}
+          items={
+            groups?.map((group: any) => ({ label: group.name, value: group.id })) ||
+            []
+          }
+          placeholder={{ label: "เลือกกลุ่มยาสมุนไพร", value: null }}
+          style={{
+            inputIOS: {
+              ...styles.input,
+              borderColor: 'gray',  // กำหนดขอบเขต
+              borderWidth: 1,       // กำหนดความหนาของขอบ
+              paddingLeft: 10,      // เพิ่ม padding ด้านซ้าย
+              backgroundColor: '#f7f7f7', // กำหนดสีพื้นหลัง
+            },
+            inputAndroid: {
+              ...styles.input,
+              borderColor: 'gray',
+              borderWidth: 1,
+              paddingLeft: 10,
+              backgroundColor: '#f7f7f7',
+            },
+          }}
+          useNativeAndroidPickerStyle={false} // บังคับให้ใช้ picker แบบ customiz
         />
 
         <TextInput
@@ -382,10 +398,7 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         <View style={styles.imageWrapper}>
           <Button title="เลือกรูปภาพ" onPress={pickImage} />
           {form.imageUrl ? (
-            <Image
-              source={{ uri: form.imageUrl }}
-              style={styles.image}
-            />
+            <Image source={{ uri: form.imageUrl }} style={styles.image} />
           ) : null}
         </View>
       </ScrollView>

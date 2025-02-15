@@ -7,8 +7,8 @@ import {
   ActivityIndicator,
   Alert,
 } from "react-native";
-import React, { useState } from "react";
-import { Herb } from "../../../../@types";
+import React, { useMemo, useState } from "react";
+import { Group, Herb } from "../../../../@types";
 import { COLORS, SIZES } from "../../../constants/themes";
 import { hp, wp } from "../../../helpers/common";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
@@ -17,31 +17,44 @@ import { useDeleteHerbMutation } from "../../../fetch/herbsApi";
 import { useAppDispatch } from "../../../hooks/useAppHookState";
 import { removeHerb } from "../../../store/slices/herbsSlice";
 
-const ProductItem = React.memo(({ herb }: { herb: Herb }) => {
+interface Props {
+  herbs: Herb;
+  groups: Group[];
+}
+
+const ProductItem = React.memo(
+  ({ herbs, groups }: Props) => {
     const navigation = useAppNavigation();
     const [imageLoading, setImageLoading] = useState(true);
-    const selectedName = herb.other_names[0];
+    const selectedName = herbs.other_names[0];
     const [deleteHerbApi] = useDeleteHerbMutation();
     const dispatch = useAppDispatch();
+    const groupName = useMemo(() => {
+      return groups.find((g) => g.id === herbs.groupId)?.name || "";
+    }, [groups, herbs.groupId]);
 
     const handleEdit = () => {
-      navigation.navigate("ProductUpsert", { herb });
+      navigation.navigate("ProductUpsert", { herbs, groups });
     };
 
     const handleDelete = async () => {
       Alert.alert(
         "ยืนยันการลบ",
-        `คุณต้องการลบ ${herb.other_names[0]} หรือไม่?`,
+        `คุณต้องการลบ ${herbs.other_names[0]} หรือไม่?`,
         [
           { text: "ยกเลิก", style: "cancel" },
-          { text: "ลบ", onPress: async () => {
-            try {
-              const response = await deleteHerbApi(herb.id).unwrap();
-              dispatch(removeHerb(response));
-            } catch (error) {
-              console.error("Failed to delete:", error);
-            }
-          }, style: "destructive" },
+          {
+            text: "ลบ",
+            onPress: async () => {
+              try {
+                const response = await deleteHerbApi(herbs.id).unwrap();
+                dispatch(removeHerb(response));
+              } catch (error) {
+                console.error("Failed to delete:", error);
+              }
+            },
+            style: "destructive",
+          },
         ]
       );
     };
@@ -51,10 +64,9 @@ const ProductItem = React.memo(({ herb }: { herb: Herb }) => {
         <View style={styles.row}>
           <View style={styles.imageWrapper}>
             <Image
-              source={{ uri: `${herb.imageUrl}` }}
+              source={{ uri: `${herbs.imageUrl}` }}
               style={styles.productImage}
-              onLoadStart={() => setImageLoading(true)}
-              onLoadEnd={() => setImageLoading(false)}
+              onLoad={() => setImageLoading(false)}
             />
             {imageLoading && (
               <ActivityIndicator
@@ -70,16 +82,16 @@ const ProductItem = React.memo(({ herb }: { herb: Herb }) => {
               {selectedName}
             </Text>
             <Text style={styles.itemDescription} numberOfLines={1}>
-              หมวดหมู่ : {herb.groupId}
+              {groupName}
             </Text>
             <Text style={styles.itemDescription} numberOfLines={1}>
-              ราคา : {herb.price} บาท
+              ราคา : {herbs.price} บาท
             </Text>
           </View>
 
           <View style={styles.actionButtons}>
             <TouchableOpacity
-              onPress={() => console.log(`View details of ${herb.id}`)}
+              onPress={() => console.log(`View details of ${herbs.id}`)}
               style={styles.button}
             >
               <Ionicons name="eye" size={24} color={COLORS.gray} />
@@ -95,7 +107,7 @@ const ProductItem = React.memo(({ herb }: { herb: Herb }) => {
       </View>
     );
   },
-  (prevProps, nextProps) => prevProps.herb === nextProps.herb
+  (prevProps, nextProps) => prevProps.herbs === nextProps.herbs
 );
 
 export default ProductItem;

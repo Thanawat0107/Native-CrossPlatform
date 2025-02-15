@@ -15,29 +15,44 @@ import { Ionicons } from "@expo/vector-icons";
 import { useAppDispatch, useAppSelector } from "../../../hooks/useAppHookState";
 import { setHerbs } from "../../../store/slices/herbsSlice";
 import { isIOS } from "../../../helpers/SD";
+import { useGetGroupsQuery } from "../../../fetch/groupsApi";
+import { setGroups } from "../../../store/slices/groupsSlice";
 
 const ProductSetting = () => {
   const navigation = useAppNavigation();
-  const { data, isLoading, isError, refetch } = useGetHerbsQuery(null);
   const dispatch = useAppDispatch();
   const state = useAppSelector(state => state.herbs.herbs);
+  
+  const {
+    data: herbs,
+    isLoading: herbsLoading,
+    isError: herbsError,
+    refetch: refetchHerbs,
+  } = useGetHerbsQuery(null);
+
+  const {
+    data: groups,
+    isLoading: groupsLoading,
+    isError: groupsError,
+  } = useGetGroupsQuery(null);
 
   useEffect(() => {
-    if (data && JSON.stringify(data) !== JSON.stringify(state)) {
-      dispatch(setHerbs(data));
+    if (herbs && JSON.stringify(herbs) !== JSON.stringify(state)) {
+      dispatch(setHerbs(herbs));
+      dispatch(setGroups(groups));
     }
-  }, [data ,dispatch, state]);
+  }, [herbs, groups ,dispatch, state]);
 
   const handleRefresh = () => {
-    refetch();
+    refetchHerbs();
   }
 
   const handleGoBack = () => navigation.goBack();
-  const handleAddProduct = () => navigation.navigate("ProductUpsert",{ herb: undefined });
+  const handleAddProduct = () => navigation.navigate("ProductUpsert", { herbs: undefined, groups });
 
-  if (isLoading) return <Loading />
-  if (isError) return <Text style={{ color: 'red' }}>Failed to load herbs</Text>;
-  if (!data?.length) return <Text>No herbs available</Text>;
+  if (herbsLoading || groupsLoading) return <Loading />
+  if (herbsError || groupsError) return <Text style={{ color: 'red' }}>Failed to load herbs</Text>;
+  if (!herbs?.length) return <Text>No herbs available</Text>;
 
   return (
     <>
@@ -71,11 +86,11 @@ const ProductSetting = () => {
         </View>
 
         <FlatList
-          data={data || []}
+          data={herbs || []}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => <ProductItem herb={item} />}
+          renderItem={({ item }) => <ProductItem herbs={item} groups={groups} />}
           initialNumToRender={10}
-          refreshing={isLoading}
+          refreshing={herbsLoading}
           onRefresh={handleRefresh}
         />
       </View>
