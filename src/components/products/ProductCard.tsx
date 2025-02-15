@@ -9,40 +9,46 @@ import React from "react";
 import { COLORS, SIZES } from "../../constants/themes";
 import { Ionicons } from "@expo/vector-icons";
 import { useAppNavigation } from "../../hooks/useAppNavigation";
-import { Herb } from "../../../@types";
+import { Group, Herb } from "../../../@types";
 import { isIOS } from "../../helpers/SD";
 import { hp, wp } from "../../helpers/common";
 
-const ProductCard = ({ herb }: { herb: Herb }) => {
-  const navigation = useAppNavigation();
+interface Props {
+  herbs: Herb;
+  groups: Group[]
+}
 
-const selectedName = herb.other_names[0];
-  
+const ProductCard = ({ herbs, groups }: Props) => {
+  const navigation = useAppNavigation();
+  const groupName = groups.find((g: any) => g.id === herbs.groupId)?.name || "";
+  const selectedName = herbs.other_names[0];
+
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate("ProductDetails", { productId: herb.id })}
+      onPress={() =>
+        navigation.navigate("ProductDetails", { productId: herbs.id })
+      }
       style={styles.container}
     >
       <View style={styles.imageWepper}>
-        <Image source={{ uri: `${herb.imageUrl}` }} style={styles.productImage} />
+        <Image
+          source={{ uri: `${herbs.imageUrl}` }}
+          style={styles.productImage}
+        />
       </View>
       <View style={styles.contentContainer}>
         <Text style={styles.productName} numberOfLines={1}>
           {selectedName}
         </Text>
         <Text style={styles.categoty} numberOfLines={1}>
-          {herb.group}
+          {groupName}
         </Text>
         <Text style={styles.productPrice} numberOfLines={1}>
-          ${herb.price}
+          ${herbs.price}
         </Text>
       </View>
       <TouchableOpacity style={styles.addBtn}>
-        <Ionicons
-          name="add-circle"
-          size={35}
-          color={COLORS.green}
-        />
+        <Ionicons name="add-circle" size={35} color={COLORS.green} />
       </TouchableOpacity>
     </TouchableOpacity>
   );

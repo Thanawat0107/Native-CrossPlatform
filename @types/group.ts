@@ -1,7 +1,6 @@
-export interface Category {
+export interface Group {
   id: number;
   name: string;
-  benefits: string;
 }
 
 export enum HerbGroup {

@@ -42,9 +42,9 @@ const MainManagements = () => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("CategorySetting")}
+          onPress={() => navigation.navigate("GroupSetting")}
         >
-          <Text style={styles.buttonText}>Management Category</Text>
+          <Text style={styles.buttonText}>Management Group</Text>
         </TouchableOpacity>
       </View>
     </View>

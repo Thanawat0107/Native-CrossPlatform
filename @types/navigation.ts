@@ -1,4 +1,4 @@
-import { Category } from "./category";
+import { Group } from "./group";
 import { Herb } from "./herb";
 
 export type RootStackParamList = {
@@ -16,8 +16,8 @@ export type RootStackParamList = {
   MainManagements: undefined;
   ProductSetting: undefined;
   ProductUpsert: { herb?: Herb };
-  CategorySetting: undefined;
-  CategotyUpsert: { category?: Category }
+  GroupSetting: undefined;
+  GroupUpsert: { category?: Group }
 
   MainDashboards: undefined;
   HerbalPropertiesReport: undefined;

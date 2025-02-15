@@ -1,6 +1,6 @@
 export interface Herb {
   id: number;
-  group?: string;
+  groupId: number;
   scientific_name?: string;
   common_names?: string[];
   family?: string;

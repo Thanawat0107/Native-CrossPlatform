@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Herb } from "../../../@types/herb";
-interface HerbState {
+interface herbState {
   herbs: Herb[]; // สำหรับจัดเก็บรายการสมุนไพรทั้งหมด
   selectedHerb?: Herb; // สำหรับจัดเก็บสมุนไพรที่ถูกเลือก
   searchQuery: string; // สำหรับค้นหาสมุนไพร
   filteredHerbs: Herb[]; // สำหรับเก็บผลลัพธ์ที่ค้นหา
 }
 
-const initialState: HerbState = {
+const initialState: herbState = {
   herbs: [],
   searchQuery: "",
   filteredHerbs: [],

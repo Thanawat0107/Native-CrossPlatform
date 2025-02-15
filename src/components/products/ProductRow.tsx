@@ -1,17 +1,13 @@
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
 import { SIZES } from "../../constants/themes";
 import ProductCard from "./ProductCard";
 import { useGetHerbsQuery } from "../../fetch/herbsApi";
-import { useGetGroupsQuery } from "../../fetch/groupsApi";
 import Loading from "../Loading";
 import { useAppDispatch } from "../../hooks/useAppHookState";
 import { setHerbs } from "../../store/slices/herbsSlice";
+import { useGetGroupsQuery } from "../../fetch/groupsApi";
+import { setGroups } from "../../store/slices/groupsSlice";
 
 const ProductRow = () => {
   const {
@@ -20,26 +16,29 @@ const ProductRow = () => {
     isError: herbsError,
     refetch: refetchHerbs,
   } = useGetHerbsQuery(null);
+
   const {
     data: groups,
     isLoading: groupsLoading,
     isError: groupsError,
   } = useGetGroupsQuery(null);
-  
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (herbs) {
+    if (herbs && groups) {
       dispatch(setHerbs(herbs));
+      dispatch(setGroups(groups));
     }
-  }, [herbs, dispatch]);
+  }, [herbs, groups, dispatch]);
 
   const handleRefresh = () => {
     refetchHerbs();
-  }
+  };
 
   if (herbsLoading || groupsLoading) return <Loading />;
-  if (herbsError || groupsError) return <Text style={{ color: "red" }}>Failed to load data</Text>;
+  if (herbsError || groupsError)
+    return <Text style={{ color: "red" }}>Failed to load data</Text>;
 
   return (
     <View style={styles.productGrid}>
@@ -47,10 +46,10 @@ const ProductRow = () => {
         data={herbs}
         keyExtractor={(item) => item.id.toString()}
         horizontal
-        renderItem={({ item }) => <ProductCard herb={item} />}
+        renderItem={({ item }) => <ProductCard herbs={item} groups={groups} />}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ columnGap: SIZES.small }}
-        refreshing={isLoading}
+        refreshing={herbsLoading}
         onRefresh={handleRefresh}
       />
     </View>

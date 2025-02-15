@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { SIZES } from '../../../constants/themes';
 import { useAppNavigation } from '../../../hooks/useAppNavigation';
 
-const CategorySetting = () => {
+const GroupSetting = () => {
   const navigation = useAppNavigation();
   return (
     <View>
@@ -20,7 +20,7 @@ const CategorySetting = () => {
   )
 }
 
-export default CategorySetting
+export default GroupSetting
 
 const styles = StyleSheet.create({
   upperRow: {

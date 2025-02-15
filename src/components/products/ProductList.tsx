@@ -6,34 +6,51 @@ import { SIZES } from "../../constants/themes";
 import ProductCard from "./ProductCard";
 import { useAppDispatch } from "../../hooks/useAppHookState";
 import { setHerbs } from "../../store/slices/herbsSlice";
+import { useGetGroupsQuery } from "../../fetch/groupsApi";
+import { setGroups } from "../../store/slices/groupsSlice";
 
 const ProductList = () => {
-  const { data, isLoading, isError, refetch } = useGetHerbsQuery(null);
+  const {
+    data: herbs,
+    isLoading: herbsLoading,
+    isError: herbsError,
+    refetch: refetchHerbs,
+  } = useGetHerbsQuery(null);
+
+  const {
+    data: groups,
+    isLoading: groupsLoading,
+    isError: groupsError,
+  } = useGetGroupsQuery(null);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (data) {
-      dispatch(setHerbs(data));
+    if (herbs && groups) {
+      dispatch(setHerbs(herbs));
+      dispatch(setGroups(groups));
     }
-  }, [data, dispatch]);
+  }, [herbs, groups, dispatch]);
 
   const handleRefresh = () => {
-    refetch();
-  }
+    refetchHerbs();
+  };
 
-  if (isLoading) return <Loading />;
-  if (isError) return <Text style={{ color: "red" }}>Failed to load herbs</Text>;
+  if (herbsLoading || groupsLoading) return <Loading />;
+  if (herbsError || groupsError)
+    return <Text style={{ color: "red" }}>Failed to load data</Text>;
+
   return (
     <View style={styles.container}>
       <FlatList
-        data={data}
+        data={herbs}
         numColumns={2}
-        renderItem={({item}) => < ProductCard herb={item} />}
+        renderItem={({ item }) => <ProductCard herbs={item} groups={groups} />}
         contentContainerStyle={styles.container}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
-        refreshing={isLoading}
+        refreshing={herbsLoading}
         onRefresh={handleRefresh}
-       />
+      />
     </View>
   );
 };
@@ -48,5 +65,5 @@ const styles = StyleSheet.create({
   },
   separator: {
     height: 16,
-  }
+  },
 });
