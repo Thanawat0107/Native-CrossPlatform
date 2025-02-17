@@ -33,5 +33,10 @@ interface NutritionalValue {
   beverage?: string[];
   food?: string[];
   vitamins?: string[];
-  coloring?: string[];
+  coloring?: Coloring[];
+}
+
+interface Coloring {
+  description?: string;
+  colorCode?: string;
 }

@@ -23,6 +23,7 @@ import defaultHerb from "./defaultHerb";
 import * as ImagePicker from "expo-image-picker";
 import { uploadImageToCloudinary } from "../../../helpers/uploadImageToCloudinary";
 import RNPickerSelect from "react-native-picker-select";
+import HerbColorInput from "./HerbColorInput";
 
 type ProductUpsertRouteProp = RouteProp<RootStackParamList, "ProductUpsert">;
 interface ProductUpsertProps {
@@ -113,8 +114,7 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         <RNPickerSelect
           onValueChange={(value) => setForm({ ...form, groupId: value })}
           items={
-            groups?.map((group: any) => ({ label: group.name, value: group.id })) ||
-            []
+            groups?.map((group: any) => ({ label: group.name, value: group.id })) || []
           }
           placeholder={{ label: "เลือกกลุ่มยาสมุนไพร", value: null }}
           style={{
@@ -133,7 +133,7 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
               backgroundColor: '#f7f7f7',
             },
           }}
-          useNativeAndroidPickerStyle={false} // บังคับให้ใช้ picker แบบ customiz
+          useNativeAndroidPickerStyle={false}
         />
 
         <TextInput
@@ -362,7 +362,8 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
             })
           }
         />
-        <TextInput
+
+        {/* <TextInput
           placeholder="สีอาหาร"
           style={styles.input}
           value={form.nutritional_value?.coloring?.join(", ") ?? ""}
@@ -375,7 +376,8 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
               },
             })
           }
-        />
+        /> */}
+        {/* <HerbColorInput form={form} setForm={setForm} /> */}
 
         <TextInput
           placeholder="ราคา"
