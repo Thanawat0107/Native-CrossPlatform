@@ -377,7 +377,7 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
             })
           }
         /> */}
-        {/* <HerbColorInput form={form} setForm={setForm} /> */}
+        <HerbColorInput form={form} setForm={setForm} />
 
         <TextInput
           placeholder="ราคา"

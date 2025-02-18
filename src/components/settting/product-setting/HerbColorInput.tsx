@@ -7,19 +7,19 @@ import {
   View,
 } from "react-native";
 import React, { useState } from "react";
-import { ColorPicker } from "react-native-color-picker";
 import { Herb } from "../../../../@types";
-
+import { Canvas, Circle, LinearGradient } from "@shopify/react-native-skia";
+interface ColorItem {
+  description: string;
+  colorCode: string;
+}
 interface Props {
-  form: any;
+  form: Herb;
   setForm: any;
 }
 
 const HerbColorInput = ({ form, setForm }: Props) => {
-  const [newColor, setNewColor] = useState({
-    description: "",
-    colorCode: "#FFFFFF",
-  });
+  const [newColor, setNewColor] = useState<ColorItem>({ description: "", colorCode: "#FFFFFF" });
 
   const addColor = () => {
     if (!newColor.description.trim()) return;
@@ -28,7 +28,7 @@ const HerbColorInput = ({ form, setForm }: Props) => {
       ...prev,
       nutritional_value: {
         ...prev.nutritional_value,
-        coloring: [...prev.nutritional_value.coloring, newColor],
+        coloring: [...(prev.nutritional_value?.coloring || []), newColor],
       },
     }));
 
@@ -40,9 +40,7 @@ const HerbColorInput = ({ form, setForm }: Props) => {
       ...prev,
       nutritional_value: {
         ...prev.nutritional_value,
-        coloring: prev.nutritional_value.coloring.filter(
-          (_: any, i: any) => i !== index
-        ),
+        coloring: prev.nutritional_value?.coloring?.filter((_: any, i: number) => i !== index),
       },
     }));
   };
@@ -54,18 +52,14 @@ const HerbColorInput = ({ form, setForm }: Props) => {
       <TextInput
         placeholder="คำอธิบายสี"
         value={newColor.description}
-        onChangeText={(text) =>
-          setNewColor((prev) => ({ ...prev, description: text }))
-        }
+        onChangeText={(text) => setNewColor((prev) => ({ ...prev, description: text }))}
         style={{ borderWidth: 1, padding: 8, marginVertical: 10 }}
       />
 
-      {/* Color Picker */}
-      <ColorPicker
-        onColorSelected={(color) =>
-          setNewColor((prev) => ({ ...prev, colorCode: color }))
-        }
-        style={{ height: 200 }}
+      {/* ใช้ Skia เป็น Color Picker */}
+      <ColorPickerSkia
+        selectedColor={newColor.colorCode}
+        onColorChange={(color) => setNewColor((prev) => ({ ...prev, colorCode: color }))}
       />
 
       <Button title="เพิ่มสี" onPress={addColor} />
@@ -100,7 +94,46 @@ const HerbColorInput = ({ form, setForm }: Props) => {
             </TouchableOpacity>
           </View>
         )}
+        nestedScrollEnabled={true} 
       />
+    </View>
+  );
+};
+
+const ColorPickerSkia = ({ selectedColor, onColorChange }: { selectedColor: string; onColorChange: (color: string) => void }) => {
+  const [color, setColor] = useState(selectedColor);
+
+  const handleTouch = (event: any) => {
+    const { locationX, locationY } = event.nativeEvent;
+    const hue = (locationX / 200) * 360; // ให้ Hue อยู่ในช่วง 0-360
+    const saturation = (locationY / 200) * 100; // ให้ Saturation อยู่ในช่วง 0-100
+    const newColor = `hsl(${hue}, ${saturation}%, 50%)`;
+  
+    setColor(newColor);
+    onColorChange(newColor);
+  };
+
+  return (
+    <View
+      style={{
+        width: 200,
+        height: 200,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#ddd",
+      }}
+      onStartShouldSetResponder={() => true}
+      onResponderMove={handleTouch}
+    >
+      <Canvas style={{ width: 200, height: 200 }}>
+        <Circle cx={100} cy={100} r={90}>
+          <LinearGradient
+            start={{ x: 0, y: 0 }}
+            end={{ x: 200, y: 200 }}
+            colors={["red", "yellow", "green", "blue", "purple"]}
+          />
+        </Circle>
+      </Canvas>
     </View>
   );
 };
