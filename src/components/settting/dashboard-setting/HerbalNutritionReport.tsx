@@ -7,6 +7,7 @@ import { Herb } from '../../../../@types';
 import { useAppDispatch } from '../../../hooks/useAppHookState';
 import { setHerbs } from '../../../store/slices/herbsSlice';
 
+//รายงานโภชนาการจากสมุนไพร
 const HerbalNutritionReport = () => {
   const { data, error, isLoading } = useGetHerbsQuery(null);
   const dispatch = useAppDispatch();

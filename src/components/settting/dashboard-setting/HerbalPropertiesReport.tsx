@@ -1,51 +1,58 @@
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
 import { useGetHerbsQuery } from "../../../fetch/herbsApi";
 import { useAppDispatch } from "../../../hooks/useAppHookState";
 import { setHerbs } from "../../../store/slices/herbsSlice";
 import Loading from "../../Loading";
-import PropertyList from "../../products/PropertyList";
 import { SIZES } from "../../../constants/themes";
-import { isIOS } from "../../../helpers/SD";
+import PropertyList from "../../products/PropertyList";
 
+//รายงานคุณสมบัติสมุนไพร
 const HerbalPropertiesReport = () => {
-  const { data, isLoading, isError, refetch } = useGetHerbsQuery(null);
+  const { data: herbalData, isLoading, isError } = useGetHerbsQuery(null);
   const dispatch = useAppDispatch();
-
+  
   useEffect(() => {
-    if (data) {
-      dispatch(setHerbs(data));
+    if (herbalData) {
+      dispatch(setHerbs(herbalData));
+      // console.log("ข้อมูลลล",herbalData);
     }
-  }, [data, dispatch]);
-
-  const handleRefresh = () => {
-    refetch();
-  };
+  }, [herbalData, dispatch]);
 
   if (isLoading) return <Loading />;
   if (isError)
     return <Text style={{ color: "red" }}>Failed to load herbs</Text>;
 
-  const selectedName = data?.other_names?.length 
-  ? data.other_names[0] 
-  : "ชื่อสมุนไพร";
-
-  const propertiesData = data?.properties
-  ? Object.entries(data.properties).map(([key, value]) => ({
-      label: `คุณสมบัติ : ${key}`,
-      value: Array.isArray(value) ? value.join(", ") : value,
+  const propertiesData = herbalData?.properties
+  ? Object.entries(herbalData.properties).map(([key, value]) => ({
+      part: `ส่วนที่ใช้: ${key}`,
+      benefits: Array.isArray(value) ? value.join(", ") : value || "",
+    }))
+  : [{ part: "ไม่มีข้อมูล", benefits: "" }];
+  console.log("ข้อมูล: *propertiesData*",propertiesData);
+  
+  const formattedPropertiesData = propertiesData?.length
+  ? propertiesData.map((item) => ({
+      label: item.part,
+      value: item.benefits || "-",
     }))
   : [];
+  
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>📜 รายงานคุณสมบัติสมุนไพร</Text>
-      {/* แสดงรายการสมุนไพร */}
-      <View style={{ padding: 10, borderBottomWidth: 1 }}>
-        <Text style={{ fontWeight: "bold" }}>{selectedName}</Text>
-        <PropertyList data={propertiesData} />
+    <View style={styles.container}>
+      <Text style={styles.title}>📜 รายงานสรรพคุณสมุนไพร</Text>
+
+      <View style={styles.table}>
+        {/* Header */}
+        <View style={[styles.row, styles.header]}>
+          <Text style={[styles.cell, styles.headerText]}>ส่วนที่ใช้</Text>
+          <Text style={[styles.cell, styles.headerText]}>สรรพคุณ</Text>
+        </View>
+
+        <PropertyList data={formattedPropertiesData} />
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -61,36 +68,16 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "bold",
     textAlign: "center",
-    marginBottom: 10,
+    marginBottom: 15,
   },
-  card: {
-    backgroundColor: "#FFF",
-    padding: 15,
-    marginBottom: 10,
-    borderRadius: 10,
-  },
-  herbName: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#4A7023",
-  },
-  scientificName: {
-    fontSize: 14,
-    fontStyle: "italic",
-    color: "#888",
-    marginBottom: 5,
-  },
-  partSection: {
-    marginTop: 5,
-    paddingLeft: 10,
-  },
-  partName: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#2C5F2D",
-  },
-  benefit: {
-    fontSize: 14,
-    color: "#333",
-  },
+  table: { borderWidth: 1, borderColor: "#ccc", borderRadius: 5 },
+  row: { flexDirection: "row", paddingVertical: 10, paddingHorizontal: 8 },
+  header: { backgroundColor: "#4CAF50" },
+  headerText: { fontWeight: "bold", color: "white" },
+  rowEven: { backgroundColor: "#f9f9f9" },
+  rowOdd: { backgroundColor: "#ffffff" },
+  cell: { flex: 1, textAlign: "center", paddingHorizontal: 5 },
+  noDataText: {
+
+  }
 });

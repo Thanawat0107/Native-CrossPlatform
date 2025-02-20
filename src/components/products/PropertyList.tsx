@@ -15,7 +15,7 @@ const PropertyList = ({ data }: PropertyListProps) => {
   if (!data || data.length === 0) return null;
 
   return (
-    <ScrollView>
+    <>
       {data.map((item, index) => (
         <View key={`${item.label}-${index}`} style={styles.item}>
           <Text style={styles.label}>{item.label}</Text>
@@ -26,7 +26,7 @@ const PropertyList = ({ data }: PropertyListProps) => {
           </Text>
         </View>
       ))}
-    </ScrollView>
+    </>
   );
 };
 
