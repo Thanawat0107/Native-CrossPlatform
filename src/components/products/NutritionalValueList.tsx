@@ -1,10 +1,11 @@
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { SIZES } from "../../constants/themes";
 
 interface NutritionalValueItem {
   label: string;
-  value: unknown;
+  value: string;
+  colorCode?: string;
 }
 
 interface NutritionalValueListProps {
@@ -15,18 +16,20 @@ const NutritionalValueList = ({ data }: NutritionalValueListProps) => {
   if (!data || data.length === 0) return null;
 
   return (
-    <ScrollView>
+    <>
       {data.map((item, index) => (
-        <View key={`${item.label}-${index}`} style={styles.item}>
+        <View
+          key={`${item.label}-${index}`}
+          style={[
+            styles.item,
+            item.colorCode ? { backgroundColor: item.colorCode } : "", // ใช้สีจาก colorCode ถ้ามี
+          ]}
+        >
           <Text style={styles.label}>{item.label}</Text>
-          <Text style={styles.value}>
-            {typeof item.value === "string" || typeof item.value === "number"
-              ? item.value
-              : ""}
-          </Text>
+          <Text style={styles.value}>{item.value}</Text>
         </View>
       ))}
-    </ScrollView>
+    </>
   );
 };
 

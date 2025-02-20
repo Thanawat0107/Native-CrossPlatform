@@ -446,6 +446,70 @@
       "price": 12,
       "stock": 20,
       "imageUrl": "https://res.cloudinary.com/dyct5fy0j/image/upload/v1739181051/ud5xbxycbgaxl0pkjqup.jpg"
+    },
+    {
+      "id": 1740059881161,
+      "groupId": 1,
+      "other_names": [
+        "S"
+      ],
+      "scientific_name": "S",
+      "common_names": [
+        "S"
+      ],
+      "family": "S",
+      "botanical_description": "S",
+      "properties": {
+        "calyx": [
+          "S"
+        ],
+        "leaves": [
+          "S"
+        ],
+        "flowers": [
+          "S"
+        ],
+        "fruit": [
+          "S"
+        ],
+        "seeds": [
+          "S"
+        ],
+        "general": [
+          "S"
+        ]
+      },
+      "usage": {
+        "method": "S",
+        "dosage": "S"
+      },
+      "chemical_composition": [
+        "S"
+      ],
+      "nutritional_value": {
+        "beverage": [
+          "S"
+        ],
+        "food": [
+          "S"
+        ],
+        "vitamins": [
+          "S"
+        ],
+        "coloring": [
+          {
+            "description": "Asasasasas",
+            "colorCode": "#FFD700"
+          },
+          {
+            "description": "Assad Assad",
+            "colorCode": "#0e8e16"
+          }
+        ]
+      },
+      "price": 100,
+      "stock": 80,
+      "imageUrl": "https://res.cloudinary.com/dyct5fy0j/image/upload/v1740059822/om5cltto3fl8h9dbjobt.jpg"
     }
   ],
   "groups": [

@@ -6,8 +6,7 @@ import {
   Text,
   TextInput,
   View,
-  Image
-} from "react-native";
+  Image} from "react-native";
 import React, { useEffect, useState } from "react";
 import { RouteProp } from "@react-navigation/native";
 import { Herb, RootStackParamList } from "../../../../@types";
@@ -37,6 +36,8 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
   const [addHerbApi] = useAddHerbMutation();
   const [updateHerbApi] = useUpdateHerbMutation();
   const dispatch = useAppDispatch();
+  const [colorDescription, setColorDescription] = useState("");
+  const [colorCode, setColorCode] = useState("");
 
   const pickImage = async () => {
     // ขออนุญาตเข้าถึงอัลบั้มภาพ
@@ -74,6 +75,29 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
       resetForm();
     }
   }, [herbs]);
+
+  const addColor = (description: string, colorCode: string) => {
+    if (!description || !colorCode) return;
+  
+    setForm((prev) => ({
+      ...prev,
+      nutritional_value: {
+        ...(prev.nutritional_value ?? { beverage: [], food: [], vitamins: [], coloring: [] }),
+        coloring: [...(prev.nutritional_value?.coloring ?? []), { description, colorCode }],
+      },
+    }));
+  };
+
+  const removeColor = (index: number) => {
+    setForm((prev) => ({
+      ...prev,
+      nutritional_value: {
+        ...(prev.nutritional_value ?? { beverage: [], food: [], vitamins: [], coloring: [] }),
+        coloring: prev.nutritional_value?.coloring?.filter((_, i) => i !== index) ?? [],
+      },
+    }));
+  };
+  
 
   const handleSubmit = async () => {
     if (!form.groupId || !form.scientific_name || !form.other_names.length || form.price < 0) {
@@ -114,23 +138,26 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         <RNPickerSelect
           onValueChange={(value) => setForm({ ...form, groupId: value })}
           items={
-            groups?.map((group: any) => ({ label: group.name, value: group.id })) || []
+            groups?.map((group: any) => ({
+              label: group.name,
+              value: group.id,
+            })) || []
           }
           placeholder={{ label: "เลือกกลุ่มยาสมุนไพร", value: null }}
           style={{
             inputIOS: {
               ...styles.input,
-              borderColor: 'gray',  // กำหนดขอบเขต
-              borderWidth: 1,       // กำหนดความหนาของขอบ
-              paddingLeft: 10,      // เพิ่ม padding ด้านซ้าย
-              backgroundColor: '#f7f7f7', // กำหนดสีพื้นหลัง
+              borderColor: "gray", // กำหนดขอบเขต
+              borderWidth: 1, // กำหนดความหนาของขอบ
+              paddingLeft: 10, // เพิ่ม padding ด้านซ้าย
+              backgroundColor: "#f7f7f7", // กำหนดสีพื้นหลัง
             },
             inputAndroid: {
               ...styles.input,
-              borderColor: 'gray',
+              borderColor: "gray",
               borderWidth: 1,
               paddingLeft: 10,
-              backgroundColor: '#f7f7f7',
+              backgroundColor: "#f7f7f7",
             },
           }}
           useNativeAndroidPickerStyle={false}
@@ -363,21 +390,46 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
           }
         />
 
-        {/* <TextInput
-          placeholder="สีอาหาร"
-          style={styles.input}
-          value={form.nutritional_value?.coloring?.join(", ") ?? ""}
-          onChangeText={(text) =>
-            setForm({
-              ...form,
-              nutritional_value: {
-                ...form.nutritional_value,
-                coloring: text.split(",").map((item) => item.trim()),
-              },
-            })
-          }
-        /> */}
-        {/* <HerbColorInput form={form} setForm={setForm} /> */}
+        <View>
+          <TextInput
+            placeholder="รหัสสี (เช่น #FF0000)"
+            style={styles.input}
+            value={colorCode}
+            onChangeText={setColorCode}
+          />
+          <TextInput
+            placeholder="คำอธิบายสี"
+            style={styles.input}
+            value={colorDescription}
+            onChangeText={setColorDescription}
+          />
+          <Button
+            title="เพิ่มสี"
+            onPress={() => addColor(colorDescription, colorCode)}
+          />
+
+          {form.nutritional_value?.coloring?.length ? (
+            form.nutritional_value.coloring.map((item, index) => (
+              <View
+                key={index}
+                style={{
+                  backgroundColor: item.colorCode,
+                  padding: 10,
+                  margin: 5,
+                }}
+              >
+                <Text>
+                  {item.description} ({item.colorCode})
+                </Text>
+                <Button title="ลบ" onPress={() => removeColor(index)} />
+              </View>
+            ))
+          ) : (
+            <Text style={{ textAlign: "center", marginTop: 10 }}>
+              ไม่มีข้อมูลสี
+            </Text>
+          )}
+        </View>
 
         <TextInput
           placeholder="ราคา"

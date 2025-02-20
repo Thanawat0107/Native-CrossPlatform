@@ -77,11 +77,20 @@ const ProductDetails = () => {
       }))
     : [];
 
-  const nutritionalValueData = herb?.nutritional_value
-    ? Object.entries(herb.nutritional_value).map(([key, value]) => ({
-        label: `คุณค่าทางโภชนาการ : ${key}`,
-        value: Array.isArray(value) ? value.join(", ") : value,
-      }))
+    const nutritionalValueData: any = herb?.nutritional_value
+    ? Object.entries(herb.nutritional_value).flatMap(([key, value]) => {
+        if (key === "coloring" && Array.isArray(value)) {
+          return value.map((colorItem) => ({
+            label: "สีจากพืชสมุนไพร",
+            value: colorItem.description,
+            colorCode: colorItem.colorCode,
+          }));
+        }
+        return {
+          label: `คุณค่าทางโภชนาการ : ${key}`,
+          value: Array.isArray(value) ? value.join(", ") : value,
+        };
+      })
     : [];
 
   return (
