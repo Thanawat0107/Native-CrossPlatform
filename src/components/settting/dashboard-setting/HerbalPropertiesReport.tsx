@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import React, { useEffect } from "react";
 import { useGetHerbsQuery } from "../../../fetch/herbsApi";
 import { useAppDispatch } from "../../../hooks/useAppHookState";
@@ -15,7 +15,6 @@ const HerbalPropertiesReport = () => {
   useEffect(() => {
     if (herbalData) {
       dispatch(setHerbs(herbalData));
-      // console.log("ข้อมูลลล",herbalData);
     }
   }, [herbalData, dispatch]);
 
@@ -23,16 +22,19 @@ const HerbalPropertiesReport = () => {
   if (isError)
     return <Text style={{ color: "red" }}>Failed to load herbs</Text>;
 
-  const propertiesData = herbalData?.properties
-  ? Object.entries(herbalData.properties).map(([key, value]) => ({
-      part: `ส่วนที่ใช้: ${key}`,
-      benefits: Array.isArray(value) ? value.join(", ") : value || "",
-    }))
+  const propertiesData = herbalData?.length
+  ? herbalData.flatMap((herb: any) =>
+      herb.properties && typeof herb.properties === "object"
+        ? Object.entries(herb.properties).map(([key, value]) => ({
+            part: `ส่วนที่ใช้: ${key}`,
+            benefits: Array.isArray(value) ? value.join(", ") : value || "",
+          }))
+        : [{ part: "ไม่มีข้อมูล", benefits: "" }]
+    )
   : [{ part: "ไม่มีข้อมูล", benefits: "" }];
-  console.log("ข้อมูล: *propertiesData*",propertiesData);
   
   const formattedPropertiesData = propertiesData?.length
-  ? propertiesData.map((item) => ({
+  ? propertiesData.map((item: any) => ({
       label: item.part,
       value: item.benefits || "-",
     }))
@@ -49,8 +51,9 @@ const HerbalPropertiesReport = () => {
           <Text style={[styles.cell, styles.headerText]}>ส่วนที่ใช้</Text>
           <Text style={[styles.cell, styles.headerText]}>สรรพคุณ</Text>
         </View>
-
-        <PropertyList data={formattedPropertiesData} />
+        <ScrollView>
+          <PropertyList data={formattedPropertiesData} />
+        </ScrollView>
       </View>
     </View>
   );
