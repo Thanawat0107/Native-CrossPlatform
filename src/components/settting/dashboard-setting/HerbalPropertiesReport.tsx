@@ -18,19 +18,7 @@ const HerbalPropertiesReport = () => {
   }, [herbalData, dispatch]);
 
   if (isLoading) return <Loading />;
-  if (isError)
-    return <Text style={{ color: "red" }}>Failed to load herbs</Text>;
-
-  // const propertiesData = herbalData?.length
-  // ? herbalData.flatMap((herb: any) =>
-  //     herb.properties && typeof herb.properties === "object"
-  //       ? Object.entries(herb.properties).map(([key, value]) => ({
-  //           part: `ส่วนที่ใช้: ${key}`,
-  //           benefits: Array.isArray(value) ? value.join(", ") : value || "",
-  //         }))
-  //       : [{ part: "ไม่มีข้อมูล", benefits: "" }]
-  //   )
-  // : [{ part: "ไม่มีข้อมูล", benefits: "" }];
+  if (isError) return <Text style={{ color: "red" }}>Failed to load herbs</Text>;
 
   const formattedHerbsData = herbalData?.length
     ? herbalData.map((herb: any) => ({
@@ -43,14 +31,6 @@ const HerbalPropertiesReport = () => {
           : [{ part: "ไม่มีข้อมูล", benefits: "" }]
       }))
     : [];
-  
-  // const formattedPropertiesData = propertiesData?.length
-  // ? propertiesData.map((item: any) => ({
-  //     label: item.part,
-  //     value: item.benefits || "-",
-  //   }))
-  // : [];
-  
 
   return (
     <View style={styles.container}>
