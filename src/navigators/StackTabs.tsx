@@ -6,7 +6,7 @@ import { CategorySetting, ProductSetting, ProductUpsert } from '../components/se
 import RootTabs from './RootTabs';
 import HerbalPropertiesReport from '../components/settting/dashboard-setting/HerbalPropertiesReport';
 import { MainDashboards, MainManagements } from '../components/settting/main-setting/MainSetting';
-import HerbalNutritionReport from '../components/settting/dashboard-setting/HerbalNutritionReport';
+import HerbalNutritionReport from '../components/settting/dashboard-setting/HerbalNutritions/HerbalNutritionReport';
 
 const Stack = createNativeStackNavigator();
 
