@@ -1,15 +1,22 @@
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, RefreshControl } from "react-native";
 import React, { useEffect } from "react";
 import { useGetHerbsQuery } from "../../../fetch/herbsApi";
 import { useAppDispatch } from "../../../hooks/useAppHookState";
 import { setHerbs } from "../../../store/slices/herbsSlice";
 import Loading from "../../Loading";
-import { SIZES } from "../../../constants/themes";
+import { COLORS, SIZES } from "../../../constants/themes";
+import { Ionicons } from "@expo/vector-icons";
+import { useAppNavigation } from "../../../hooks/useAppNavigation";
 
 //รายงานคุณสมบัติสมุนไพร
 const HerbalPropertiesReport = () => {
-  const { data: herbalData, isLoading, isError } = useGetHerbsQuery(null);
+  const { data: herbalData, isLoading, isError, refetch } = useGetHerbsQuery(null);
   const dispatch = useAppDispatch();
+  const navigation = useAppNavigation();
+  const handleGoBack = () => navigation.goBack();
+  const handleRefresh = () => {
+    refetch();
+  };
   
   useEffect(() => {
     if (herbalData) {
@@ -22,7 +29,8 @@ const HerbalPropertiesReport = () => {
 
   const formattedHerbsData = herbalData?.length
     ? herbalData.map((herb: any) => ({
-      name: herb.other_names?.length ? herb.other_names[0] : "ไม่ทราบชื่อ",  
+      // name: herb.other_names?.length ? herb.other_names[0] : "ไม่ทราบชื่อ",  
+      name: herb.other_names?.length ? herb.other_names.join(", ") : "ไม่ทราบชื่อ",
         properties: herb.properties && typeof herb.properties === "object"
           ? Object.entries(herb.properties).map(([key, value]) => ({
               part: `ส่วนที่ใช้: ${key}`,
@@ -34,14 +42,33 @@ const HerbalPropertiesReport = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>📜 รายงานสรรพคุณสมุนไพร</Text>
+      <View style={styles.upperRow}>
+        <TouchableOpacity onPress={handleGoBack}>
+          <Ionicons
+            name="chevron-back-circle"
+            size={30}
+            color={COLORS.lightWhite}
+          />
+        </TouchableOpacity>
+
+        <Text style={styles.heading}>Admin Dashboards</Text>
+      </View>
+
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: SIZES.xxLarge,
+        }}
+      >
+        <Text style={styles.title}>📜 รายงานสรรพคุณสมุนไพร</Text>
+      </View>
 
       <FlatList
         data={formattedHerbsData}
         keyExtractor={(item, index) => `${item.name}-${index}`}
         renderItem={({ item }) => (
           <View style={styles.herbContainer}>
-
             <Text style={styles.herbName}>{item.name}</Text>
 
             <FlatList
@@ -56,8 +83,10 @@ const HerbalPropertiesReport = () => {
             />
           </View>
         )}
+        refreshControl={
+          <RefreshControl refreshing={isLoading} onRefresh={handleRefresh} />
+        }
       />
-
     </View>
   );
 };
@@ -70,9 +99,26 @@ const styles = StyleSheet.create({
     marginHorizontal: SIZES.small,
     marginTop: SIZES.xsLarge,
   },
+  upperRow: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    position: "absolute",
+    backgroundColor: COLORS.green3,
+    borderRadius: SIZES.large,
+    top: SIZES.large,
+    zIndex: 999,
+  },
+  heading: {
+    fontFamily: "bold",
+    fontSize: SIZES.medium,
+    color: COLORS.lightWhite,
+    marginHorizontal: 10,
+  },
   title: {
     fontSize: 22,
     fontWeight: "bold",
+    marginTop: 25,
     textAlign: "center",
     marginBottom: 15,
   },
