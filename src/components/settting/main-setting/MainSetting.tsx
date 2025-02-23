@@ -37,14 +37,14 @@ const MainManagements = () => {
           style={styles.button}
           onPress={() => navigation.navigate("ProductSetting")}
         >
-          <Text style={styles.buttonText}>Management Product</Text>
+          <Text style={styles.buttonText}>การจัดการสินค้า</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("GroupSetting")}
         >
-          <Text style={styles.buttonText}>Management Group</Text>
+          <Text style={styles.buttonText}>การจัดการกลุ่มยาสมุนไพร</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -83,14 +83,14 @@ const MainDashboards = () => {
           style={styles.button}
           onPress={() => navigation.navigate("HerbalPropertiesReport")}
         >
-          <Text style={styles.buttonText}>HerbalPropertiesReport</Text>
+          <Text style={styles.buttonText}>รายงานคุณสมบัติสมุนไพร</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("HerbalNutritionReport")}
         >
-          <Text style={styles.buttonText}>HerbalNutritionReport</Text>
+          <Text style={styles.buttonText}>รายงานโภชนาการจากสมุนไพร</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -13,14 +13,14 @@ const SettingScreen = () => {
           style={styles.button}
           onPress={() => navigation.navigate("MainManagements")}
         >
-          <Text style={styles.buttonText}>Managements</Text>
+          <Text style={styles.buttonText}>การจัดการ</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("MainDashboards")}
         >
-          <Text style={styles.buttonText}>Dashboards</Text>
+          <Text style={styles.buttonText}>แดดช์บอร์ด</Text>
         </TouchableOpacity>
       </View>
   );
