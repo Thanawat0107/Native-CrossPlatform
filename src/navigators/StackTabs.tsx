@@ -7,6 +7,10 @@ import RootTabs from './RootTabs';
 import HerbalPropertiesReport from '../components/settting/dashboard-setting/HerbalPropertiesReport';
 import { MainDashboards, MainManagements } from '../components/settting/main-setting/MainSetting';
 import HerbalNutritionReport from '../components/settting/dashboard-setting/HerbalNutritions/HerbalNutritionReport';
+import CompareNutrientValue from '../components/settting/dashboard-setting/HerbalNutritions/CompareNutrientValue';
+import HerbCard from '../components/settting/dashboard-setting/HerbalNutritions/HerbCard';
+import LineChartExample from '../components/settting/dashboard-setting/HerbalNutritions/LineChartExample';
+import PieChartExample from '../components/settting/dashboard-setting/HerbalNutritions/PieChartExample';
 
 const Stack = createNativeStackNavigator();
 
@@ -69,6 +73,26 @@ const StackTabs = () => {
       <Stack.Screen
         name="HerbalNutritionReport"
         component={HerbalNutritionReport}
+        options={{ headerShown: false, }}
+      />
+      <Stack.Screen
+        name="CompareNutrientValue"
+        component={CompareNutrientValue}
+        options={{ headerShown: false, }}
+      />
+      <Stack.Screen
+        name="HerbCard"
+        component={HerbCard}
+        options={{ headerShown: false, }}
+      />
+      <Stack.Screen
+        name="LineChartExample"
+        component={LineChartExample}
+        options={{ headerShown: false, }}
+      />
+      <Stack.Screen
+        name="PieChartExample"
+        component={PieChartExample}
         options={{ headerShown: false, }}
       />
     </Stack.Navigator>
