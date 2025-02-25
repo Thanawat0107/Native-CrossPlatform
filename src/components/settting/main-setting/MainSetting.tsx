@@ -92,34 +92,6 @@ const MainDashboards = () => {
         >
           <Text style={styles.buttonText}>โภชนาการจากสมุนไพร</Text>
         </TouchableOpacity>
-        
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("CompareNutrientValue")}
-        >
-          <Text style={styles.buttonText}>เปรียบเทียบค่าของสารอาหารหรือคุณสมบัติ</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("HerbCard")}
-        >
-          <Text style={styles.buttonText}>สมุนไพรการ์ด</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("LineChartExample")}
-        >
-          <Text style={styles.buttonText}>แนวโน้มของผลกระทบต่อสุขภาพ</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("PieChartExample")}
-        >
-          <Text style={styles.buttonText}>สัดส่วนของสารอาหาร</Text>
-        </TouchableOpacity>
 
       </View>
     </View>

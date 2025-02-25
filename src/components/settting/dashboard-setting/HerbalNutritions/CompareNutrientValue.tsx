@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text } from "react-native";
 import { BarChart } from "react-native-chart-kit";
+import { COLORS } from "../../../../constants/themes";
 
 //เปรียบเทียบค่าของสารอาหารหรือคุณสมบัติ
 const CompareNutrientValue = () => {
@@ -14,30 +15,28 @@ const CompareNutrientValue = () => {
   };
 
   return (
-    <ScrollView horizontal>
-      <View>
-        <Text style={{ textAlign: "center", fontSize: 18, marginBottom: 10 }}>
-          คุณสมบัติของ Hibiscus
-        </Text>
-        <BarChart
-          data={data}
-          width={350}
-          height={250}
-          yAxisLabel=""
-          yAxisSuffix=""
-          chartConfig={{
-            backgroundGradientFrom: "#fff",
-            backgroundGradientTo: "#fff",
-            decimalPlaces: 0,
-            color: (opacity = 1) => `rgba(72, 149, 239, ${opacity})`,
-          }}
-          style={{
-            marginVertical: 8,
-            borderRadius: 10,
-          }}
-        />
-      </View>
-    </ScrollView>
+    <View style={{justifyContent: "center", alignItems: "center"}}>
+      <Text style={{ textAlign: "center", fontSize: 18, marginBottom: 10, color: COLORS.gray, }}>
+        คุณสมบัติของ Hibiscus
+      </Text>
+      <BarChart
+        data={data}
+        width={350}
+        height={250}
+        yAxisLabel=""
+        yAxisSuffix=""
+        chartConfig={{
+          backgroundGradientFrom: "#fff",
+          backgroundGradientTo: "#fff",
+          decimalPlaces: 0,
+          color: (opacity = 1) => `rgba(72, 149, 239, ${opacity})`,
+        }}
+        style={{
+          marginVertical: 8,
+          borderRadius: 10,
+        }}
+      />
+    </View>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { Text, View } from "react-native";
 import { LineChart } from "react-native-chart-kit";
+import { COLORS } from "../../../../constants/themes";
 
 //แนวโน้มของผลกระทบต่อสุขภาพ
 const LineChartExample = () => {
@@ -15,8 +16,15 @@ const LineChartExample = () => {
   };
 
   return (
-    <View>
-      <Text style={{ textAlign: "center", fontSize: 18, marginBottom: 10 }}>
+    <View style={{justifyContent: "center", alignItems: "center"}}>
+      <Text
+        style={{
+          textAlign: "center",
+          fontSize: 18,
+          marginBottom: 10,
+          color: COLORS.gray,
+        }}
+      >
         แนวโน้มความดันโลหิตหลังใช้ Hibiscus
       </Text>
       <LineChart
