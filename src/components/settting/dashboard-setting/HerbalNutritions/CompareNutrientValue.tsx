@@ -15,8 +15,15 @@ const CompareNutrientValue = () => {
   };
 
   return (
-    <View style={{justifyContent: "center", alignItems: "center"}}>
-      <Text style={{ textAlign: "center", fontSize: 18, marginBottom: 10, color: COLORS.gray, }}>
+    <View style={{ justifyContent: "center", alignItems: "center" }}>
+      <Text
+        style={{
+          textAlign: "center",
+          fontSize: 18,
+          marginBottom: 10,
+          color: COLORS.gray,
+        }}
+      >
         คุณสมบัติของ Hibiscus
       </Text>
       <BarChart

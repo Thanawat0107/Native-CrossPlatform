@@ -40,6 +40,10 @@ const LineChartExample = () => {
           style: { borderRadius: 10 },
         }}
         bezier
+        style={{
+          marginVertical: 8,
+          borderRadius: 10,
+        }}
       />
     </View>
   );
