@@ -3,7 +3,6 @@ import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-nati
 import {  PieChart } from "react-native-chart-kit";
 import { useGetHerbsQuery } from '../../../../fetch/herbsApi';
 import { COLORS, SIZES } from '../../../../constants/themes';
-import { Herb } from '../../../../../@types';
 import { useAppDispatch } from '../../../../hooks/useAppHookState';
 import { setHerbs } from '../../../../store/slices/herbsSlice';
 import { Ionicons } from '@expo/vector-icons';
@@ -120,7 +119,6 @@ const HerbalNutritionReport = () => {
 
   return (
     <View style={styles.container}>
-
       <View style={styles.upperRow}>
         <TouchableOpacity onPress={handleGoBack}>
           <Ionicons
@@ -157,9 +155,10 @@ const HerbalNutritionReport = () => {
             style={styles.button}
             onPress={() => setSelectedComponent("lineChart")}
           >
-            <Text style={styles.buttonText}>📈 แนวโน้มของผลกระทบต่อสุขภาพ</Text>
+            <Text style={styles.buttonText}>
+              📈 แนวโน้มของผล กระทบต่อสุขภาพ
+            </Text>
           </TouchableOpacity>
-
         </ScrollView>
       </View>
 
