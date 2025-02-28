@@ -2,7 +2,7 @@ import { Herb } from "../../../../@types";
 
 const defaultHerb: Herb = {
   id: 0,
-  groupId: 1,
+  groupId: 0,
   other_names: [],
   scientific_name: "",
   common_names: [],

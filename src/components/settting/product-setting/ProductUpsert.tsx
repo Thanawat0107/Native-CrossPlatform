@@ -1,28 +1,22 @@
 import {
   Alert,
-  Button,
   ScrollView,
   StyleSheet,
-  Text,
-  TextInput,
   View,
   Image} from "react-native";
+  import { TextInput, Button, Text, Menu, Divider } from "react-native-paper";
 import React, { useEffect, useState } from "react";
 import { RouteProp } from "@react-navigation/native";
 import { Herb, RootStackParamList } from "../../../../@types";
 import { useAppDispatch } from "../../../hooks/useAppHookState";
 import { addHerb, updateHerb } from "../../../store/slices/herbsSlice";
-import {
-  useAddHerbMutation,
-  useUpdateHerbMutation,
-} from "../../../fetch/herbsApi";
+import { useAddHerbMutation, useUpdateHerbMutation, } from "../../../fetch/herbsApi";
 import { useAppNavigation } from "../../../hooks/useAppNavigation";
 import { SIZES } from "../../../constants/themes";
 import defaultHerb from "./defaultHerb";
 import * as ImagePicker from "expo-image-picker";
 import { uploadImageToCloudinary } from "../../../helpers/uploadImageToCloudinary";
 import RNPickerSelect from "react-native-picker-select";
-import HerbColorInput from "./HerbColorInput";
 
 type ProductUpsertRouteProp = RouteProp<RootStackParamList, "ProductUpsert">;
 interface ProductUpsertProps {
@@ -75,6 +69,8 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
       resetForm();
     }
   }, [herbs]);
+
+   const [groupMenuVisible, setGroupMenuVisible] = useState(false);
 
   const addColor = (description: string, colorCode: string) => {
     if (!description || !colorCode) return;
@@ -130,64 +126,58 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>
-        {isEditMode ? `Edit Product: ${herbs?.other_names}` : "Add New Product"}
+      <Text variant="titleLarge">
+        {isEditMode
+          ? `Edit Product: ${form?.other_names.join(", ")}`
+          : "Add New Product"}
       </Text>
 
       <ScrollView>
-        <RNPickerSelect
-          onValueChange={(value) => setForm({ ...form, groupId: value })}
-          items={
-            groups?.map((group: any) => ({
-              label: group.name,
-              value: group.id,
-            })) || []
+        <Menu
+          visible={groupMenuVisible}
+          onDismiss={() => setGroupMenuVisible(false)}
+          anchor={
+            <Button onPress={() => setGroupMenuVisible(true)} mode="outlined">
+              {form.groupId
+                ? groups.find((g) => g.id === form.groupId)?.name
+                : "เลือกกลุ่มยาสมุนไพร"}
+            </Button>
           }
-          placeholder={{ label: "เลือกกลุ่มยาสมุนไพร", value: null }}
-          style={{
-            inputIOS: {
-              ...styles.input,
-              borderColor: "gray", // กำหนดขอบเขต
-              borderWidth: 1, // กำหนดความหนาของขอบ
-              paddingLeft: 10, // เพิ่ม padding ด้านซ้าย
-              backgroundColor: "#f7f7f7", // กำหนดสีพื้นหลัง
-            },
-            inputAndroid: {
-              ...styles.input,
-              borderColor: "gray",
-              borderWidth: 1,
-              paddingLeft: 10,
-              backgroundColor: "#f7f7f7",
-            },
-          }}
-          useNativeAndroidPickerStyle={false}
-        />
+        >
+          {groups?.map((group) => (
+            <Menu.Item
+              key={group.id}
+              title={group.name}
+              onPress={() => {
+                setForm({ ...form, groupId: group.id });
+                setGroupMenuVisible(false);
+              }}
+            />
+          ))}
+        </Menu>
 
         <TextInput
-          placeholder="ชื่อสมุนไพร"
-          style={styles.input}
+          label="ชื่อสมุนไพร"
+          mode="outlined"
           value={form.other_names?.join(", ") ?? ""}
           onChangeText={(text) =>
             setForm({
               ...form,
-              other_names: text
-                .split(",")
-                .map((name) => name.trim())
-                .filter(Boolean),
+              other_names: text.split(",").map((name) => name.trim()),
             })
           }
         />
 
         <TextInput
-          placeholder="ชื่อวิทยาศาสตร์"
-          style={styles.input}
+          label="ชื่อวิทยาศาสตร์"
+          mode="outlined"
           value={form.scientific_name ?? ""}
           onChangeText={(text) => setForm({ ...form, scientific_name: text })}
         />
 
         <TextInput
-          placeholder="ชื่อสามัญ"
-          style={styles.input}
+          label="ชื่อสามัญ"
+          mode="outlined"
           value={form.common_names?.join(", ") ?? ""}
           onChangeText={(text) =>
             setForm({
@@ -198,27 +188,30 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         />
 
         <TextInput
-          placeholder="ตระกูล"
-          style={styles.input}
+          label="ตระกูล"
+          mode="outlined"
           value={form.family ?? ""}
           onChangeText={(text) => setForm({ ...form, family: text })}
         />
 
         <TextInput
-          placeholder="คำอธิบายพฤกษศาสตร์"
-          style={styles.input}
+          label="คำอธิบายพฤกษศาสตร์"
+          mode="outlined"
+          multiline
           value={form.botanical_description ?? ""}
           onChangeText={(text) =>
             setForm({ ...form, botanical_description: text })
           }
         />
 
+        <Divider style={{ marginVertical: 10 }} />
+
         {/* Properties Input Fields */}
-        <Text style={{ fontFamily: "bold" }}>คุณสมบัติ</Text>
+        <Text variant="titleMedium">คุณสมบัติ</Text>
 
         <TextInput
-          placeholder="กลีบเลี้ยง"
-          style={styles.input}
+          label="กลีบเลี้ยง"
+          mode="outlined"
           value={form.properties?.calyx?.join(", ") ?? ""}
           onChangeText={(text) =>
             setForm({
@@ -231,8 +224,8 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
           }
         />
         <TextInput
-          placeholder="ใบไม้"
-          style={styles.input}
+          label="ใบไม้"
+          mode="outlined"
           value={form.properties?.leaves?.join(", ") ?? ""}
           onChangeText={(text) =>
             setForm({
@@ -245,8 +238,8 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
           }
         />
         <TextInput
-          placeholder="ดอกไม้"
-          style={styles.input}
+          label="ดอกไม้"
+          mode="outlined"
           value={form.properties?.flowers?.join(", ") ?? ""}
           onChangeText={(text) =>
             setForm({
@@ -259,8 +252,8 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
           }
         />
         <TextInput
-          placeholder="ผลไม้"
-          style={styles.input}
+          label="ผลไม้"
+          mode="outlined"
           value={form.properties?.fruit?.join(", ") ?? ""}
           onChangeText={(text) =>
             setForm({
@@ -273,8 +266,8 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
           }
         />
         <TextInput
-          placeholder="เมล็ดพันธุ์"
-          style={styles.input}
+          label="เมล็ดพันธุ์"
+          mode="outlined"
           value={form.properties?.seeds?.join(", ") ?? ""}
           onChangeText={(text) =>
             setForm({
@@ -287,8 +280,8 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
           }
         />
         <TextInput
-          placeholder="ทั่วไป"
-          style={styles.input}
+          label="ทั่วไป"
+          mode="outlined"
           value={form.properties?.general?.join(", ") ?? ""}
           onChangeText={(text) =>
             setForm({
@@ -301,11 +294,13 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
           }
         />
 
-        <Text style={{ fontFamily: "bold" }}>การใช้งาน</Text>
+        <Divider style={{ marginVertical: 10 }} />
+
+        <Text variant="titleMedium">การใช้งาน</Text>
 
         <TextInput
-          placeholder="วิธีใช้"
-          style={styles.input}
+          label="วิธีใช้"
+          mode="outlined"
           value={form.usage?.method ?? ""}
           onChangeText={(text) =>
             setForm({
@@ -319,8 +314,8 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         />
 
         <TextInput
-          placeholder="ปริมาณการใช้"
-          style={styles.input}
+          label="ปริมาณการใช้"
+          mode="outlined"
           value={form.usage?.dosage ?? ""}
           onChangeText={(text) =>
             setForm({
@@ -333,9 +328,11 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
           }
         />
 
+        <Divider style={{ marginVertical: 10 }} />
+
         <TextInput
-          placeholder="องค์ประกอบทางเคมี"
-          style={styles.input}
+          label="องค์ประกอบทางเคมี"
+          mode="outlined"
           value={form.chemical_composition?.join(", ") ?? ""}
           onChangeText={(text) =>
             setForm({
@@ -345,11 +342,13 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
           }
         />
 
-        <Text style={{ fontFamily: "bold" }}>คุณค่าทางโภชนาการ</Text>
+        <Divider style={{ marginVertical: 10 }} />
+
+        <Text variant="titleMedium">คุณค่าทางโภชนาการ</Text>
 
         <TextInput
-          placeholder="เครื่องดื่ม"
-          style={styles.input}
+          label="เครื่องดื่ม"
+          mode="outlined"
           value={form.nutritional_value?.beverage?.join(", ") ?? ""}
           onChangeText={(text) =>
             setForm({
@@ -362,8 +361,8 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
           }
         />
         <TextInput
-          placeholder="อาหาร"
-          style={styles.input}
+          label="อาหาร"
+          mode="outlined"
           value={form.nutritional_value?.food?.join(", ") ?? ""}
           onChangeText={(text) =>
             setForm({
@@ -376,8 +375,8 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
           }
         />
         <TextInput
-          placeholder="วิตามิน"
-          style={styles.input}
+          label="วิตามิน"
+          mode="outlined"
           value={form.nutritional_value?.vitamins?.join(", ") ?? ""}
           onChangeText={(text) =>
             setForm({
@@ -392,21 +391,26 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
 
         <View>
           <TextInput
-            placeholder="รหัสสี (เช่น #FF0000)"
-            style={styles.input}
+            label="รหัสสี"
+            mode="outlined"
             value={colorCode}
             onChangeText={setColorCode}
           />
           <TextInput
-            placeholder="คำอธิบายสี"
-            style={styles.input}
+            label="คำอธิบายสี"
+            mode="outlined"
             value={colorDescription}
             onChangeText={setColorDescription}
           />
+          <Divider style={{ marginVertical: 10 }} />
           <Button
-            title="เพิ่มสี"
+            mode="contained"
             onPress={() => addColor(colorDescription, colorCode)}
-          />
+          >
+            เพิ่มสี
+          </Button>
+
+          <Divider style={{ marginVertical: 10 }} />
 
           {form.nutritional_value?.coloring?.length ? (
             form.nutritional_value.coloring.map((item, index) => (
@@ -421,7 +425,9 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
                 <Text>
                   {item.description} ({item.colorCode})
                 </Text>
-                <Button title="ลบ" onPress={() => removeColor(index)} />
+                <Button mode="outlined" onPress={() => removeColor(index)}>
+                  ลบ
+                </Button>
               </View>
             ))
           ) : (
@@ -432,34 +438,48 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         </View>
 
         <TextInput
-          placeholder="ราคา"
-          style={styles.input}
+          label="ราคา"
+          mode="outlined"
+          keyboardType="numeric"
           value={(form.price ?? 0).toString()}
           onChangeText={(text) =>
             setForm({ ...form, price: text ? Number(text) : 0 })
           }
-          keyboardType="numeric"
         />
+
         <TextInput
-          placeholder="จำนวนสต๊อก"
-          style={styles.input}
+          label="จำนวนสต๊อก"
+          mode="outlined"
+          keyboardType="numeric"
           value={(form.stock ?? 0).toString()}
           onChangeText={(text) =>
             setForm({ ...form, stock: text ? Number(text) : 0 })
           }
-          keyboardType="numeric"
         />
+        <Divider style={{ marginVertical: 10 }} />
         <View style={styles.imageWrapper}>
-          <Button title="เลือกรูปภาพ" onPress={pickImage} />
+          <Button mode="contained" onPress={pickImage}>
+            เลือกรูปภาพ
+          </Button>
           {form.imageUrl ? (
             <Image source={{ uri: form.imageUrl }} style={styles.image} />
           ) : null}
         </View>
       </ScrollView>
 
-      <View style={styles.buttonContainer}>
-        <Button title="Save" onPress={handleSubmit} color="green" />
-        <Button title="Cancel" onPress={() => navigation.goBack()} />
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-around",
+          marginVertical: 10,
+        }}
+      >
+        <Button mode="contained" onPress={handleSubmit}>
+          Save
+        </Button>
+        <Button mode="outlined" onPress={() => navigation.goBack()}>
+          Cancel
+        </Button>
       </View>
     </View>
   );

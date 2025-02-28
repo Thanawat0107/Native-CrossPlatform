@@ -510,6 +510,66 @@
       "price": 100,
       "stock": 80,
       "imageUrl": "https://res.cloudinary.com/dyct5fy0j/image/upload/v1740059822/om5cltto3fl8h9dbjobt.jpg"
+    },
+    {
+      "id": 1740726027697,
+      "groupId": 5,
+      "other_names": [
+        "D"
+      ],
+      "scientific_name": "Did",
+      "common_names": [
+        "D"
+      ],
+      "family": "D",
+      "botanical_description": "D",
+      "properties": {
+        "calyx": [
+          "D"
+        ],
+        "leaves": [
+          "D"
+        ],
+        "flowers": [
+          "D"
+        ],
+        "fruit": [
+          "D"
+        ],
+        "seeds": [
+          "D"
+        ],
+        "general": [
+          "D"
+        ]
+      },
+      "usage": {
+        "method": "D",
+        "dosage": "D"
+      },
+      "chemical_composition": [
+        "D"
+      ],
+      "nutritional_value": {
+        "beverage": [
+          "D"
+        ],
+        "food": [
+          "D"
+        ],
+        "vitamins": [
+          "D"
+        ],
+        "coloring": [
+          {
+            "description": "Sss",
+            "colorCode": "#FF7754"
+          }
+        ]
+      },
+      "price": 100,
+      "stock": 40,
+      "imageUrl": "https://res.cloudinary.com/dyct5fy0j/image/upload/v1740726022/fw9v5g6fywa769rzr2il.jpg"
     }
   ],
   "groups": [

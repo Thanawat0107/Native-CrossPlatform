@@ -7,6 +7,7 @@ import { Loading } from "./src/components";
 import { Provider } from "react-redux";
 import { store } from "./src/store/store";
 import { StackTabs } from "./src/navigators/StackTabs";
+import { PaperProvider } from "react-native-paper";
 
 export default function App() {
   const [fontsLoaded, fontError] = useCustomFonts();
@@ -23,9 +24,11 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <NavigationContainer onReady={onLayoutRootView}>
-        <StackTabs />
-      </NavigationContainer>
+      <PaperProvider>
+        <NavigationContainer onReady={onLayoutRootView}>
+          <StackTabs />
+        </NavigationContainer>
+      </PaperProvider>
     </Provider>
   );
 }
