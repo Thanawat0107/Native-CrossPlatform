@@ -212,7 +212,10 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         <TextInput
           label="กลีบเลี้ยง"
           mode="outlined"
-          value={form.properties?.calyx?.join(", ") ?? ""}
+          value={(Array.isArray(form.properties?.calyx)
+            ? form.properties?.calyx
+            : []
+          ).join(", ")}
           onChangeText={(text) =>
             setForm({
               ...form,
@@ -226,7 +229,10 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         <TextInput
           label="ใบไม้"
           mode="outlined"
-          value={form.properties?.leaves?.join(", ") ?? ""}
+          value={(Array.isArray(form.properties?.leaves)
+            ? form.properties?.leaves
+            : []
+          ).join(", ")}
           onChangeText={(text) =>
             setForm({
               ...form,
@@ -240,7 +246,10 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         <TextInput
           label="ดอกไม้"
           mode="outlined"
-          value={form.properties?.flowers?.join(", ") ?? ""}
+          value={(Array.isArray(form.properties?.flowers)
+            ? form.properties?.flowers
+            : []
+          ).join(", ")}
           onChangeText={(text) =>
             setForm({
               ...form,
@@ -254,7 +263,10 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         <TextInput
           label="ผลไม้"
           mode="outlined"
-          value={form.properties?.fruit?.join(", ") ?? ""}
+          value={(Array.isArray(form.properties?.fruit)
+            ? form.properties?.fruit
+            : []
+          ).join(", ")}
           onChangeText={(text) =>
             setForm({
               ...form,
@@ -268,7 +280,10 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         <TextInput
           label="เมล็ดพันธุ์"
           mode="outlined"
-          value={form.properties?.seeds?.join(", ") ?? ""}
+          value={(Array.isArray(form.properties?.seeds)
+            ? form.properties?.seeds
+            : []
+          ).join(", ")}
           onChangeText={(text) =>
             setForm({
               ...form,
@@ -282,7 +297,10 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         <TextInput
           label="ทั่วไป"
           mode="outlined"
-          value={form.properties?.general?.join(", ") ?? ""}
+          value={(Array.isArray(form.properties?.general)
+            ? form.properties?.general
+            : []
+          ).join(", ")}
           onChangeText={(text) =>
             setForm({
               ...form,
@@ -333,7 +351,10 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         <TextInput
           label="องค์ประกอบทางเคมี"
           mode="outlined"
-          value={form.chemical_composition?.join(", ") ?? ""}
+          value={(Array.isArray(form.chemical_composition)
+            ? form.chemical_composition
+            : []
+          ).join(", ")}
           onChangeText={(text) =>
             setForm({
               ...form,
@@ -349,7 +370,10 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         <TextInput
           label="เครื่องดื่ม"
           mode="outlined"
-          value={form.nutritional_value?.beverage?.join(", ") ?? ""}
+          value={(Array.isArray(form.nutritional_value?.beverage)
+            ? form.nutritional_value.beverage
+            : []
+          ).join(", ")}
           onChangeText={(text) =>
             setForm({
               ...form,
@@ -363,7 +387,10 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         <TextInput
           label="อาหาร"
           mode="outlined"
-          value={form.nutritional_value?.food?.join(", ") ?? ""}
+          value={(Array.isArray(form.nutritional_value?.food)
+            ? form.nutritional_value.food
+            : []
+          ).join(", ")}
           onChangeText={(text) =>
             setForm({
               ...form,
@@ -377,7 +404,10 @@ const ProductUpsert = ({ route }: ProductUpsertProps) => {
         <TextInput
           label="วิตามิน"
           mode="outlined"
-          value={form.nutritional_value?.vitamins?.join(", ") ?? ""}
+          value={(Array.isArray(form.nutritional_value?.vitamins)
+            ? form.nutritional_value.vitamins
+            : []
+          ).join(", ")}
           onChangeText={(text) =>
             setForm({
               ...form,

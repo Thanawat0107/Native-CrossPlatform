@@ -198,7 +198,7 @@
       },
       "price": 140,
       "stock": 180,
-      "imageUrl": "/image3.jpg"
+      "imageUrl": "https://res.cloudinary.com/dyct5fy0j/image/upload/v1740728940/z3rnilliisndjckibihm.jpg"
     },
     {
       "id": 4,
@@ -237,7 +237,7 @@
       "nutritional_value": "",
       "price": 90,
       "stock": 100,
-      "imageUrl": "/image4.jpg"
+      "imageUrl": "https://res.cloudinary.com/dyct5fy0j/image/upload/v1740728954/blpwq6be6wwwxnnmemsl.jpg"
     },
     {
       "id": 5,
@@ -274,7 +274,7 @@
       "nutritional_value": "",
       "price": 80,
       "stock": 250,
-      "imageUrl": "/image5.jpg"
+      "imageUrl": "https://res.cloudinary.com/dyct5fy0j/image/upload/v1740728969/uf03gup7kfrg1anffbuq.jpg"
     },
     {
       "id": 1738915844969,
@@ -331,7 +331,7 @@
       },
       "price": 100,
       "stock": 20,
-      "imageUrl": "Image3.jpg"
+      "imageUrl": "https://res.cloudinary.com/dyct5fy0j/image/upload/v1740729007/kfxzx4gaym5q7zngjqqa.jpg"
     },
     {
       "id": 1738928161521,
@@ -388,7 +388,7 @@
       },
       "price": 110,
       "stock": 400,
-      "imageUrl": "Image1.jpg"
+      "imageUrl": "https://res.cloudinary.com/dyct5fy0j/image/upload/v1740729024/kscllxe2gyabdyiqkbod.jpg"
     },
     {
       "id": 1739181111151,
@@ -570,6 +570,68 @@
       "price": 100,
       "stock": 40,
       "imageUrl": "https://res.cloudinary.com/dyct5fy0j/image/upload/v1740726022/fw9v5g6fywa769rzr2il.jpg"
+    },
+    {
+      "id": 1740731579014,
+      "groupId": 4,
+      "other_names": [
+        "Y"
+      ],
+      "scientific_name": "Y",
+      "common_names": [
+        "Y"
+      ],
+      "family": "Y",
+      "botanical_description": "Yyyyyyy",
+      "properties": {
+        "calyx": [
+          "Y"
+        ],
+        "leaves": [
+          "Y"
+        ],
+        "flowers": [
+          "Y"
+        ],
+        "fruit": [],
+        "seeds": [
+          "Y"
+        ],
+        "general": [
+          "Yyyyyy"
+        ]
+      },
+      "usage": {
+        "method": "Uuuu",
+        "dosage": "Yyy"
+      },
+      "chemical_composition": [
+        "Klklklklkl"
+      ],
+      "nutritional_value": {
+        "beverage": [
+          "T"
+        ],
+        "food": [
+          "T"
+        ],
+        "vitamins": [
+          "T"
+        ],
+        "coloring": [
+          {
+            "description": "secondary",
+            "colorCode": "#DDF0FF"
+          },
+          {
+            "description": "Red",
+            "colorCode": "#e81e4d"
+          }
+        ]
+      },
+      "price": 200,
+      "stock": 50,
+      "imageUrl": "https://res.cloudinary.com/dyct5fy0j/image/upload/v1740731571/uic0mlzpl5o75owy4jvl.jpg"
     }
   ],
   "groups": [
