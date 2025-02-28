@@ -1,13 +1,12 @@
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native'
-import { StatusBar } from "expo-status-bar";
+import { StyleSheet, View } from 'react-native'
 import React from 'react'
 import { Cart } from '../components';
 
 const CartScreen = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Cart />
-    </SafeAreaView>
+    </View>
   )
 }
 

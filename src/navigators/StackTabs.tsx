@@ -7,6 +7,7 @@ import RootTabs from './RootTabs';
 import HerbalPropertiesReport from '../components/settting/dashboard-setting/HerbalPropertiesReport';
 import { MainDashboards, MainManagements } from '../components/settting/main-setting/MainSetting';
 import HerbalNutritionReport from '../components/settting/dashboard-setting/HerbalNutritions/HerbalNutritionReport';
+import PriceComparisonReport from '../components/settting/dashboard-setting/PriceComparisonReport';
 
 const Stack = createNativeStackNavigator();
 
@@ -69,6 +70,11 @@ const StackTabs = () => {
       <Stack.Screen
         name="HerbalNutritionReport"
         component={HerbalNutritionReport}
+        options={{ headerShown: false, }}
+      />
+      <Stack.Screen
+        name="PriceComparisonReport"
+        component={PriceComparisonReport}
         options={{ headerShown: false, }}
       />
     </Stack.Navigator>

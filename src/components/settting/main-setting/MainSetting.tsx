@@ -93,6 +93,13 @@ const MainDashboards = () => {
           <Text style={styles.buttonText}>โภชนาการจากสมุนไพร</Text>
         </TouchableOpacity>
 
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("PriceComparisonReport")}
+        >
+          <Text style={styles.buttonText}>เปรียบเทียบราคา</Text>
+        </TouchableOpacity>
+
       </View>
     </View>
   );

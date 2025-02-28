@@ -22,4 +22,5 @@ export type RootStackParamList = {
   MainDashboards: undefined;
   HerbalPropertiesReport: undefined;
   HerbalNutritionReport: undefined;
+  PriceComparisonReport: undefined;
 };

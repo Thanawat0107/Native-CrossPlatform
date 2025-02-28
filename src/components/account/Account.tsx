@@ -11,4 +11,6 @@ const Account = () => {
 
 export default Account
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  
+});
